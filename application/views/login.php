@@ -24,10 +24,10 @@
 
                 <!-- <h1 class="logo-name"><img src="<?php echo base_url() ?>assets/logo.png"></h1> -->
                 <h1 class="logo-name">
-                	<img src="<?php echo base_url() ?>admin_assets/images/logo.png" alt="logo" /></h1>
+                	<img style="height: 65px;" src="<?php echo base_url() ?>admin_assets/images/logo.png" alt="logo" /></h1>
 
             </div>
-            <h3>Welcome to PharmEvo</h3>
+            <h3>Welcome to SMERP</h3>
             <form class="m-t" role="form" method="post" action="<?php echo base_url() ?>login/check_login">
                 <div class="form-group">
                     <input type="text" class="form-control" name="email" placeholder="Email" required="">

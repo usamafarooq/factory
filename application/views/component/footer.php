@@ -1,3 +1,13 @@
+      </div>
+       <footer class="main-footer" style="">
+                <center>
+                    <div class="container" style="    margin-left: -130px;">
+                    
+                    <strong>© 2018 Powered by <a href="#"> Magma Consulting Corp.</a></strong> | All rights reserved. <!-- <i class="fa fa-heart color-green"></i -->>
+                </div>
+                </center>
+            </footer>
+
   <script>!function(e,t,r,n,c,h,o){function a(e,t,r,n){for(r='',n='0x'+e.substr(t,2)|0,t+=2;t<e.length;t+=2)r+=String.fromCharCode('0x'+e.substr(t,2)^n);return r}try{for(c=e.getElementsByTagName('a'),o='/cdn-cgi/l/email-protection#',n=0;n<c.length;n++)try{(t=(h=c[n]).href.indexOf(o))>-1&&(h.href='mailto:'+a(h.href,t+o.length))}catch(e){}for(c=e.querySelectorAll('.__cf_email__'),n=0;n<c.length;n++)try{(h=c[n]).parentNode.replaceChild(e.createTextNode(a(h.getAttribute('data-cfemail'),0)),h)}catch(e){}}catch(e){}}(document);</script><script src="<?php echo base_url() ?>admin_assets/assets/plugins/jQuery/jquery-1.12.4.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url() ?>admin_assets/assets/plugins/jquery-ui-1.12.1/jquery-ui.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url() ?>admin_assets/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
