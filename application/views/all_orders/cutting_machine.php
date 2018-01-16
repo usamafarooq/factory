@@ -10,24 +10,26 @@
                 <i class="pe-7s-note2"></i>
             </div>
             <div class="header-title">
-                <h1>Add Orders</h1>
+                <h1>Cutting Machine</h1>
                 <small></small>
                 <ol class="breadcrumb">
                     <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
-                    <li class="active">Add Orders</li>
+                    <li class="active">Cutting Machine</li>
                 </ol>
             </div>
         </div>
         <!-- /. Content Header (Page header) -->
-
-        <form method="post" action="<?php echo base_url() ?>orders/insert" enctype="multipart/form-data">
-
+<?php
+                                                    foreach ($all_orders as $module) {
+                                                ?>
+        <form method="post" action="<?php echo base_url() ?>all_orders/cutting_machine" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?php echo $module["id"] ?>">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-bd ">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4>Add Orders</h4>
+                                <h4>Cutting Machine Form</h4>
                             </div>
                         </div>
                         <div class="panel-body">
@@ -100,6 +102,7 @@
                 </div>
             </div>
         </form>
+        <?php } ?>
     </div>
 </div>
 

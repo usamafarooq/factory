@@ -77,9 +77,12 @@ class Modules extends MY_Controller {
 		$id = $this->input->post('module_id');
 		$module = $this->Modules_model->get_row_single('modules',array('id'=>$id));
 		$tablename = $module['main_name'];
+		$tablename = str_replace(" ","_",$tablename);
 		$url = $module['url'];
 		$name = $this->input->post('name');
 		$type = $this->input->post('type');
+		$filed_type = $this->input->post('filed-type');
+		$options = $this->input->post('options');
 		$length = $this->input->post('length');
 		$required = $this->input->post('required');
 		$relation = $this->input->post('relation_table');
@@ -113,6 +116,8 @@ class Modules extends MY_Controller {
 			$fileds[] = array(
 				'name' => $text, 
 				'type' => $type[$i], 
+				'filed_type' => $filed_type[$i], 
+				'options' => $options[$i], 
 				'length' => $length[$i], 
 				'required' => (isset($required[$i])) ? 1 : 0, 
 				'module_id' => $id, 
@@ -129,8 +134,24 @@ class Modules extends MY_Controller {
 			$filed[$i] .= (isset($required[$i])) ? ' NOT NULL' : ' NULL';
 		}
 		$this->Modules_model->insert_batch('modules_fileds',$fileds);
-		$query = 'CREATE TABLE IF NOT EXISTS '.$tablename.' (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, '.implode(',', $filed).', user_id int(11) NOT NULL)';
+		$query = 'CREATE TABLE IF NOT EXISTS '.$tablename.' (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, '.implode(',', $filed).', user_id int(11) NOT NULL, created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)';
 		$q = $this->Modules_model->query($query);
+		$this->create_module($url.'_model',$fileds,$tablename);
+		$this->create_controller($url,$url.'_model',$tablename,$fileds);
+		$this->create_folder($url);
+		$this->create_main_view($url,$url.'_model',$tablename,$fileds);
+		$this->create_create_view($url,$url.'_model',$tablename,$fileds);
+		$this->create_edit_view($url,$url.'_model',$tablename,$fileds);
+		redirect('modules');
+	}
+
+	public function get_old_data($id)
+	{
+		$fileds = $this->Modules_model->get_rows('modules_fileds',array('module_id'=>$id));
+		$module = $this->Modules_model->get_row_single('modules',array('id'=>$id));
+		$tablename = $module['main_name'];
+		$tablename = str_replace(" ","_",$tablename);
+		$url = $module['url'];
 		$this->create_module($url.'_model',$fileds,$tablename);
 		$this->create_controller($url,$url.'_model',$tablename,$fileds);
 		$this->create_folder($url);

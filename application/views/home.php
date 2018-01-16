@@ -7,10 +7,10 @@
                             <i class=pe-7s-tools></i>
                         </div>
                         <div class=header-title>
-                            <h1>Pharm Evo</h1>
+                            <h1>SME ERP</h1>
                             <small></small>
                             <ol class=breadcrumb>
-                                <li><a href=index.html><i class=pe-7s-home></i> Home</a></li>
+                                <li><a href=index.php><i class=pe-7s-home></i> Home</a></li>
                                 <li class=active>Dashboard</li>
                             </ol>
                         </div>

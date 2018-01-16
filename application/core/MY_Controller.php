@@ -33,7 +33,7 @@ class MY_Controller extends CI_Controller {
 
     public function create_module($module_name,$fileds,$tablename)
     {
-    	$file = $_SERVER['DOCUMENT_ROOT'].'/distribution/application/models/'.ucfirst($module_name).'.php';
+    	$file = $_SERVER['DOCUMENT_ROOT'].'/factory/application/models/'.ucfirst($module_name).'.php';
 		if(!is_file($file)){
 		    $contents = '<?php
 		    ';
@@ -41,42 +41,46 @@ class MY_Controller extends CI_Controller {
 
 		    	';
 		    $key = array_search('1', array_column($fileds, 'is_relation'));
-        	if (array_key_exists($key,$fileds)) {
-        		$keys = array();
-        		foreach ($fileds as $f) {
-					if ($f['is_relation'] == 1) {
-						$column = explode(',', $f['value_column']);
-						for ($i=0; $i < sizeof($column); $i++) { 
-							$keys[] = $f['relation_table'].'.'.$column[$i];
-						}
-					}
-				}
-        		$contents .= "public function get_".$tablename."(%id = null)
-				{
-					%this->db->select('".$tablename.".*,".implode(',', $keys)."')
-							 ->from('".$tablename."')";
-					foreach ($fileds as $f) {
+		    if ($key >= -1) {
+	        	if (array_key_exists($key,$fileds)) {
+	        		$keys = array();
+	        		foreach ($fileds as $f) {
 						if ($f['is_relation'] == 1) {
-							$contents .= "->join('".$f['relation_table']."', '".$f['relation_table'].".".$f['relation_column']." = ".$tablename.".".$f['name']."')";
+							$column = explode(',', $f['value_column']);
+							for ($i=0; $i < sizeof($column); $i++) { 
+								$keys[] = $f['relation_table'].'.'.$column[$i];
+							}
 						}
 					}
-					$contents .= "; if (%id != null) {
-							%this->db->where('".$tablename.".user_id', %id);
-						}";
-					$contents .= "return %this->db->get()->result_array();
-				}";
-        	}
+	        		$contents .= "public function get_".$tablename."(%id = null)
+					{
+						%this->db->select('".$tablename.".*,".implode(',', $keys)."')
+								 ->from('".$tablename."')";
+						foreach ($fileds as $f) {
+							if ($f['is_relation'] == 1) {
+								$contents .= "->join('".$f['relation_table']."', '".$f['relation_table'].".".$f['relation_column']." = ".$tablename.".".$f['name']."')";
+							}
+						}
+						$contents .= "; if (%id != null) {
+								%this->db->where('".$tablename.".user_id', %id);
+							}";
+						$contents .= "return %this->db->get()->result_array();
+					}";
+	        	}
+	        }
 		    $contents .= '}';
-		    if (array_key_exists($key,$fileds)) {
-		    	$contents = str_replace("%","$",$contents);
-		    }
+		    if ($key >= -1) {
+			    if (array_key_exists($key,$fileds)) {
+			    	$contents = str_replace("%","$",$contents);
+			    }
+			}
 		    file_put_contents($file, $contents);
 		}
     }
 
     public function create_controller($controller_name,$module_name,$tablename,$fileds)
     {
-    	$file = $_SERVER['DOCUMENT_ROOT'].'/distribution/application/controllers/'.ucfirst($controller_name).'.php';
+    	$file = $_SERVER['DOCUMENT_ROOT'].'/factory/application/controllers/'.ucfirst($controller_name).'.php';
 		if(!is_file($file)){
 		    $contents = '<?php
 		    ';
@@ -118,18 +122,28 @@ class MY_Controller extends CI_Controller {
 			%this->data['title'] = '".ucfirst($controller_name)."';
 			if ( %this->permission['view_all'] == '1'){";
 			$key = array_search('1', array_column($fileds, 'is_relation'));
-        	if (array_key_exists($key,$fileds)) {
-        		$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."->get_".$tablename."();";
-        	}
+			if ($key >= -1) {
+	        	if (array_key_exists($key,$fileds)) {
+	        		$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."->get_".$tablename."();";
+	        	}
+				else{
+					$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."->all_rows('".$tablename."');";
+				}	
+			}
 			else{
 				$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."->all_rows('".$tablename."');";
-			}	
+			}
 			$contents .="}
 			elseif (%this->permission['view'] == '1') {";
 			$key = array_search('1', array_column($fileds, 'is_relation'));
-        	if (array_key_exists($key,$fileds)) {
-        		$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."->get_".$tablename."(%this->id);";
-        	}
+			if ($key >= -1) {
+	        	if (array_key_exists($key,$fileds)) {
+	        		$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."->get_".$tablename."(%this->id);";
+	        	}
+				else{
+					$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."get_rows('".$tablename."',array('user_id'=>%this->id));";
+				}
+			}
 			else{
 				$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."get_rows('".$tablename."',array('user_id'=>%this->id));";
 			}
@@ -164,8 +178,32 @@ class MY_Controller extends CI_Controller {
 				redirect('home');
 			}
 			%data = %this->input->post();
-			%data['user_id'] = %this->session->userdata('user_id');
-			%id = %this->".ucfirst($module_name)."->insert('".$tablename."',%data);
+			%data['user_id'] = %this->session->userdata('user_id');";
+			$key = array_search('checkbox', array_column($fileds, 'filed_type'));
+			if ($key >= -1) {
+	        	if (array_key_exists($key,$fileds)) {
+	        		$contents .= "%data['".$fileds[$key]['name']."'] = implode(',', %data['".$fileds[$key]['name']."']);";
+	        	}
+	        }
+	        $key = array_search('file', array_column($fileds, 'filed_type'));
+			if ($key >= -1) {
+	        	if (array_key_exists($key,$fileds)) {
+	        		$contents .= "%config['upload_path']          = './uploads/';
+					                %config['allowed_types']        = '".str_replace(',', '|', $fileds[$key]['options'])."';
+					                %config['max_size']             = 1000;
+					                %config['max_width']            = 1024;
+					                %config['max_height']           = 768;
+
+					                %this->load->library('upload', %config);
+
+					                if ( %this->upload->do_upload('".$fileds[$key]['name']."'))
+					                {
+					                        %data['".$fileds[$key]['name']."'] = '/uploads/'.%this->upload->data('file_name');
+					                }
+					                ";
+	        	}
+	        }
+			$contents .= "%id = %this->".ucfirst($module_name)."->insert('".$tablename."',%data);
 			if (%id) {
 				redirect('".$controller_name."');
 			}
@@ -199,8 +237,32 @@ class MY_Controller extends CI_Controller {
 			}
 			%data = %this->input->post();
 			%id = %data['id'];
-			unset(%data['id']);
-			%id = %this->".ucfirst($module_name)."->update('".$tablename."',%data,array('id'=>%id));
+			unset(%data['id']);";
+			$key = array_search('checkbox', array_column($fileds, 'filed_type'));
+			if ($key >= -1) {
+	        	if (array_key_exists($key,$fileds)) {
+	        		$contents .= "%data['".$fileds[$key]['name']."'] = implode(',', %data['".$fileds[$key]['name']."']);";
+	        	}
+	        }
+	        $key = array_search('file', array_column($fileds, 'filed_type'));
+			if ($key >= -1) {
+	        	if (array_key_exists($key,$fileds)) {
+	        		$contents .= "%config['upload_path']          = './uploads/';
+					                %config['allowed_types']        = '".str_replace(',', '|', $fileds[$key]['options'])."';
+					                %config['max_size']             = 1000;
+					                %config['max_width']            = 1024;
+					                %config['max_height']           = 768;
+
+					                %this->load->library('upload', %config);
+
+					                if ( %this->upload->do_upload('".$fileds[$key]['name']."'))
+					                {
+					                        %data['".$fileds[$key]['name']."'] = '/uploads/'.%this->upload->data('file_name');
+					                }
+					                ";
+	        	}
+	        }
+			$contents .= "%id = %this->".ucfirst($module_name)."->update('".$tablename."',%data,array('id'=>%id));
 			if (%id) {
 				redirect('".$controller_name."');
 			}
@@ -223,7 +285,7 @@ class MY_Controller extends CI_Controller {
 
     public function create_folder($url)
     {
-    	$directoryName = $_SERVER['DOCUMENT_ROOT'].'/distribution/application/views/'.$url;
+    	$directoryName = $_SERVER['DOCUMENT_ROOT'].'/factory/application/views/'.$url;
 		if(!is_dir($directoryName)){
 		    mkdir($directoryName, 0755);
 		}
@@ -231,7 +293,7 @@ class MY_Controller extends CI_Controller {
 
     public function create_main_view($controller_name,$module_name,$tablename,$fileds)
     {
-    	$file = $_SERVER['DOCUMENT_ROOT'].'/distribution/application/views/'.$controller_name.'/index.php';
+    	$file = $_SERVER['DOCUMENT_ROOT'].'/factory/application/views/'.$controller_name.'/index.php';
 		if(!is_file($file)){
 		    include 'create_index.php';
 		    $contents = str_replace("%","$",$contents);
@@ -244,7 +306,7 @@ class MY_Controller extends CI_Controller {
 
     public function create_create_view($controller_name,$module_name,$tablename,$fileds)
     {
-    	$file = $_SERVER['DOCUMENT_ROOT'].'/distribution/application/views/'.$controller_name.'/create.php';
+    	$file = $_SERVER['DOCUMENT_ROOT'].'/factory/application/views/'.$controller_name.'/create.php';
 		if(!is_file($file)){
 		    include 'create_create.php';
 		    $contents = str_replace("%","$",$contents);
@@ -257,7 +319,7 @@ class MY_Controller extends CI_Controller {
 
     public function create_edit_view($controller_name,$module_name,$tablename,$fileds)
     {
-    	$file = $_SERVER['DOCUMENT_ROOT'].'/distribution/application/views/'.$controller_name.'/edit.php';
+    	$file = $_SERVER['DOCUMENT_ROOT'].'/factory/application/views/'.$controller_name.'/edit.php';
 		if(!is_file($file)){
 		    include 'create_edit.php';
 		    $contents = str_replace("%","$",$contents);

@@ -178,11 +178,11 @@
                                 <li><a href="mailbox.html"><i class="ti-email"></i>&nbsp; My Messages</a></li>
                                 <li><a href="lockscreen.html"><i class="ti-lock"></i>&nbsp; Lock Screen</a></li>
                                 <li><a href="#"><i class="ti-settings"></i>&nbsp; Settings</a></li>
-                                <li><a href="<?php echo base_url() ?>admin/destroy"><i class="ti-layout-sidebar-left"></i>&nbsp; Logout</a></li>
+                                <li><a href="<?php echo base_url() ?>logout/destroy"><i class="ti-layout-sidebar-left"></i>&nbsp; Logout</a></li>
                             </ul><!-- /.dropdown-user -->
                         </li><!-- /.Dropdown -->
                         <li class="log_out">
-                            <a href="<?php echo base_url() ?>admin/destroy">
+                            <a href="<?php echo base_url() ?>logout/destroy">
                                 <i class="material-icons">power_settings_new</i>
                             </a>
                         </li><!-- /.Log out -->

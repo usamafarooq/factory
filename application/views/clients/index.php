@@ -1,5 +1,4 @@
-
-			<!-- /.Navbar  Static Side -->
+		<!-- /.Navbar  Static Side -->
 			<div class="control-sidebar-bg"></div>
 			<!-- Page Content -->
 			<div id="page-wrapper">
@@ -11,12 +10,12 @@
 							<i class="pe-7s-box1"></i>
 						</div>
 						<div class="header-title">
-							<h1>View Role</h1>
+							<h1>View Clients</h1>
 							<small> </small>
 							<ol class="breadcrumb">
 								<li><a href="<?php echo base_url() ?>"><i class="pe-7s-home"></i> Home</a></li>
 
-								<li class="active">View Role</li>
+								<li class="active">View Clients</li>
 							</ol>
 						</div>
 					</div> <!-- /. Content Header (Page header) -->
@@ -26,11 +25,11 @@
 							<div class="panel panel-bd">
 								<div class="panel-heading">
 									<div class="panel-title">
-										<h4>View Role</h4>
+										<h4>View Clients</h4>
 										<?php 
-											if ($permission['created'] == '1') {
+											if ($permission["created"] == "1") {
 										?>
-										<a href="<?php echo base_url('role/create') ?>"><button class="btn btn-info pull-right">Add Role</button></a>
+										<a href="<?php echo base_url("clients/create") ?>"><button class="btn btn-info pull-right">Add Clients</button></a>
 										<?php } ?>
 									</div>
 								</div>
@@ -40,10 +39,8 @@
 										<table id="dataTableExample2" class="table table-bordered table-striped table-hover">
 											<thead>
 												<tr>
-													<th>Id</th>
-													<th>Name</th>
-													<?php 
-														if ($permission['edit'] == '1' || $permission['deleted'] == '1') {
+													<th>Id</th><th>Client Name</th><th>Detail</th><th>Order Margin</th><th>Contact Person</th><th>Contact Number</th><th>Email</th><th>Address</th><th>Company Name</th><?php 
+														if ($permission["edit"] == "1" || $permission["deleted"] == "1"){
 													?>
 													<th>Action</th>
 													<?php } ?>
@@ -51,24 +48,22 @@
 											</thead>
 										    <tbody>
 										    	<?php
-										    		foreach ($roles as $role) {
+										    		foreach ($clients as $module) {
 										    	?>
 												<tr>
-													<td><?php echo $role['id'] ?></td>
-													<td><?php echo $role['name'] ?></td>
-													<?php 
-														if ($permission['edit'] == '1' || $permission['deleted'] == '1'){
+													<td><?php echo $module["id"] ?></td><td><?php echo $module["client_Name"] ?></td><td><?php echo $module["Detail"] ?></td><td><?php echo $module["order_Margin"] ?></td><td><?php echo $module["Contact_Person"] ?></td><td><?php echo $module["Contact_Number"] ?></td><td><?php echo $module["Email"] ?></td><td><?php echo $module["Address"] ?></td><td><?php echo $module["Company_Name"] ?></td><?php 
+														if ($permission["edit"] == "1" || $permission["deleted"] == "1"){
 													?>
 													<td>
 														<?php 
-															if ($permission['edit'] == '1') {
+															if ($permission["edit"] == "1") {
 														?>
-														<a href="<?php echo base_url() ?>role/edit/<?php echo $role['id'] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>clients/edit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
 														<?php } ?>
 														<?php 
-															if ($permission['deleted'] == '1') {
+															if ($permission["deleted"] == "1") {
 														?>
-		                                                <a href="<?php echo base_url() ?>role/delete/<?php echo $role['id'] ?>"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a>
+		                                                <a href="<?php echo base_url() ?>clients/delete/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a>
 		                                                <?php } ?>
 	                                                </td>
 	                                                <?php } ?>
@@ -85,8 +80,8 @@
 					<div style="height: 450px;"></div>
 				</div> <!-- /.main content -->
 			</div><!-- /#page-wrapper -->
-		
-
+		</div><!-- /#wrapper -->
+		<!-- START CORE PLUGINS -->
 
 
 
