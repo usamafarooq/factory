@@ -21,7 +21,54 @@ class MY_Controller extends CI_Controller {
 	public function get_modules()
 	{
 		$role = $this->session->userdata('user_type');
-		$menu = $this->Main_model->get_menu($role);
+		$menues = $this->Main_model->get_menu($role);
+		//echo '<pre>';print_r($menues);die;
+		$ids = array();
+		foreach ($menues as $m) 
+        {   
+            if ($m['parent_id'] == 0) 
+            {
+                $menu[$m['id']] = $m;
+                foreach ($menues as $men) 
+                {
+                    if ( $m['id'] == $men['parent_id'] ) 
+                    {
+                        $menu[ $m['id'] ]['children'][] = $men;
+                        $ids[] = $men['id'];
+                    }
+                }
+            }
+            else{
+            	//$menu[$m['id']] = $m;
+            }
+        }
+        // $me = array();
+        // foreach ($menu as $m) {
+        // 	$me[] = $m;
+        // }
+        // $menu = $me;
+        //echo '<pre>';print_r($ids);die;
+  //       sort($menu);
+  //       function sorts($a, $b) {
+		//     if ($a['sort'] == $b['sort']) return 0;
+		//     return ($a['sort'] > $b['sort']) ? 1 : -1;
+		// }
+  //       usort($menu, 'sorts');
+        for ($i=0; $i < sizeof($ids); $i++) { 
+            $key = array_search($ids[$i], array_column($menu, 'id'));
+            if ($key > -1) {
+            	if (array_key_exists($key,$menu)) {
+	              unset($menu[$key]);
+	            }
+            }
+        }
+        
+        if(!empty($menu)) {
+            $menu = $menu;
+        }
+        else {
+            $menu = '';
+        }
 		return $menu;
 	}
 
@@ -141,11 +188,11 @@ class MY_Controller extends CI_Controller {
 	        		$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."->get_".$tablename."(%this->id);";
 	        	}
 				else{
-					$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."get_rows('".$tablename."',array('user_id'=>%this->id));";
+					$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."->get_rows('".$tablename."',array('user_id'=>%this->id));";
 				}
 			}
 			else{
-				$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."get_rows('".$tablename."',array('user_id'=>%this->id));";
+				$contents .= "%this->data['".$controller_name."'] = %this->".ucfirst($module_name)."->get_rows('".$tablename."',array('user_id'=>%this->id));";
 			}
 				// %this->data['".$controller_name."'] = %this->".ucfirst($module_name)."->get_rows('".$tablename."',array('user_id'=>%this->id));
 			$contents .="}

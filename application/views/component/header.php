@@ -194,11 +194,25 @@
                 <div class="sidebar-nav navbar-collapse">
                    <ul class="nav" id="side-menu">
                       <li class="nav-heading "> <span>Main Navigation&nbsp;&nbsp;&nbsp;&nbsp;------</span></li>
-                      <?php 
-                        foreach ($menus as $menu) {
-                          echo '<li><a href="'.base_url($menu['url']).'" class="material-ripple"><i class="material-icons">'.$menu['icon'].'</i> '.$menu['name'].'</a></li>';
-                        }
-                      ?>
+                      <?php
+                        if ($menus != null || $menus != '') : ?>
+                            <?php foreach ($menus as $me) : ?>
+                            <li>
+                                <a href="<?php echo base_url(); ?><?php echo $me['url'] ?>" title="<?php echo $me['name'] ?>" class="material-ripple"><i class="material-icons"><?php echo $me['icon'] ?></i><?php echo $me['name'] ?>
+                                </a>
+
+                                <?php if ( isset( $me['children'] ) && $me['children'] != NULL ): ?>
+                                        <ul class="nav nav-second-level">
+                                    <?php foreach ( $me['children'] as $sub_menu ): ?>
+                                            <li><a href="<?php echo base_url($sub_menu['url']) ?>" title="<?php echo $sub_menu['name'] ?>"><?php echo $sub_menu['name'] ?></a></li>
+                                    <?php endforeach ?>
+                                        </ul>
+                                <?php endif ?>
+
+                            </li> 
+                           
+                            <?php endforeach; ?>
+                        <?php endif ?>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

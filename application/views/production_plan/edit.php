@@ -39,16 +39,17 @@
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Date</label>
                                         <div class="col-sm-9">
 
-                                        <input class="form-control" name="Date" type="date" value="<?php echo $production_plan["Date"] ?>" id="example-text-input" placeholder="" ></div>
+                                        <input class="form-control" name="Date" type="date" value="<?php echo $production_plan["Date"] ?>" readonly="" id="example-text-input" placeholder="" ></div>
 
                                     </div>
                                      <div class="form-group col-lg-6">
                                 <label for="example-text-input" class="col-sm-3 col-form-label">WO#</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" name="WO_no" >
+                                            <!-- <select class="form-control" name="WO_no" >
                                                 <option>Select WO#</option><?php foreach ($table_work_orders as $t) {?>
                                                     <option value="<?php echo $t["id"] ?>" <?php if($t["id"] == $production_plan["WO_no"]) echo "selected" ?>><?php echo $t["Description"] ?></option>
-                                               <?php } ?></select>
+                                               <?php } ?></select> -->
+                                               <input type="text" name="WO_no" readonly="" class="form-control" value="<?php echo $production_plan["WO_no"] ?>">
                                         </div>
 
                                     </div>
@@ -72,7 +73,7 @@
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Job Description</label>
                                         <div class="col-sm-9">
 
-                                        <input class="form-control" name="Job_Description" type="text" value="<?php echo $production_plan["Job_Description"] ?>" id="example-text-input" placeholder="" ></div>
+                                        <input class="form-control" name="Job_Description" type="text" value="<?php echo $production_plan["Job_Description"] ?>" readonly="" id="example-text-input" placeholder="" ></div>
 
 </div>
                                     </div>
@@ -86,7 +87,7 @@
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Board Name</label>
                                         <div class="col-sm-9">
 
-                                        <input class="form-control" name="Board_Name" type="text" value="<?php echo $production_plan["Board_Name"] ?>" id="example-text-input" placeholder="" ></div>
+                                        <input class="form-control" name="Board_Name" type="text" value="<?php echo $production_plan["Board_Name"] ?>" readonly="" id="example-text-input" placeholder="" ></div>
 
                                     </div>
                                      <div class="form-group col-lg-6">
@@ -106,7 +107,7 @@
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Board Size</label>
                                         <div class="col-sm-9">
 
-                                        <input class="form-control" name="Board_Size" type="text" value="<?php echo $production_plan["Board_Size"] ?>" id="example-text-input" placeholder="" ></div>
+                                        <input class="form-control" name="Board_Size" type="text" value="<?php echo $production_plan["Board_Size"] ?>" readonly="" id="example-text-input" placeholder="" ></div>
 
                                     </div>
                                     <div class="form-group col-lg-6">
@@ -133,7 +134,7 @@
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Planned sheet Size</label>
                                         <div class="col-sm-9">
 
-                                        <input class="form-control" name="Planned_sheet_Size" type="text" value="<?php echo $production_plan["Planned_sheet_Size"] ?>" id="example-text-input" placeholder="" ></div>
+                                        <input class="form-control" name="Planned_sheet_Size" readonly="" type="text" value="<?php echo $production_plan["Planned_sheet_Size"] ?>" id="example-text-input" placeholder="" ></div>
 
 </div>
                                 </div>
@@ -165,7 +166,7 @@
                                 <label for="example-text-input" class="col-sm-3 col-form-label">PO Qty</label>
                                         <div class="col-sm-9">
 
-                                        <input class="form-control" name="PO_Qty" type="number" value="<?php echo $production_plan["PO_Qty"] ?>" id="example-text-input" placeholder="" ></div>
+                                        <input class="form-control" name="PO_Qty" type="number" value="<?php echo $production_plan["PO_Qty"] ?>" readonly="" id="example-text-input" placeholder="" ></div>
 
                                     </div>
                                     <div class="form-group col-lg-6">
@@ -185,7 +186,7 @@
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Ups</label>
                                         <div class="col-sm-9">
 
-                                        <input class="form-control" name="Ups" type="text" value="<?php echo $production_plan["Ups"] ?>" id="example-text-input" placeholder="" ></div>
+                                        <input class="form-control" name="Ups" type="text" value="<?php echo $production_plan["Ups"] ?>" readonly="" id="example-text-input" placeholder="" ></div>
 
                                     </div>
                                     <div class="form-group col-lg-6">

@@ -26,17 +26,12 @@
 								<div class="panel-heading">
 									<div class="panel-title">
 										<h4>View Production plan</h4>
-										<?php 
-											if ($permission["created"] == "1") {
-										?>
-										<a href="<?php echo base_url("production_plan/create") ?>"><button class="btn btn-info pull-right">Add Production plan</button></a>
-										<?php } ?>
 									</div>
 								</div>
 								<div class="panel-body">
 									
 									<div class="table-responsive">
-										<table id="dataTableExample2" class="table table-bordered table-striped table-hover">
+										<!-- <table id="dataTableExample2" class="table table-bordered table-striped table-hover">
 											<thead>
 												<tr>
 													<th>Id</th><th>Date</th><th>Description</th><th>Item Code</th><th>MIS no</th><th>Job Description</th><th>Board Name</th><th>Gsm</th><th>Board Size</th><th>Quantity</th><th>Conversion</th><th>Planned sheet Size</th><th>Balanced Offcut Size</th><th>Offcut Quantity</th><th>PO Qty</th><th>Planned qty sheets</th><th>Ups</th><th>Planned qty</th><?php 
@@ -65,6 +60,73 @@
 														?>
 		                                                <a href="<?php echo base_url() ?>production_plan/delete/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a>
 		                                                <?php } ?>
+	                                                </td>
+	                                                <?php } ?>
+												</tr>
+												<?php } ?>
+											</tbody>
+										</table> -->
+										<table id="dataTableExample2" class="table table-bordered table-striped table-hover">
+											<thead>
+												<tr>
+													<th>Id</th>
+													<th>Client</th>
+													<th>Item Code</th>
+													<th>Quantity</th>
+													<th>PO No</th>
+													<th>PO Date</th>
+													<th>Batch No</th>
+													<th>Delivery Date</th>
+													<th>Delivery Status</th>
+													<th>Instruction Remarks</th>
+													<th>Status</th>
+													<?php 
+														if ($permission["created"] == "1"){
+													?>
+													<th>Action</th>
+													<?php } ?>
+												</tr>
+											</thead>
+										    <tbody>
+										    	<?php
+										    		foreach ($production_plan as $module) {
+										    	?>
+												<tr>
+													<td><?php echo $module["id"] ?></td>
+													<td><?php echo $module["Client"] ?></td>
+													<td><?php echo $module["Item_Code"] ?></td>
+													<td><?php echo $module["quantity"] ?></td>
+													<td><?php echo $module["PO_No"] ?></td>
+													<td><?php echo $module["PO_Date"] ?></td>
+													<td><?php echo $module["Batch_No"] ?></td>
+													<td><?php echo $module["Delivery_Date"] ?></td>
+													<td><?php echo $module["Delivery_Status"] ?></td>
+													<td><?php echo $module["Instruction_Remarks"] ?></td>
+													<td>
+														<?php 
+															if ($module["approval"] == "1") {
+														?>
+														Approved
+														<?php 
+															}
+															else {
+														?>
+		                                                panding
+		                                                <?php } ?>
+	                                                </td>
+	                                                <?php 
+														if ($permission["created"] == "1"){
+													?>
+	                                                <td>
+	                                                	<?php 
+	                                                		if ($module['p_id'] == 0) {
+	                                                	?>
+	                                                	<a href="<?php echo base_url() ?>production_plan/create/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
+	                                                	<?php } else{?>
+														<a href="<?php echo base_url() ?>production_plan/edit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>production_plan/plan_flow/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Flow" alt="View Flow" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>production_plan/view_plan/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Plane" alt="View Plane" width="35" height="35"></a>
+	                                                	<?php } ?>
 	                                                </td>
 	                                                <?php } ?>
 												</tr>

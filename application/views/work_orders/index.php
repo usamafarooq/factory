@@ -39,7 +39,17 @@
 										<table id="dataTableExample2" class="table table-bordered table-striped table-hover">
 											<thead>
 												<tr>
-													<th>Id</th><th>Date</th><th>Client</th><th>Description</th><th>Item Code</th><th>Quantity</th><th>PO No</th><th>PO Date</th><th>Batch No</th><th>Delivery Date</th><th>Order Type</th><th>Delivery Status</th><th>Instruction Remarks</th><?php 
+													<th>Id</th>
+													<th>Client</th>
+													<th>Item Code</th>
+													<th>Quantity</th>
+													<th>PO No</th>
+													<th>PO Date</th>
+													<th>Batch No</th>
+													<th>Delivery Date</th>
+													<th>Delivery Status</th>
+													<th>Instruction Remarks</th>
+													<?php 
 														if ($permission["edit"] == "1" || $permission["deleted"] == "1"){
 													?>
 													<th>Action</th>
@@ -51,10 +61,21 @@
 										    		foreach ($work_orders as $module) {
 										    	?>
 												<tr>
-													<td><?php echo $module["id"] ?></td><td><?php echo $module["Date"] ?></td><td><?php echo $module["Client"] ?></td><td><?php echo $module["Description"] ?></td><td><?php echo $module["Item_Code"] ?></td><td><?php echo $module["quantity"] ?></td><td><?php echo $module["PO_No"] ?></td><td><?php echo $module["PO_Date"] ?></td><td><?php echo $module["Batch_No"] ?></td><td><?php echo $module["Delivery_Date"] ?></td><td><?php echo $module["Order_Type"] ?></td><td><?php echo $module["Delivery_Status"] ?></td><td><?php echo $module["Instruction_Remarks"] ?></td><?php 
+													<td><?php echo $module["id"] ?></td>
+													<td><?php echo $module["Client"] ?></td>
+													<td><?php echo $module["Item_Code"] ?></td>
+													<td><?php echo $module["quantity"] ?></td>
+													<td><?php echo $module["PO_No"] ?></td>
+													<td><?php echo $module["PO_Date"] ?></td>
+													<td><?php echo $module["Batch_No"] ?></td>
+													<td><?php echo $module["Delivery_Date"] ?></td>
+													<td><?php echo $module["Delivery_Status"] ?></td>
+													<td><?php echo $module["Instruction_Remarks"] ?></td>
+													<?php 
 														if ($permission["edit"] == "1" || $permission["deleted"] == "1"){
 													?>
 													<td>
+														<a href="<?php echo base_url() ?>work_orders/view_plane/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Plane" alt="View Plane" width="35" height="35"></a>
 														<?php 
 															if ($permission["edit"] == "1") {
 														?>

@@ -113,6 +113,22 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group row">
+
+                                    <div class="form-group col-lg-6">
+                                        <label for="example-text-input" class="col-sm-3 col-form-label">Type</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" name="type">
+                                                <option>Select Type</option>
+                                                <option value="Gold" <?php if ($clients['type'] == 'Gold') echo 'selected' ?>>Gold</option>
+                                                <option value="Silver" <?php if ($clients['type'] == 'Silver') echo 'selected' ?>>Silver</option>
+                                                <option value="Platinum" <?php if ($clients['type'] == 'Platinum') echo 'selected' ?>>Platinum</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+
                                     <div class="form-group row">
 
                                 <div class="col-sm-12">

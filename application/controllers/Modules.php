@@ -37,6 +37,7 @@ class Modules extends MY_Controller {
 			redirect('home');
 		}
 		$this->data['title'] = 'Create Module';
+		$this->data['modules'] = $this->Modules_model->all_rows('modules');
 		$this->load->template('module/create',$this->data);
 	}
 
@@ -168,7 +169,9 @@ class Modules extends MY_Controller {
 			redirect('home');
 		}
 		$this->data['title'] = 'Edit Module';
+		$this->data['modules'] = $this->Modules_model->all_rows('modules');
 		$this->data['module'] = $this->Modules_model->get_row_single('modules',array('id'=>$id));
+		//echo '<pre>';print_r($this->data);die;
 		$this->load->template('module/edit',$this->data);
 	}
 

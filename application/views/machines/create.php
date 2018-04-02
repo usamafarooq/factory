@@ -1,4 +1,3 @@
-
 <!-- /.Navbar  Static Side -->
 <div class="control-sidebar-bg"></div>
 <!-- Page Content -->
@@ -31,29 +30,37 @@
                                 <h4>Add Machines</h4>
                             </div>
                         </div>
-                        <div class="panel-body"><div class="form-group row">
-
+                        <div class="panel-body">
+                            <div class="form-group row">
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Machine Name</label>
-                                        <div class="col-sm-9"><input class="form-control" name="machine_Name" type="text" value="" id="example-text-input" placeholder="" ></div>
-
-                                    </div><div class="form-group row">
+                                <div class="col-sm-9"><input class="form-control" name="machine_Name" type="text" value="" id="example-text-input" placeholder=""></div>
+                            </div>
+                            <div class="form-group row">
 
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Detail</label>
-                                        <div class="col-sm-9"><textarea class="form-control" name="detail" ></textarea></div>
-
-                                    </div><div class="form-group row">
-
+                                <div class="col-sm-9"><textarea class="form-control" name="detail"></textarea></div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Feature</label>
-                                        <div class="col-sm-9">
-                                            <select multiple="" class="form-control" name="feature[]" >
-                                                <?php foreach ($table_feature as $t) {?>
-                                                    <option value="<?php echo $t["id"] ?>"><?php echo $t["name"] ?></option>
-                                               <?php } ?></select>
-
-                                        </div>
-
-                                    </div><div class="form-group row">
-
+                                <div class="col-sm-9">
+                                    <select multiple="" class="form-control" name="feature[]">
+                                    <?php foreach ($table_feature as $t) {?>
+                                        <option value="<?php echo $t["id"] ?>"><?php echo $t["name"] ?></option>
+                                    <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-sm-3 col-form-label">Flows</label>
+                                <div class="col-sm-9">
+                                    <select multiple="" class="form-control" name="flows[]">
+                                    <?php foreach ($table_flow as $t) {?>
+                                        <option value="<?php echo $t["id"] ?>"><?php echo $t["Name"] ?></option>
+                                    <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-sm-12">
                                     <button type="submit" class="btn btn-primary pull-right">Add</button>
                                 </div>

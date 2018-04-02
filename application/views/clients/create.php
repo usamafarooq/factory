@@ -102,6 +102,22 @@
 
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+
+                                <div class="form-group col-lg-6">
+                                    <label for="example-text-input" class="col-sm-3 col-form-label">Type</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="type">
+                                            <option>Select Type</option>
+                                            <option value="Gold">Gold</option>
+                                            <option value="Silver">Silver</option>
+                                            <option value="Platinum">Platinum</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
                             
                             <div class="form-group row">
 
