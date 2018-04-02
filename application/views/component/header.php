@@ -178,11 +178,11 @@
                                 <li><a href="mailbox.html"><i class="ti-email"></i>&nbsp; My Messages</a></li>
                                 <li><a href="lockscreen.html"><i class="ti-lock"></i>&nbsp; Lock Screen</a></li>
                                 <li><a href="#"><i class="ti-settings"></i>&nbsp; Settings</a></li>
-                                <li><a href="<?php echo base_url() ?>admin/destroy"><i class="ti-layout-sidebar-left"></i>&nbsp; Logout</a></li>
+                                <li><a href="<?php echo base_url() ?>logout/destroy"><i class="ti-layout-sidebar-left"></i>&nbsp; Logout</a></li>
                             </ul><!-- /.dropdown-user -->
                         </li><!-- /.Dropdown -->
                         <li class="log_out">
-                            <a href="<?php echo base_url() ?>admin/destroy">
+                            <a href="<?php echo base_url() ?>logout/destroy">
                                 <i class="material-icons">power_settings_new</i>
                             </a>
                         </li><!-- /.Log out -->
@@ -194,11 +194,25 @@
                 <div class="sidebar-nav navbar-collapse">
                    <ul class="nav" id="side-menu">
                       <li class="nav-heading "> <span>Main Navigation&nbsp;&nbsp;&nbsp;&nbsp;------</span></li>
-                      <?php 
-                        foreach ($menus as $menu) {
-                          echo '<li><a href="'.base_url($menu['url']).'" class="material-ripple"><i class="material-icons">'.$menu['icon'].'</i> '.$menu['name'].'</a></li>';
-                        }
-                      ?>
+                      <?php
+                        if ($menus != null || $menus != '') : ?>
+                            <?php foreach ($menus as $me) : ?>
+                            <li>
+                                <a href="<?php echo base_url(); ?><?php echo $me['url'] ?>" title="<?php echo $me['name'] ?>" class="material-ripple"><i class="material-icons"><?php echo $me['icon'] ?></i><?php echo $me['name'] ?>
+                                </a>
+
+                                <?php if ( isset( $me['children'] ) && $me['children'] != NULL ): ?>
+                                        <ul class="nav nav-second-level">
+                                    <?php foreach ( $me['children'] as $sub_menu ): ?>
+                                            <li><a href="<?php echo base_url($sub_menu['url']) ?>" title="<?php echo $sub_menu['name'] ?>"><?php echo $sub_menu['name'] ?></a></li>
+                                    <?php endforeach ?>
+                                        </ul>
+                                <?php endif ?>
+
+                            </li> 
+                           
+                            <?php endforeach; ?>
+                        <?php endif ?>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

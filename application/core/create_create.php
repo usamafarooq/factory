@@ -12,11 +12,11 @@ $contents = '
                 <i class="pe-7s-note2"></i>
             </div>
             <div class="header-title">
-                <h1>Add '.ucfirst($controller_name).'</h1>
+                <h1>Add '.str_replace("_"," ",ucfirst($controller_name)).'</h1>
                 <small></small>
                 <ol class="breadcrumb">
                     <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
-                    <li class="active">Add '.ucfirst($controller_name).'</li>
+                    <li class="active">Add '.str_replace("_"," ",ucfirst($controller_name)).'</li>
                 </ol>
             </div>
         </div>
@@ -29,12 +29,13 @@ $contents = '
                     <div class="panel panel-bd ">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4>Add '.ucfirst($controller_name).'</h4>
+                                <h4>Add '.str_replace("_"," ",ucfirst($controller_name)).'</h4>
                             </div>
                         </div>
                         <div class="panel-body">';
-
+ $con = 1;
 foreach ($fileds as $f) {
+   
     $contents .= '<div class="form-group row">
 
                                 <label for="example-text-input" class="col-sm-3 col-form-label">'.str_replace("_"," ",ucfirst($f['name'])).'';
@@ -73,9 +74,46 @@ foreach ($fileds as $f) {
                                 }
                                 else{
                                     $contents .='</label>
-                                        <div class="col-sm-9">
-                                            <input class="form-control" name="'.$f['name'].'" type="'.$type.'" value="" id="example-text-input" placeholder="" '.$req.'>
-                                        </div>
+                                        <div class="col-sm-9">';
+if ($f['filed_type'] == 'checkbox') {
+    $options = explode(',', $f['options']);
+    for ($i=0; $i < sizeof($options); $i++) { 
+        $contents .= '<div class="checkbox checkbox-info checkbox-inline">
+            <input type="checkbox"  name="'.$f['name'].'[]" id="inlineCheckbox'.$con.'" value="'.$options[$i].'">
+            <label for="inlineCheckbox'.$con.'"> '.ucfirst($options[$i]).' </label>
+        </div>';
+        $con++;
+    }
+} 
+elseif ($f['filed_type'] == 'radio') {
+    $options = explode(',', $f['options']);
+    for ($i=0; $i < sizeof($options); $i++) { 
+        $contents .= '<div class="radio radio-info radio-inline">
+            <input type="radio"  name="'.$f['name'].'" id="inlineCheckbox'.$con.'" value="'.$options[$i].'">
+            <label for="inlineCheckbox'.$con.'"> '.ucfirst($options[$i]).' </label>
+        </div>';
+        $con++;
+    }
+}
+elseif ($f['filed_type'] == 'select') {
+    $options = explode(',', $f['options']);
+    $contents .='<select class="form-control" name="'.$f['name'].'" '.$req.'>
+        <option>Select '.str_replace("_"," ",ucfirst($f['name'])).'</option>';
+    for ($i=0; $i < sizeof($options); $i++) {
+        $contents .= '<option value="'.$options[$i].'">'.ucfirst($options[$i]).'</option>';
+    }
+    $contents .='</select>';
+}
+elseif ($f['filed_type'] == 'file') {
+    $contents .= '<input class="form-control" name="'.$f['name'].'" type="file" value="" id="example-text-input" placeholder="" '.$req.'>';
+} 
+elseif ($f['filed_type'] == 'textarea') {
+    $contents .= '<textarea class="form-control" name="'.$f['name'].'" '.$req.'></textarea>';
+}
+else{
+    $contents .= '<input class="form-control" name="'.$f['name'].'" type="'.$type.'" value="" id="example-text-input" placeholder="" '.$req.'>';
+}                                          
+                                        $contents .='</div>
 
                                     </div>';
                                 }
@@ -104,10 +142,5 @@ foreach ($fileds as $f) {
 
 </div>
 <!-- /.main content -->
-</div>
-<!-- /#page-wrapper -->
-</div>
-<!-- /#wrapper -->
-<!-- START CORE PLUGINS -->
-';
-?>
+
+?>';

@@ -39,6 +39,29 @@
                                         <input class="form-control" name="name[]" type="text" value="" id="example-text-input" placeholder="" required="">
                                     </div>
                                 </div>
+
+                                <div class="form-group row">
+                                    <label for="example-text-input" class="col-sm-3 col-form-label">Filed Type<span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control filed-type" name="filed-type[]" required="">
+                                            <option>Select Type</option>
+                                            <option value="input">Input</option>
+                                            <option value="textarea">Textarea</option>
+                                            <option value="checkbox">Checkbox</option>
+                                            <option value="radio">Radio</option>
+                                            <option value="select">Dropdown</option>
+                                            <option value="file">File</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row filed-options" style="display: none;">
+                                    <label for="example-text-input" class="col-sm-3 col-form-label">Options<span class="required">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="options[]" class="form-control" placeholder="Comma Separated Values">
+                                    </div>
+                                </div>
+
                                 <div class="form-group row">
                                     <label for="example-text-input" class="col-sm-3 col-form-label">Type<span class="required">*</span></label>
                                     <div class="col-sm-9">
@@ -151,6 +174,7 @@
             con++
         })
         get_tables()
+        filed_type()
     });
     $("body").on("click",".remove",function(){
         $(this).parents(".after-add-sub").remove();
@@ -240,4 +264,17 @@
         })
     }
     get_tables()
+    function filed_type() {
+        $('.filed-type').change(function() {
+            var val = $(this).val()
+            $(this).parent().parent().parent().find('.filed-options input').val('')
+            if(val == 'checkbox' || val == 'radio' || val == 'select' || val == 'file'){
+                $(this).parent().parent().parent().find('.filed-options').show()
+            }
+            else{
+                $(this).parent().parent().parent().find('.filed-options').hide()
+            }
+        })
+    }
+    filed_type()
 </script>

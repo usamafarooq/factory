@@ -88,8 +88,7 @@
 					<div style="height: 450px;"></div>
 				</div> <!-- /.main content -->
 			</div><!-- /#page-wrapper -->
-		</div><!-- /#wrapper -->
-		<!-- START CORE PLUGINS -->
+		
 
 
 

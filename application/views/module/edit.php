@@ -77,6 +77,26 @@
 
                             <div class="form-group row">
 
+                                <label for="example-text-input" class="col-sm-3 col-form-label">Parent<span class="required">*</span></label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="parent_id">
+                                        <option>Select Parent</option>
+                                        <?php 
+                                            foreach ($modules as $m) {
+                                                $type = '';
+                                                if ($module['parent_id'] == $m['id']) {
+                                                    $type = 'selected';
+                                                }
+                                                echo '<option value="'.$m['id'].'" '.$type.'>'.$m['name'].'</option>';
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row">
+
                                 <div class="col-sm-12">
                                     <button type="submit" class="btn btn-primary pull-right">Update</button>
                                 </div>

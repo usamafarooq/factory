@@ -1,9 +1,9 @@
-      </div>
+    
        <footer class="main-footer" style="">
                 <center>
-                    <div class="container" style="    margin-left: -130px;">
+                    <div class="container" style=" margin-left: -130px;">
                     
-                    <strong>© 2018 Powered by <a href="#"> Magma Consulting Corp.</a></strong> | All rights reserved. <!-- <i class="fa fa-heart color-green"></i -->>
+                    <strong>© 2018 Powered by <a href="http://www.magmacc.com/"> Magma Consulting Corp.</a></strong> | All rights reserved <!-- <i class="fa fa-heart color-green"></i> -->
                 </div>
                 </center>
             </footer>

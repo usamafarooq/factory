@@ -129,10 +129,4 @@
 
 </div>
 
-</div>
-<!-- /.main content -->
-</div>
-<!-- /#page-wrapper -->
-</div>
-<!-- /#wrapper -->
-<!-- START CORE PLUGINS -->
+

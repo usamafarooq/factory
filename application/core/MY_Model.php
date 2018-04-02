@@ -66,6 +66,41 @@ class MY_Model extends CI_Model
     }
 
 
+    public function get_flow($name,$table=null,$id=null)
+    {
+        $this->db->select('p.id,p.WO_no,p.Job_Description,p.Quantity,f.start_date,f.end_date,f.parent_id,(CASE WHEN f.parent_id != 0 THEN pf.id ELSE 0 END) as parent, f.id as flow_id, count(ofs.id) as con, COUNT(off.id) as submit');
+        $this->db->from('production_plan p')
+                 ->join('production_flow f', 'f.plane_id = p.id')
+                 ->join('flows fl', 'fl.id = f.type')
+                 ->join('production_flow pf', ' f.parent_id = (CASE WHEN f.parent_id != 0 THEN pf.type ELSE 0 END) and pf.plane_id = f.plane_id', 'left')
+                 ->join('order_flow_submission of', 'pf.id = of.flow_id', 'left')
+                 ->join('order_flow_submission off', 'f.id = off.flow_id', 'left')
+                 ->join('order_flow_start ofs', 'f.id = ofs.flow_id', 'left');
+        // if ($table != null && $table != 'null') {
+        //     $this->db->join($table.' s', 's.plane_id = p.id', 'left');
+        // }
+        $this->db->where('fl.Name', $name)
+                 ->group_by('p.id')
+                 ->having('COUNT(of.id) >= (CASE WHEN f.parent_id != 0 THEN 1 ELSE 0 END)');
+        if ($id != null) {
+            $this->db->where('p.user_id', $id);
+        }
+        return $this->db->get()->result_array();
+    }
 
+    public function get_qc_flow($id)
+    {
+        $this->db->select('fl.Name,f.start_date,f.end_date,p.WO_no,p.Job_Description,count(off.id) as submit,count(ofs.id) as start, pf.Name as parent,f.id, count(lc.id) as clearance')
+                 ->from('production_plan p')
+                 ->join('production_flow f', 'f.plane_id = p.id')
+                 ->join('line_clearance lc', 'lc.flow_id = f.id', 'left')
+                 ->join('flows fl', 'fl.id = f.type')
+                 ->join('flows pf', 'pf.id = f.parent_id', 'left')
+                 ->join('order_flow_submission off', 'f.id = off.flow_id', 'left')
+                 ->join('order_flow_start ofs', 'f.id = ofs.flow_id', 'left')
+                 ->group_by('f.id')
+                 ->where('p.WO_no', $id);
+        return $this->db->get()->result_array();
+    }
 
 }

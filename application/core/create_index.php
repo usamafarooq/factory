@@ -11,12 +11,12 @@ $contents = '		<!-- /.Navbar  Static Side -->
 							<i class="pe-7s-box1"></i>
 						</div>
 						<div class="header-title">
-							<h1>View '.ucfirst($controller_name).'</h1>
+							<h1>View '.str_replace("_"," ",ucfirst($controller_name)).'</h1>
 							<small> </small>
 							<ol class="breadcrumb">
 								<li><a href="<?php echo base_url() ?>"><i class="pe-7s-home"></i> Home</a></li>
 
-								<li class="active">View '.ucfirst($controller_name).'</li>
+								<li class="active">View '.str_replace("_"," ",ucfirst($controller_name)).'</li>
 							</ol>
 						</div>
 					</div> <!-- /. Content Header (Page header) -->
@@ -26,11 +26,11 @@ $contents = '		<!-- /.Navbar  Static Side -->
 							<div class="panel panel-bd">
 								<div class="panel-heading">
 									<div class="panel-title">
-										<h4>View '.ucfirst($controller_name).'</h4>
+										<h4>View '.str_replace("_"," ",ucfirst($controller_name)).'</h4>
 										<?php 
 											if (%permission["created"] == "1") {
 										?>
-										<a href="<?php echo base_url("'.$controller_name.'/create") ?>"><button class="btn btn-info pull-right">Add '.ucfirst($controller_name).'</button></a>
+										<a href="<?php echo base_url("'.$controller_name.'/create") ?>"><button class="btn btn-info pull-right">Add '.str_replace("_"," ",ucfirst($controller_name)).'</button></a>
 										<?php } ?>
 									</div>
 								</div>
@@ -74,7 +74,12 @@ foreach ($fileds as $f) {
 		}
 	}
 	else{
-		$contents .= '<td><?php echo %module["'.$f['name'].'"] ?></td>';
+		if ($f['filed_type'] == 'file') {
+			$contents .= '<td><a href="<?php echo base_url() ?>/<?php echo %module["'.$f['name'].'"] ?>">View File</a></td>';
+		}
+		else{
+			$contents .= '<td><?php echo %module["'.$f['name'].'"] ?></td>';
+		}
 	}
 }													
 													$contents .= '<?php 
@@ -105,10 +110,8 @@ foreach ($fileds as $f) {
 					</div>
 					<div style="height: 450px;"></div>
 				</div> <!-- /.main content -->
-			</div><!-- /#page-wrapper -->
-		</div><!-- /#wrapper -->
-		<!-- START CORE PLUGINS -->
-
+	
+</div>
 
 
 
