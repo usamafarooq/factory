@@ -40,6 +40,7 @@
 													<th>Quantity</th>
 													<th>Start Date</th>
 													<th>End Date</th>
+													<th>Status</th>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -54,27 +55,29 @@
 										    		<td><?php echo $o['Quantity'] ?></td>
 										    		<td><?php echo $o['start_date'] ?></td>
 										    		<td><?php echo $o['end_date'] ?></td>
+										    		<td><?php echo $o['status'] ?></td>
 										    		<td>
 										    			<?php
 										    				if ($o['submit'] != 0 || $o['submit'] != '') {
 										    					$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 										    			?>
-										    			<a href="<?php echo base_url() ?>requisition/order/<?php echo $o["WO_no"] ?>/Die_Cutting?redirect=<?php echo $url ?>"><button class="btn btn-info">Order</button></a>
+										    			<a href="<?php echo base_url() ?>requisition/order/<?php echo $o["WO_no"] ?>/Die_Cutting?redirect=<?php echo $url ?>"><img src="<?php echo base_url() ?>assets/icons/create-order.png" title="Order" alt="Order" width="35" height="35"></a>
+										    			<a href="<?php echo base_url() ?>requisition/view_order/<?php echo $o["WO_no"] ?>/Die_Cutting" target="_blank"><img src="<?php echo base_url() ?>assets/icons/view_order.png" title="View Order" alt="View Order" width="35" height="35"></a>
 										    			<?php } ?>
-										    			<a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $o["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Detail" alt="View Detail" width="35" height="35"></a>
+										    			<a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $o["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/icons/complete_process.png" title="Completed" alt="View Plane" width="35" height="35"></a>
 										    			<?php 
 										    				if ($o['con'] == 0) {
 										    			?>
-										    			<a href="<?php echo base_url('machine_flow/die_cutting/'.$o['id'].'/'.$o['flow_id']) ?>"><button class="btn btn-info">Start</button></a>
+										    			<a href="<?php echo base_url('machine_flow/die_cutting/'.$o['id'].'/'.$o['flow_id']) ?>"><img src="<?php echo base_url() ?>assets/icons/start_process.png" title="Start" alt="Start" width="35" height="35"></a>
 										    			<?php 
 										    				}
 										    				else{
 										    			?>
-										    			<a href="<?php echo base_url() ?>die_cutting/view_machine/<?php echo $o["id"] ?>/<?php echo $o['flow_id'] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Plane" alt="View Plane" width="35" height="35"></a>
+										    			<a href="<?php echo base_url() ?>die_cutting/view_machine/<?php echo $o["id"] ?>/<?php echo $o['flow_id'] ?>"><img src="<?php echo base_url() ?>assets/icons/view_detail.png" title="View Detail" alt="View Detail" width="35" height="35"></a></a>
 										    			<?php
 										    					if ($o['submit'] == 0) {
 										    			?>
-										    			<a href="<?php echo base_url('machine_flow/die_cutting_complete/'.$o['id'].'/'.$o['flow_id']) ?>"><button class="btn btn-info">Complete</button></a>
+										    			<a href="<?php echo base_url('machine_flow/die_cutting_complete/'.$o['id'].'/'.$o['flow_id']) ?>"><img src="<?php echo base_url() ?>assets/icons/complete.png" title="Complete" alt="Complete" width="35" height="35"></a>
 										    			<?php 
 										    				}
 										    				else{

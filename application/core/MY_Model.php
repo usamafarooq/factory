@@ -68,14 +68,20 @@ class MY_Model extends CI_Model
 
     public function get_flow($name,$table=null,$id=null)
     {
-        $this->db->select('p.id,p.WO_no,p.Job_Description,p.Quantity,f.start_date,f.end_date,f.parent_id,(CASE WHEN f.parent_id != 0 THEN pf.id ELSE 0 END) as parent, f.id as flow_id, count(ofs.id) as con, COUNT(off.id) as submit');
+        $this->db->select('MAX(id),status,wo_id')
+                 ->from('requisition')
+                 ->where('type',$name)
+                 ->group_by(array('type','wo_id'));
+        $status = $this->db->get_compiled_select();
+        $this->db->select('p.id,p.WO_no,p.Job_Description,p.Quantity,f.start_date,f.end_date,f.parent_id,(CASE WHEN f.parent_id != 0 THEN pf.id ELSE 0 END) as parent, f.id as flow_id, count(ofs.id) as con, COUNT(off.id) as submit,(CASE WHEN s.status IS NULL THEN "Not initialized" ELSE s.status END) as status');
         $this->db->from('production_plan p')
                  ->join('production_flow f', 'f.plane_id = p.id')
                  ->join('flows fl', 'fl.id = f.type')
                  ->join('production_flow pf', ' f.parent_id = (CASE WHEN f.parent_id != 0 THEN pf.type ELSE 0 END) and pf.plane_id = f.plane_id', 'left')
                  ->join('order_flow_submission of', 'pf.id = of.flow_id', 'left')
                  ->join('order_flow_submission off', 'f.id = off.flow_id', 'left')
-                 ->join('order_flow_start ofs', 'f.id = ofs.flow_id', 'left');
+                 ->join('order_flow_start ofs', 'f.id = ofs.flow_id', 'left')
+                 ->join('('.$status.') s', 's.wo_id = p.WO_no', 'left');
         // if ($table != null && $table != 'null') {
         //     $this->db->join($table.' s', 's.plane_id = p.id', 'left');
         // }
@@ -101,6 +107,15 @@ class MY_Model extends CI_Model
                  ->group_by('f.id')
                  ->where('p.WO_no', $id);
         return $this->db->get()->result_array();
+    }
+
+    public function get_wo_id_by_flow($id)
+    {
+        $this->db->select('pp.WO_no as id')
+                 ->from('production_flow pf')
+                 ->join('production_plan pp', 'pp.id = pf.plane_id')
+                 ->where('pf.id',$id);
+        return $this->db->get()->row_array();
     }
 
 }

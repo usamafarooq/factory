@@ -1,4 +1,3 @@
-
 			<!-- /.Navbar  Static Side -->
 			<div class="control-sidebar-bg"></div>
 			<!-- Page Content -->
@@ -63,7 +62,7 @@
 														<?php 
 															if ($permission['edit'] == '1') {
 														?>
-														<a href="<?php echo base_url() ?>role/edit/<?php echo $role['id'] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>role/edit/<?php echo $role['id'] ?>"><img src="<?php echo base_url() ?>assets/icons/edit.png" title="Edit" alt="Edit" width="35" height="35"></a>
 														<?php } ?>
 														<?php 
 															if ($permission['deleted'] == '1') {

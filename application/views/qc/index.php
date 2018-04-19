@@ -85,7 +85,8 @@
                                                 <?php echo $module["Instruction_Remarks"] ?>
                                             </td>
                                             <td>
-                                            	<a href="<?php echo base_url() ?>qc/view_flows/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Plane" alt="View Plane" width="35" height="35"></a>
+                                            	<a href="<?php echo base_url() ?>qc/view_flows/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_flows.png" title="View Flows" alt="View Flows" width="35" height="35"></a>
+                                                <a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plan" alt="View Plan" width="35" height="35"></a>
                                             </td>
                                         </tr>
                                     <?php } ?>

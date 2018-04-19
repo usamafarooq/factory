@@ -106,7 +106,7 @@
                                                 <?php echo $module["Delivery_Date"] ?>
                                             </td>
                                             <td>
-                                                <a href="<?php echo base_url('jobs/view/'.$module['id']) ?>"><button class="btn btn-success">View Report</button></a>
+                                                <a href="<?php echo base_url('jobs/view/'.$module['id']) ?>"><img src="<?php echo base_url() ?>assets/icons/view_report.png" title="View Report" alt="View Report" width="35" height="35"></a>
                                             </td>
                                         </tr>
                                         <?php } ?>

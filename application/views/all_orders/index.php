@@ -30,7 +30,7 @@
                             <?php 
 								if ($permission["created"] == "1") {
 							?>
-                            <a href="<?php echo base_url(" work_orders/create ") ?>"><button class="btn btn-info pull-right">Add Work_orders</button></a>
+                            <a href="<?php echo base_url("work_orders/create") ?>"><button class="btn btn-info pull-right">Add Work_orders</button></a>
                             <?php } ?>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                                         <th>Batch No</th>
                                         <th>Delivery Date</th>
                                         <?php 
-											if ($permission["edit"] == "1" || $permission["deleted"] == "1"){
+											if ($permission["view"] == "1" || $permission["view_all"] == "1"){
 										?>
                                         <th>Action</th>
                                         <?php } ?>
@@ -85,10 +85,12 @@
                                                 <?php echo $module["Delivery_Date"] ?>
                                             </td>
                                             <?php 
-												if ($permission["edit"] == "1" || $permission["deleted"] == "1"){
+												if ($permission["view"] == "1" || $permission["view_all"] == "1"){
 											?>
                                             <td>
-												<a href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Plane" alt="View Plane" width="35" height="35"></a>
+												<a href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plane" alt="View Plane" width="35" height="35"></a>
+
+                                                <a href="<?php echo base_url() ?>all_orders/view_timeline/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_timeline.png" title="View Timeline" alt="View Timeline" width="35" height="35"></a>
                                             </td>
                                             <?php } ?>
                                         </tr>

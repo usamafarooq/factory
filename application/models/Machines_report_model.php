@@ -11,12 +11,12 @@ class Machines_report_model extends MY_Model{
 		return $this->db->get()->result_array();
 	}
 	
-	public function get_detail()
+	public function get_detail($id)
 	{
 		$this->db->select('p.id,Job_Description,start_date,end_date,DATEDIFF(end_date, start_date) AS days')
 				 ->from('production_flow p')
-				 ->join('production_plan pp', 'pp.id = p.plane_id');
-				 //->where('p.machine',$id);
+				 ->join('production_plan pp', 'pp.id = p.plane_id')
+				 ->where('p.machine',$id);
 		return $this->db->get()->result_array();
 	}
 }

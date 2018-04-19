@@ -58,7 +58,7 @@
 														<?php 
 															if ($permission["edit"] == "1") {
 														?>
-														<a href="<?php echo base_url() ?>flows/edit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>flows/edit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/edit.png" title="Edit" alt="Edit" width="35" height="35"></a>
 														<?php } ?>
 														<?php 
 															if ($permission["deleted"] == "1") {
@@ -79,6 +79,8 @@
 					</div>
 					<div style="height: 450px;"></div>
 				</div> <!-- /.main content -->
+			</div>
+		</div> <!-- /.main content -->
 			</div>
 	
 

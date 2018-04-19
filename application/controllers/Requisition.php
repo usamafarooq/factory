@@ -94,4 +94,33 @@ class Requisition extends MY_Controller
         }
         redirect('requisition');
     }
+
+    public function view_order($id,$type)
+    {
+        $this->data['title'] = 'View Order';
+        $type = str_replace('_', ' ', $type);
+        $this->data['orders'] = $this->requisition_model->get_all_orders($id,$type);
+        $this->load->template('requisition/view_order',$this->data);
+    }
+
+    public function pending_quantity($id,$type)
+    {
+        $this->data['title'] = 'Pending Quantity';
+        $type = str_replace('_', ' ', $type);
+        $this->data['url'] = $_GET['redirect'];
+        $this->data['orders'] = $this->requisition_model->get_all_orders($id,$type);
+        $this->load->template('requisition/pending_quantity',$this->data);
+    }
+
+    public function submit_pending()
+    {
+        $data = $this->input->post();
+        $redirect = $data['redirect'];
+        $id = $data['id'];
+        $pending = $data['pending'];
+        for ($i=0; $i < sizeof($id); $i++) { 
+            $this->requisition_model->update('requisition_product',array('pending_quantity'=>$pending[$i]),array('id'=>$id[$i]));
+        }
+        redirect($redirect);    
+    }
 }

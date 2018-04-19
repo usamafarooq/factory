@@ -115,7 +115,12 @@
                                     <div class="form-group col-lg-6">
                                         <label for="example-text-input" class="col-sm-3 col-form-label">Quantity</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control" name="Quantity" type="text" value="<?php echo round($p_sheet / $order['ups']) ?>" id="example-text-input" placeholder="" readonly>
+                                            <?php 
+                                                $ups = $order['conversion']; 
+                                                $ups = explode('/', $ups);
+                                                $ups = $ups[sizeof($ups) - 1];
+                                            ?>
+                                            <input class="form-control" name="Quantity" type="text" value="<?php echo $qty =  round($p_sheet / $ups) ?>" id="example-text-input" placeholder="" readonly>
                                         </div>
 
                                     </div>
@@ -123,7 +128,13 @@
                                 </div>
                                 <div class="form-group row">
 
-                                    
+                                    <div class="form-group col-lg-6">
+                                        <label for="example-text-input" class="col-sm-3 col-form-label">Packet sheets</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" name="pack_sheet" type="text" value="<?php echo round($qty / $sheet['divid']) ?>" id="example-text-input" placeholder="" readonly>
+                                        </div>
+
+                                    </div>
 
                                 </div>
                                 <div class="form-group row">

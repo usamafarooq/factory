@@ -20,4 +20,17 @@ class Requisition_model extends MY_Model{
 				 ->group_by('pp.id');
 		return $this->db->get()->result_array();
 	}
+
+	public function get_all_orders($id,$type)
+	{
+		$this->db->select('p.Product_Name,pp.quantity,pp.id,pp.received_quantity,s.Name,r.status')
+				 ->from('requisition_product pp')
+				 ->join('requisition r','r.id = pp.requisition_id')
+				 ->join('sub_store s', 's.id = r.store_id')
+				 ->join('product p','p.id = pp.product_id')
+				 ->where('r.wo_id',$id)
+				 ->where('r.type',$type)
+				 ->group_by('pp.id');
+		return $this->db->get()->result_array();
+	}
 }

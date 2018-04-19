@@ -137,21 +137,46 @@
                                         <label for="inlineCheckbox4"> Yellow </label>
                                     </div>
                                     <div class="checkbox checkbox-info checkbox-inline">
-                                        <input type="checkbox" id="inlineCheckbox5" value="SPL1" name="colors[]">
+                                        <input type="checkbox" id="inlineCheckbox5" class="show_text" value="SPL1" name="colors[]">
                                         <label for="inlineCheckbox5"> SPL </label>
                                     </div>
                                     <div class="checkbox checkbox-info checkbox-inline">
-                                        <input type="checkbox" id="inlineCheckbox6" value="SPL2" name="colors[]">
+                                        <input type="checkbox" id="inlineCheckbox6" class="show_text" value="SPL2" name="colors[]">
                                         <label for="inlineCheckbox6"> SPL </label>
                                     </div>
                                     <div class="checkbox checkbox-info checkbox-inline">
-                                        <input type="checkbox" id="inlineCheckbox7" value="SPL3" name="colors[]">
+                                        <input type="checkbox" id="inlineCheckbox7" class="show_text" value="SPL3" name="colors[]">
                                         <label for="inlineCheckbox7"> SPL </label>
                                     </div>
                                     <div class="checkbox checkbox-info checkbox-inline">
-                                        <input type="checkbox" id="inlineCheckbox8" value="SPL4" name="colors[]">
+                                        <input type="checkbox" id="inlineCheckbox8" class="show_text" value="SPL4" name="colors[]">
                                         <label for="inlineCheckbox8"> SPL </label>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row SPL1" style="display: none">
+                                <label for="example-text-input" class="col-sm-3 col-form-label">SPL1<span class="required">*</span></label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" name="spl1"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row SPL2" style="display: none">
+                                <label for="example-text-input" class="col-sm-3 col-form-label">SPL2<span class="required">*</span></label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" name="spl2"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row SPL3" style="display: none">
+                                <label for="example-text-input" class="col-sm-3 col-form-label">SPL3<span class="required">*</span></label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" name="spl3"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row SPL4" style="display: none">
+                                <label for="example-text-input" class="col-sm-3 col-form-label">SPL4<span class="required">*</span></label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" name="spl4"></textarea>
                                 </div>
                             </div>
 
@@ -172,4 +197,9 @@
 </div>
 <!-- /.main content -->
 
-?>
+<script type="text/javascript">
+    $('.show_text').change(function() {
+        var val = $(this).val()
+        $('.'+val).toggle()
+    })
+</script>

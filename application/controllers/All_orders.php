@@ -29,7 +29,7 @@ class All_orders extends MY_Controller
 	}
 	public function view_plane($id)
 	{
-		if ($this->permission['edit'] == '0') 
+		if ( $this->permission['view'] == '0' && $this->permission['view_all'] == '0' ) 
 		{
 			redirect('home');
 		}
@@ -76,7 +76,7 @@ class All_orders extends MY_Controller
 	        $this->data['pasting_job'] = $this->machine_flow_model->get_job($plane_id,$flow);
 	    }
 	    // printing
-	    $flow_data = $this->all_orders_model->get_row_single('production_flow',array('plane_id'=>$plane_id,'type'=>'17'));
+	    $flow_data = $this->all_orders_model->get_row_single('production_flow',array('plane_id'=>$plane_id,'type'=>'7'));
 		if ($flow_data) {
 			$flow = $flow_data['id'];
 			$this->data['printing'] = $this->all_orders_model->get_row_single('printing',array('plane_id'=>$plane_id,'flow_id'=>$flow));
@@ -85,8 +85,41 @@ class All_orders extends MY_Controller
 	        $this->data['printing_job'] = $this->machine_flow_model->get_job($plane_id,$flow);
 		}
 		$this->data['line_clearance'] = $this->all_orders_model->line_clearance($plane_id);
+		$this->data['development'] = $this->all_orders_model->get_row_single('development_report',array('order_id'=>$id));
+		$this->data['design'] = $this->all_orders_model->get_row_single('design_report',array('order_id'=>$id));
+		$this->data['profing'] = $this->all_orders_model->get_row_single('printing_report',array('order_id'=>$id));
 		$this->data['wo_no'] = $id;
 		$this->load->template('all_orders/view_plane',$this->data);
+	}
+
+	public function view_timeline($id)
+	{
+		if ($this->permission['edit'] == '0') 
+		{
+			redirect('home');
+		}
+		$this->data['title'] = 'View Orders Timeline';
+		$work_order = $this->all_orders_model->get_work_order($id);
+		$production_plan = $this->all_orders_model->get_production_plan($id);
+		if ($production_plan) {
+			$this->data['production_plan'] = $this->all_orders_model->get_row_single('production_plan',array('WO_no'=>$id));
+			$plane_id = $this->data['production_plan']['id'];
+			$this->data['timeline'] = array_merge($production_plan,$work_order);
+			$line_clearance = $this->all_orders_model->get_line_clearance($plane_id);
+			$this->data['timeline'] = array_merge($line_clearance,$this->data['timeline']);
+			$production_flow = $this->all_orders_model->get_production_flow($plane_id);
+			$this->data['timeline'] = array_merge($production_flow,$this->data['timeline']);
+		}
+		else{
+			$this->data['timeline'] = $work_order;
+		}
+		function compareOrder($a, $b)
+	    {
+	        return strtotime($a['start_date']) - strtotime($b['start_date']);
+	    }
+	    usort($this->data['timeline'], 'compareOrder');
+	    $this->load->template('all_orders/view_timeline',$this->data);
+		//echo '<pre>';print_r($this->data['timeline']);die;
 	}
 }
 		   

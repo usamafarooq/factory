@@ -86,7 +86,7 @@
                                                 <?php 
                                                     if ($f['clearance'] == 0) {
                                                 ?>
-                                                <a href="<?php echo base_url() ?>qc/line_clearance/<?php echo $f["id"] ?>/<?php echo $f["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="Line Clearance" alt="Line Clearance" width="35" height="35"></a>
+                                                <a href="<?php echo base_url() ?>qc/line_clearance/<?php echo $f["id"] ?>/<?php echo $f["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/icons/line_clearance_form.png" title="Line Clearance" alt="Line Clearance" width="35" height="35"></a>
                                                 <?php 
                                                     }
                                                     else{
