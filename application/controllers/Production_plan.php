@@ -34,7 +34,8 @@ class Production_plan extends MY_Controller{
 		//$this->data['table_work_orders'] = $this->Production_plan_model->all_rows('work_orders');
 		$this->data['order'] = $this->Production_plan_model->get_order($id);
 		$this->data['machines'] = $this->Production_plan_model->all_rows('machines');
-		//print_r($this->data);die;
+		$this->data['sheet'] = $this->Production_plan_model->get_sheets($id);
+		//echo '<pre>';print_r($this->data);die;
 		$this->load->template('production_plan/create',$this->data);
 	}
 
@@ -133,6 +134,80 @@ class Production_plan extends MY_Controller{
 		$this->data['table_category'] = $this->Production_plan_model->all_rows('category');
 		$this->data['table_store'] = $this->Production_plan_model->all_rows('sub_store');
 		$this->load->template('production_plan/flow',$this->data);
+	}
+
+	public function edit_flow($id)
+	{
+		if ( $this->permission['created'] == '0') 
+		{
+			redirect('home');
+		}
+		if ($this->input->post()) {
+			$data = $this->input->post();
+			$type = $data['type'];
+			$machine = $data['machine'];
+			$priority = $data['priority'];
+			$parent = $data['parent'];
+			$start_date = $data['start_date'];
+			$end_date = $data['end_date'];
+			$ids = $data['ids'];
+			unset($data['type']);
+			unset($data['machine']);
+			unset($data['priority']);
+			unset($data['parent']);
+			unset($data['start_date']);
+			unset($data['end_date']);
+			unset($data['ids']);
+			for ($i=0; $i < sizeof($type); $i++) { 
+				$data = array(
+					'type'=>$type[$i],
+					'machine'=>$machine[$i],
+					'priority'=>$priority[$i],
+					'parent_id'=>$parent[$i],
+					'start_date'=>$start_date[$i],
+					'end_date'=>$end_date[$i],
+					'plane_id'=>$id
+				);
+				//$this->Production_plan_model->insert('production_flow',$data);
+				$this->Production_plan_model->update('production_flow',$data,array('id'=>$ids[$i]));
+			}
+			redirect('production_plan');
+		}
+		$this->data['title'] = 'Edit Production Plan Flow';
+		//$this->data['machines'] = $this->Production_plan_model->all_rows('machines');
+		$this->data['flows'] = $this->Production_plan_model->all_rows('flows');
+		$production_plan = $this->Production_plan_model->get_row_single('production_plan',array('id'=>$id));
+		$p_id = $production_plan['WO_no'];
+		$this->data['production_plan'] = $this->Production_plan_model->get_row_single('production_plan',array('WO_no'=>$p_id));
+		$this->data['production_flow'] = $this->Production_plan_model->get_rows('production_flow',array('plane_id'=>$id));
+		//print_r($this->db->last_query());
+		//print_r($this->data['production_flow']);die;
+		$this->data['order'] = $this->Production_plan_model->get_order($p_id);
+		$this->data['table_category'] = $this->Production_plan_model->all_rows('category');
+		$this->data['table_store'] = $this->Production_plan_model->all_rows('sub_store');
+		$this->load->template('production_plan/edit_flow',$this->data);
+	}
+
+
+	public function inventory($id)
+	{
+		if ( $this->permission['created'] == '0') 
+		{
+			redirect('home');
+		}
+		$this->data['title'] = 'Create Production Plan Flow';
+		//$this->data['machines'] = $this->Production_plan_model->all_rows('machines');
+		$this->data['flows'] = $this->Production_plan_model->all_rows('flows');
+		$production_plan = $this->Production_plan_model->get_row_single('production_plan',array('id'=>$id));
+		//$p_id = $production_plan['WO_no'];
+		$p_id = $id;
+		$this->data['production_plan'] = $this->Production_plan_model->get_row_single('production_plan',array('WO_no'=>$p_id));
+		$this->data['order'] = $this->Production_plan_model->get_order($p_id);
+		$this->data['table_category'] = $this->Production_plan_model->all_rows('category');
+		$this->data['table_store'] = $this->Production_plan_model->all_rows('sub_store');
+		$this->data['products'] = $this->Production_plan_model->get_products($id);
+		//echo '<pre>';print_r($this->data['products']);die;
+		$this->load->template('production_plan/inventory',$this->data);
 	}
 
 	public function plan_flow($id)

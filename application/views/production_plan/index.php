@@ -121,11 +121,19 @@
 	                                                	<?php 
 	                                                		if ($module['p_id'] == 0) {
 	                                                	?>
-	                                                	<a href="<?php echo base_url() ?>production_plan/create/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
+	                                                	<a href="<?php echo base_url() ?>production_plan/create/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/create.png" title="Create Production Plane" alt="Create Production Plane" width="35" height="35"></a>
 	                                                	<?php } else{?>
-														<a href="<?php echo base_url() ?>production_plan/edit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
-														<a href="<?php echo base_url() ?>production_plan/plan_flow/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Flow" alt="View Flow" width="35" height="35"></a>
-														<a href="<?php echo base_url() ?>production_plan/view_plan/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Plane" alt="View Plane" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>production_plan/edit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/edit.png" title="Edit" alt="Edit" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>production_plan/inventory/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/create.png" title="Create Inventory" alt="Create Inventory" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>production_plan/plan_flow/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/production_flow.png" title="View Flow" alt="View Flow" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>production_plan/view_plan/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Production Plane" alt="View Production Plane" width="35" height="35"></a>
+
+
+														<a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_flows.png" title="View Plan" alt="View Plan" width="35" height="35"></a>
+
+														<a href="<?php echo base_url() ?>production_plan/flow/<?php echo $module["plane_id"] ?>"><img src="<?php echo base_url() ?>assets/icons/create.png" title="Create Production Flow" alt="Create Production Flow" width="35" height="35"></a>
+
+														<a href="<?php echo base_url() ?>production_plan/edit_flow/<?php echo $module["plane_id"] ?>"><img src="<?php echo base_url() ?>assets/icons/edit.png" title="Edit Production Flow" alt="Edit Production Flow" width="35" height="35"></a>
 	                                                	<?php } ?>
 	                                                </td>
 	                                                <?php } ?>

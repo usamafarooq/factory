@@ -105,7 +105,7 @@ class Item extends MY_Controller{
 			for ($i=0; $i < sizeof($data['product']); $i++) { 
 				$item[] = array(
 					'product_id'=>$data['product'][$i],
-					'qty'=>$data['qty'][$i],
+					//'qty'=>$data['qty'][$i],
 					'item_id'=>$id,
 					'user_id' => $this->session->userdata('user_id'),
 				);
@@ -114,7 +114,20 @@ class Item extends MY_Controller{
 			redirect('item');
 		}
 		$this->data['title'] = 'Create Bom';
-		$this->data['products'] = $this->Item_model->all_rows('product');
+		//$this->data['products'] = $this->Item_model->all_rows('product');
+		$this->data['table_category'] = $this->Item_model->all_rows('category');
 		$this->load->template('item/create_bomb',$this->data);
+	}
+
+	public function view_bomb($id)
+	{
+		if ($this->permission['view'] == '0' && $this->permission['view_all'] == '0') 
+		{
+			redirect('home');
+		}
+		$this->data['title'] = 'View Bom';
+		//$this->data['table_category'] = $this->Item_model->all_rows('category');
+		$this->data['bom'] = $this->Item_model->get_bom($id);
+		$this->load->template('item/view_bomb',$this->data);
 	}
 }

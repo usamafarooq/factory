@@ -420,7 +420,7 @@
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Task ID');
       data.addColumn('string', 'Task Name');
-      //data.addColumn('string', 'Resource');
+      data.addColumn('string', 'Resource');
       data.addColumn('date', 'Start Date');
       data.addColumn('date', 'End Date');
       data.addColumn('number', 'Duration');
@@ -430,11 +430,12 @@
       for (var i = 0; i < values.length; i++) {
         data.setCell(i, 0, values[i].Name);
         data.setCell(i, 1, values[i].Name);
-        data.setCell(i, 2, new Date(values[i].start_date));
-        data.setCell(i, 3, new Date(values[i].end_date));
-        data.setCell(i, 4, null);
-        data.setCell(i, 5, 0);
-        data.setCell(i, 6, null);
+        data.setCell(i, 2, values[i].machine);
+        data.setCell(i, 3, new Date(values[i].start_date));
+        data.setCell(i, 4, new Date(values[i].end_date));
+        data.setCell(i, 5, null);
+        data.setCell(i, 6, 0);
+        data.setCell(i, 7, null);
       }
       // data.addRows([
       //   ['2014Spring', 'Job 1', 'Job 1',

@@ -242,13 +242,24 @@
                                                 <div class="form-group col-lg-6">
                                                     <label for="" class="col-sm-4">Code</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" data-id="" name="code[]" id="code1" placeholder="">
+                                                        <!-- <input type="text" class="form-control" data-id="" name="code[]" id="code1" placeholder=""> -->
+                                                        <select class="form-control" name="code[]" id="code1">
+                                                            <option value="">Select</option>
+                                                            <option value="Cleaning">Cleaning</option>
+                                                            <option value="Make Ready">Make Ready</option>
+                                                            <option value="Break down">Break down</option>
+                                                            <option value="Crease Problem">Crease Problem</option>
+                                                            <option value="No Job">No Job</option>
+                                                            <option value="Waiting">Waiting</option>
+                                                            <option value="Lunch Time">Lunch Time</option>
+                                                            <option value="Any other">Any other</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-lg-6">
                                                     <label for="" class="col-sm-4">From</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" data-id="" name="from[]" id="form1" placeholder="">
+                                                        <input type="time" class="form-control" data-id="" name="from[]" id="form1" placeholder="">
                                                     </div>
                                                 </div>
                                             </div>
@@ -256,7 +267,7 @@
                                                 <div class="form-group col-lg-6">
                                                     <label for="" class="col-sm-4">To</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" data-id="" name="to[]" id="to1" placeholder="">
+                                                        <input type="time" class="form-control" data-id="" name="to[]" id="to1" placeholder="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-lg-6">
@@ -398,9 +409,9 @@
             var newTextBoxDiv = $(document.createElement('div'))
                 .attr("id", 'TextBoxDiv' + counter);
             newTextBoxDiv.after().html('<hr><div class="form-group row"><div class="form-group col-lg-6"><label class="col-sm-4" >Code </label> <div class="col-sm-8">' +
-                '<input type="text" class="form-control" name="code[]" id="code' + counter + '" value="" ></div></div><div class="form-group col-lg-6"><label class="col-sm-4" >From </label> <div class="col-sm-8">' +
-                '<input type="text" class="form-control" name="from[]" id="from' + counter + '" value="" ></div></div></div><div class="form-group row"><div class="form-group col-lg-6"><label class="col-sm-4" >To </label> <div class="col-sm-8">' +
-                '<input type="text" class="form-control" name="to[]" id="to' + counter + '" value="" ></div></div><div class="form-group col-lg-6"><label class="col-sm-4" >Hours </label> <div class="col-sm-8">' +
+                '<select class="form-control" name="code[]" id="code' + counter + '"><option value="">Select</option><option value="Cleaning">Cleaning</option><option value="Make Ready">Make Ready</option><option value="Break down">Break down</option><option value="Crease Problem">Crease Problem</option><option value="No Job">No Job</option><option value="Waiting">Waiting</option><option value="Lunch Time">Lunch Time</option><option value="Any other">Any other</option></select></div></div><div class="form-group col-lg-6"><label class="col-sm-4" >From </label> <div class="col-sm-8">' +
+                '<input type="time" class="form-control" name="from[]" id="from' + counter + '" value="" ></div></div></div><div class="form-group row"><div class="form-group col-lg-6"><label class="col-sm-4" >To </label> <div class="col-sm-8">' +
+                '<input type="time" class="form-control" name="to[]" id="to' + counter + '" value="" ></div></div><div class="form-group col-lg-6"><label class="col-sm-4" >Hours </label> <div class="col-sm-8">' +
                 '<select class="form-control" name="hours[]" id="hours' + counter + '" autocomplete="off"><option>Pelease Select</option><option value="9 am/pm">9 am/pm</option><option value="10 am/pm">10 am/pm</option><option value="11 am/pm">11 am/pm</option><option value="12 am/pm">12 am/pm</option><option value="1 am/pm">1 am/pm</option><option value="2 am/pm">2 am/pm</option><option value="3 am/pm">3 am/pm</option><option value="4 am/pm">4 am/pm</option><option value="5 am/pm">5 am/pm</option><option value="6 am/pm">6 am/pm</option><option value="7 am/pm">7 am/pm</option><option value="8 am/pm">8 am/pm</option><option value="9 am/pm">9 am/pm</option></select></div></div></div><div class="form-group row"><div class="form-group col-lg-6"><label class="col-sm-4" >Counter </label> <div class="col-sm-8">' +
                 '<input type="text" class="form-control" name="counter[]" id="counter' + counter + '" value="" ></div></div><div class="form-group col-lg-6"><label class="col-sm-4" >Remarks </label> <div class="col-sm-8">' +
                 '<input type="text" class="form-control" name="remarks[]" id="remarks' + counter + '" value="" ></div></div></div>');
@@ -428,6 +439,10 @@
             $(this).parents(".after-add-k").remove();
         });
         $('body').on('keyup', 'input', function() {
+            var id = $(this).attr('id')
+            $('.' + id + '_value').text($(this).val())
+        })
+        $('body').on('change', 'input', function() {
             var id = $(this).attr('id')
             $('.' + id + '_value').text($(this).val())
         })

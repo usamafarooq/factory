@@ -16,11 +16,14 @@ class Jobs_model extends MY_Model{
 
 	public function get_plane($id)
 	{
-		$this->db->select('i.Description, fl.Name, f.start_date, f.end_date')
+		$this->db->select('i.Description, fl.Name, fs.created_at as start_date, fc.created_at as end_date,m.machine_Name machine')
 				 ->from('work_orders w')
 				 ->join('item i', 'i.id = w.Item_Code')
 				 ->join('production_plan p', 'w.id = p.WO_no')
 				 ->join('production_flow f', 'p.id = f.plane_id')
+				 ->join('order_flow_start fs', 'fs.flow_id = f.id','left')
+				 ->join('order_flow_submission fc', 'fc.flow_id = f.id','left')
+				 ->join('machines m','m.id = f.machine','left')
 				 ->join('flows fl', 'fl.id = f.type')
 				 ->where('w.id', $id);
 		return $this->db->get()->result_array();

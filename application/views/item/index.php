@@ -76,18 +76,22 @@
 											?>
                                             <td>
                                                 <?php 
-															if ($permission["created"] == "1") {
-														?>
-                                                <a href="<?php echo base_url() ?>item/create_bomb/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="Create Bomb" alt="Create Bomb" width="35" height="35"></a>
+													if ($permission["created"] == "1") {
+												?>
+                                                <?php if($module['bom'] == 0){ ?>
+                                                <a href="<?php echo base_url() ?>item/create_bomb/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/create_bom.png" title="Create Bomb" alt="Create Bomb" width="35" height="35"></a>
+                                                <?php }else{ ?>
+                                                <a href="<?php echo base_url() ?>item/view_bomb/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_bomb.png" title="View Bomb" alt="View Bomb" width="35" height="35"></a>
+                                                <?php } ?>
                                                 <?php } ?>
                                                 <?php 
-															if ($permission["edit"] == "1") {
-														?>
-                                                <a href="<?php echo base_url() ?>item/edit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Order" alt="View Order" width="35" height="35"></a>
+													if ($permission["edit"] == "1") {
+												?>
+                                                <a href="<?php echo base_url() ?>item/edit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/edit.png" title="Edit" alt="Edit" width="35" height="35"></a>
                                                 <?php } ?>
                                                 <?php 
-															if ($permission["deleted"] == "1") {
-														?>
+													if ($permission["deleted"] == "1") {
+												?>
                                                 <a href="<?php echo base_url() ?>item/delete/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a>
                                                 <?php } ?>
                                             </td>

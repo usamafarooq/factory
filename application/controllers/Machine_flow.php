@@ -72,7 +72,9 @@ class Machine_flow extends MY_Controller {
                     $this->machine_flow_model->insert('printing_hourse',$data);
                 }
                 $id = $this->complete($flow_id);
-                redirect('printing_plane');
+                //redirect('printing_plane');
+                $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+                redirect('requisition/pending_quantity/'.$wo_id.'/Printing?redirect='.base_url('printing_plane'));
             }
         }
         $this->data['title'] = 'Printing Machine';
@@ -90,7 +92,9 @@ class Machine_flow extends MY_Controller {
     public function store_complete($plane_id,$flow_id)
     {
         $id = $this->complete($flow_id);
-        redirect('store');
+        //redirect('store');
+        $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+        redirect('requisition/pending_quantity/'.$wo_id.'/Store?redirect='.base_url('store'));
     }
 
     public function die_cutting($plane_id,$flow_id)
@@ -143,7 +147,9 @@ class Machine_flow extends MY_Controller {
                     $this->machine_flow_model->insert('die_cutting_hourse',$data);
                 }
                 $id = $this->complete($flow_id);
-                redirect('die_cutting');
+                //redirect('die_cutting');
+                $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+                redirect('requisition/pending_quantity/'.$wo_id.'/Die_Cutting?redirect='.base_url('die_cutting'));
             }
         }
         $this->data['title'] = 'Die Cutting Machine';
@@ -167,7 +173,9 @@ class Machine_flow extends MY_Controller {
     public function plate_making_complete($plane_id,$flow_id)
     {
         $id = $this->complete($flow_id);
-        redirect('plate_making');
+        //redirect('plate_making');
+        $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+        redirect('requisition/pending_quantity/'.$wo_id.'/Plate_Making?redirect='.base_url('plate_making'));
     }
 
     public function label_cutting_start($plane_id,$flow_id)
@@ -179,7 +187,9 @@ class Machine_flow extends MY_Controller {
     public function label_cutting_complete($plane_id,$flow_id)
     {
         $id = $this->complete($flow_id);
-        redirect('label_cutting');
+        //redirect('label_cutting');
+        $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+        redirect('requisition/pending_quantity/'.$wo_id.'/Label_Cutting?redirect='.base_url('label_cutting'));
     }
 
     public function leaflet_cutting($plane_id,$flow_id)
@@ -202,7 +212,9 @@ class Machine_flow extends MY_Controller {
     public function leaflet_cutting_complete($plane_id,$flow_id)
     {
         $id = $this->complete($flow_id);
-        redirect('leaflet_cutting');
+        //redirect('leaflet_cutting');
+        $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+        redirect('requisition/pending_quantity/'.$wo_id.'/Leaflet_Cutting?redirect='.base_url('leaflet_cutting'));
     }
 
     public function film_making_start($plane_id,$flow_id)
@@ -214,7 +226,9 @@ class Machine_flow extends MY_Controller {
     public function film_making_complete($plane_id,$flow_id)
     {
         $id = $this->complete($flow_id);
-        redirect('film_making');
+        //redirect('film_making');
+        $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+        redirect('requisition/pending_quantity/'.$wo_id.'/Film_Making?redirect='.base_url('film_making'));
     }
 
     public function packing_start($plane_id,$flow_id)
@@ -226,7 +240,9 @@ class Machine_flow extends MY_Controller {
     public function packing_complete($plane_id,$flow_id)
     {
         $id = $this->complete($flow_id);
-        redirect('packing');
+        //redirect('packing');
+        $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+        redirect('requisition/pending_quantity/'.$wo_id.'/Packing?redirect='.base_url('packing'));
     }
 
     public function sorting_start($plane_id,$flow_id)
@@ -238,7 +254,9 @@ class Machine_flow extends MY_Controller {
     public function sorting_complete($plane_id,$flow_id)
     {
         $id = $this->complete($flow_id);
-        redirect('sorting');
+        //redirect('sorting');
+        $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+        redirect('requisition/pending_quantity/'.$wo_id.'/Sorting?redirect='.base_url('sorting'));
     }
 
     public function cutting($plane_id,$flow_id)
@@ -261,7 +279,9 @@ class Machine_flow extends MY_Controller {
     public function cutting_complete($plane_id,$flow_id)
     {
         $id = $this->complete($flow_id);
-        redirect('cutting');
+        //redirect('cutting');
+        $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+        redirect('requisition/pending_quantity/'.$wo_id.'/Cutting?redirect='.base_url('cutting'));
     }
 
     public function folding_start($plane_id,$flow_id)
@@ -273,7 +293,9 @@ class Machine_flow extends MY_Controller {
     public function folding_complete($plane_id,$flow_id)
     {
         $id = $this->complete($flow_id);
-        redirect('folding');
+        //redirect('folding');
+        $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+        redirect('requisition/pending_quantity/'.$wo_id.'/Folding?redirect='.base_url('folding'));
     }
 
     public function uv_printing_start($plane_id,$flow_id)
@@ -285,7 +307,9 @@ class Machine_flow extends MY_Controller {
     public function uv_printing_complete($plane_id,$flow_id)
     {
         $id = $this->complete($flow_id);
-        redirect('uv_printing');
+        //redirect('uv_printing');
+        $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+        redirect('requisition/pending_quantity/'.$wo_id.'/Uv_Printing?redirect='.base_url('uv_printing'));
     }
 
     public function pasting($plane_id,$flow_id)
@@ -338,7 +362,9 @@ class Machine_flow extends MY_Controller {
                     $this->machine_flow_model->insert('pasting_hourse',$data);
                 }
                 $id = $this->complete($flow_id);
-                redirect('pasting');
+                //redirect('pasting');
+                $wo_id = $this->machine_flow_model->get_wo_id_by_flow($flow_id)['id'];
+                redirect('requisition/pending_quantity/'.$wo_id.'/Pasting?redirect='.base_url('pasting'));
             }
         }
         $this->data['title'] = 'Pasting Machine';

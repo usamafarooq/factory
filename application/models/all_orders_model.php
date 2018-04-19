@@ -37,9 +37,48 @@ class all_orders_model extends MY_Model{
 
 	public function line_clearance($id)
 	{
-		$this->db->select('l.*')
+		$this->db->select('l.*,f.Name as flow_name')
 				 ->from('line_clearance l')
 				 ->join('production_flow p','l.flow_id = p.id')
+				 ->join('flows f','f.id = p.type')
+				 ->where('p.plane_id',$id);
+		return $this->db->get()->result_array();
+	}
+
+	public function get_work_order($id)
+	{
+		$this->db->select('"Work Order" as type, created_at as start_date, "" as end_date')
+				 ->from('work_orders')
+				 ->where('id',$id);
+		return $this->db->get()->result_array();
+	}
+
+	public function get_production_plan($id)
+	{
+		$this->db->select('"Production Plane" as type, created_at as start_date, "" as end_date')
+				 ->from('production_plan')
+				 ->where('WO_no',$id);
+		return $this->db->get()->result_array();
+	}
+
+	public function get_line_clearance($id)
+	{
+		$this->db->select('"Line Clearance" as type, l.created_at as start_date, "" as end_date')
+				 ->from('line_clearance l')
+				 ->join('production_flow p','l.flow_id = p.id')
+				 ->join('flows f','f.id = p.type')
+				 ->where('p.plane_id',$id);
+		return $this->db->get()->result_array();
+	}
+
+	public function get_production_flow($id)
+	{
+		$this->db->select('f.Name as type, fs.created_at as start_date, fc.created_at as end_date')
+				 ->from('production_flow p')
+				 ->join('production_plan pp', 'pp.id = p.plane_id')
+				 ->join('flows f','f.id = p.type')
+				 ->join('order_flow_start fs', 'fs.flow_id = p.id')
+				 ->join('order_flow_submission fc', 'fc.flow_id = p.id')
 				 ->where('p.plane_id',$id);
 		return $this->db->get()->result_array();
 	}

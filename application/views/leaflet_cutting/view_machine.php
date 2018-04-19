@@ -69,7 +69,7 @@ table.minimalistBlack tfoot td {
                             <form>
                                 <div class="col-sm-12">
                                     <div class="panel-body">
-                                        <table class="minimalistBlack">
+                                        <table class="minimalistBlack" style="width: 100%;">
                                        
                                        
                                         <tbody>
@@ -187,8 +187,12 @@ table.minimalistBlack tfoot td {
         // w.document.write('<link rel="stylesheet" type="text/css" href="' + url + '/assets/css/font-awesome.min.css">');
         // w.document.write('<link rel="stylesheet" type="text/css" href="' + url + '/assets/css/style.css">');
         // w.document.write('<link rel="stylesheet" type="text/css" href="' + url + '/assets/css/responsive.css">');
-        w.document.write('<style>h4.product-totle{padding-left:150px}</style>')
-        w.document.write('<style>.product-tital{padding-left:160px;position: fixed;margin-top: -30px;}</style>')
+        w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
         w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
          w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
          w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')

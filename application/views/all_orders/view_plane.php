@@ -1262,7 +1262,7 @@
                 <div class="panel panel-bd print-div ">
                     <div class="panel-heading">
                         <div class="panel-title">
-                            <h4 class="product-totle">Line Clearance Form</h4><br>
+                            <h4 class="product-totle">Line Clearance Form (<?php echo $data['flow_name'] ?>)</h4><br>
                             <small class="product-tital">DOC NO: PRD/FM/001-02A  |    REV# 00   |  Date:<?php echo date('d-m-Y', strtotime($data['created_at'])) ?></small>
                         </div>
                     </div>
@@ -1417,7 +1417,108 @@
             </div>
         </div>
         <?php } } ?>
+        <?php 
+            if (isset($development)) {
+        ?>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-bd print-div ">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4 class="product-totle">Development</h4><br>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <form>
+                                <div class="col-sm-12">
+                                    <div class="panel-body ">
+                                        <table class="table table-bordered table-hover minimalistBlack">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Remarks : <u><?php echo $development['remarks'] ?></u></td>
+                                                    <td>File : <u><a download href="<?php echo base_url($development['file']) ?>">View Attechment</a></u></td>
+                                                </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <button id="btn" class="print-btn btn btn-info pull-right" role="button">Generate Print</button>
+            </div>
+        </div>
+        <?php } ?>
+        <?php 
+            if (isset($design)) {
+        ?>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-bd print-div ">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4 class="product-totle">Design</h4><br>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <form>
+                                <div class="col-sm-12">
+                                    <div class="panel-body ">
+                                        <table class="table table-bordered table-hover minimalistBlack">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Remarks : <u><?php echo $design['remarks'] ?></u></td>
+                                                    <td>File : <u><a download href="<?php echo base_url($design['file']) ?>">View Attechment</a></u></td>
+                                                </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <button id="btn" class="print-btn btn btn-info pull-right" role="button">Generate Print</button>
+            </div>
+        </div>
+        <?php } ?>
+        <?php 
+            if (isset($profing)) {
+        ?>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-bd print-div ">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4 class="product-totle">Profing</h4><br>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <form>
+                                <div class="col-sm-12">
+                                    <div class="panel-body ">
+                                        <table class="table table-bordered table-hover minimalistBlack">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Remarks : <u><?php echo $profing['remarks'] ?></u></td>
+                                                    <td>File : <u><a download href="<?php echo base_url($profing['file']) ?>">View Attechment</a></u></td>
+                                                </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <button id="btn" class="print-btn btn btn-info pull-right" role="button">Generate Print</button>
+            </div>
+        </div>
+        <?php } ?>
     </div>
+</div>    </div>
+</div>    </div>
 </div>
 
 <!-- cutting css -->

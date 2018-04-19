@@ -17,7 +17,7 @@
 			}
 			$this->data['title'] = 'Clients';
 			if ( $this->permission['view_all'] == '1'){$this->data['clients'] = $this->Clients_model->all_rows('clients');}
-			elseif ($this->permission['view'] == '1') {$this->data['clients'] = $this->Clients_modelget_rows('clients',array('user_id'=>$this->id));}
+			elseif ($this->permission['view'] == '1') {$this->data['clients'] = $this->Clients_model->get_rows('clients',array('user_id'=>$this->id));}
 			$this->data['permission'] = $this->permission;
 			$this->load->template('clients/index',$this->data);
 		}public function create()
