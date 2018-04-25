@@ -93,6 +93,7 @@
                                 <th>Product Name</th>
                                 <th>Quantity</th>
                                 <th>Received Quantity</th>
+                                <th>Remarks</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -125,6 +126,7 @@
                     tb.find('tr').last().append('<td>'+data['Product_Name']+'</td>')
                     tb.find('tr').last().append('<td>'+data['quantity']+'</td>')
                     tb.find('tr').last().append('<td>'+data['received_quantity']+'</td>')
+                    tb.find('tr').last().append('<td>'+data['remarks']+'</td>')
                 }
             }
         });

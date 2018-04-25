@@ -13,7 +13,7 @@
                 <h1>View BOM</h1>
                 <small></small>
                 <ol class="breadcrumb">
-                    <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
+                    <li><a href="<?php echo base_url() ?>"><i class="pe-7s-home"></i> Home</a></li>
                     <li class="active">View BOM</li>
                 </ol>
             </div>
@@ -30,8 +30,42 @@
                             </div>
                         </div>
                         <div class="panel-body">
+                            <div class="table-responsive">
+                            <table id="dataTableExample2" class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Category</th>
+                                        <th>Sub Category</th>
+                                        <th>Product</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        foreach ($bom as $b) {
+                                    ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $b["id"] ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $b["category"] ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $b["sub_category"] ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $b["Product_Name"] ?>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+                                </tbody>
+                            </table>
+
+                        </div>
                             <?php foreach ($bom as $b) {?>
-                            <div class="after-add-sub row">
+                            <!-- <div class="after-add-sub row">
                                 <div class="form-group  col-md-6">
                                     <label for="example-text-input" class="col-form-label">Category<span class="required">*</span></label>
                                     <input type="text" name="qty[]" class="form-control" value="<?php echo $b['category'] ?>" disabled="">
@@ -44,16 +78,8 @@
                                     <label>Product</label><br>
                                     <input type="text" name="qty[]" class="form-control" value="<?php echo $b['Product_Name'] ?>" disabled="">
                                 </div>
-                                <!-- <div class="form-group col-md-6">
-                                    <label>Quantity</label><br>
-                                    <input type="number" name="qty[]" class="form-control" value="<?php echo $b['qty'] ?>" disabled="">
-                                </div> -->
-                                <!-- <div class="form-group row">
-                                    <div class="col-lg-2 delet pull-right">
-                                        <button type="button" class="add-relation btn btn-success ">Add More</button>
-                                    </div>
-                                </div> -->
-                            </div>
+                                
+                            </div> -->
                             <?php } ?>
                             <!-- <div class="form-group row">
                                 <div class="col-sm-12">

@@ -47,17 +47,22 @@ class all_orders_model extends MY_Model{
 
 	public function get_work_order($id)
 	{
-		$this->db->select('"Work Order" as type, created_at as start_date, "" as end_date')
-				 ->from('work_orders')
-				 ->where('id',$id);
+		$this->db->select('"Work Order" as type, w.created_at as start_date, of.created_at as end_date')
+				 ->from('work_orders w')
+				 ->join('production_plan p', 'p.WO_no = w.id', 'left')
+				 ->join('production_flow pf', 'pf.plane_id = p.id and type = 16', 'left')
+				 ->join('order_flow_submission of', 'of.flow_id = pf.id', 'left')
+				 ->where('w.id',$id);
 		return $this->db->get()->result_array();
 	}
 
 	public function get_production_plan($id)
 	{
-		$this->db->select('"Production Plane" as type, created_at as start_date, "" as end_date')
-				 ->from('production_plan')
-				 ->where('WO_no',$id);
+		$this->db->select('"Production Plane" as type, p.created_at as start_date, of.created_at as end_date')
+				 ->from('production_plan p')
+				 ->join('production_flow pf', 'pf.plane_id = p.id and type = 16', 'left')
+				 ->join('order_flow_submission of', 'of.flow_id = pf.id', 'left')
+				 ->where('p.WO_no',$id);
 		return $this->db->get()->result_array();
 	}
 

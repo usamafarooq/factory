@@ -42,6 +42,12 @@
 
 
 
+
+
+
+
+
+
     </body>
 
 
@@ -291,6 +297,17 @@ new Morris.Line({
         </script>
 
 
-
+<script src="<?php echo base_url('assets/assets/plugins/bootstrap3-editable-1.5.1/bootstrap3-editable/js/bootstrap-editable.js') ?>" type="text/javascript"></script>
+<!-- typeaheadjs -->
+<script src="<?php echo base_url('assets/assets/plugins/bootstrap3-editable-1.5.1/inputs-ext/typeaheadjs/lib/typeahead.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/assets/plugins/bootstrap3-editable-1.5.1/inputs-ext/typeaheadjs/typeaheadjs.js') ?>" type="text/javascript"></script>
+<!-- wysihtml5 -->
+<script src="<?php echo base_url('assets/assets/plugins/bootstrap3-editable-1.5.1/inputs-ext/wysihtml5/wysihtml5-0.3.0.min.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/assets/plugins/bootstrap3-editable-1.5.1/inputs-ext/wysihtml5/bootstrap-wysihtml5-0.0.3.min.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/assets/plugins/bootstrap3-editable-1.5.1/inputs-ext/wysihtml5/wysihtml5-0.0.3.js') ?>" type="text/javascript"></script>
+<!-- address input -->
+<script src="<?php echo base_url('assets/assets/plugins/bootstrap3-editable-1.5.1/inputs-ext/address/address.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/assets/plugins/bootstrap3-editable-1.5.1/demo-mock.js') ?>" type="text/javascript"></script>
+<script src="<?php echo base_url('assets/assets/plugins/bootstrap3-editable-1.5.1/demo.js') ?>" type="text/javascript"></script>
 
 </html>

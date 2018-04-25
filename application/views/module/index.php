@@ -62,12 +62,12 @@
 														<?php 
 															if ($permission['edit'] == '1') {
 														?>
-														<a href="<?php echo base_url() ?>modules/edit/<?php echo $module['id'] ?>"><img src="<?php echo base_url() ?>assets/icons/edit.png" title="Edit" alt="Edit" width="35" height="35"></a>
+														<a href="<?php echo base_url() ?>modules/edit/<?php echo $module['id'] ?>"><img src="<?php echo base_url() ?>assets/icons/edit.png" title="Edit" alt="Edit" width="25" height="25"></a>
 														<?php } ?>
 														<?php 
 															if ($permission['deleted'] == '1') {
 														?>
-		                                                <a href="<?php echo base_url() ?>modules/delete/<?php echo $module['id'] ?>"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="35" height="35"></a>
+		                                                <a href="<?php echo base_url() ?>modules/delete/<?php echo $module['id'] ?>"><img src="<?php echo base_url() ?>assets/d-icon.png" title="Delete" alt="Delete" width="25" height="25"></a>
 		                                                <?php } ?>
 	                                                </td>
 	                                                <?php } ?>

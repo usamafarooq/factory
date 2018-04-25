@@ -88,9 +88,9 @@
 												if ($permission["view"] == "1" || $permission["view_all"] == "1"){
 											?>
                                             <td>
-												<a href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plane" alt="View Plane" width="35" height="35"></a>
+												<a href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plane" alt="View Plane" width="25" height="25"></a>
 
-                                                <a href="<?php echo base_url() ?>all_orders/view_timeline/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_timeline.png" title="View Timeline" alt="View Timeline" width="35" height="35"></a>
+                                                <a href="<?php echo base_url() ?>all_orders/view_timeline/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_timeline.png" title="View Timeline" alt="View Timeline" width="25" height="25"></a>
                                             </td>
                                             <?php } ?>
                                         </tr>

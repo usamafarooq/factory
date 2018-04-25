@@ -13,7 +13,7 @@
                 <h1>Add BOM</h1>
                 <small></small>
                 <ol class="breadcrumb">
-                    <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
+                    <li><a href="<?php echo base_url() ?>"><i class="pe-7s-home"></i> Home</a></li>
                     <li class="active">Add BOM</li>
                 </ol>
             </div>
@@ -93,6 +93,7 @@
         $(".after-add-sub").last().find('.hide-div').hide()
         $(".after-add-sub").last().find('.sub-category option').not('option:first').remove()
         $(".after-add-sub").last().find('.change-product option').not('option:first').remove()
+        $(".after-add-sub").last().find('.add-sub').addClass('add-relation')
         var con = 0
         $(".after-add-sub").each(function() {
             $(this).find('input[type="checkbox"]').attr('name','required['+con+']')

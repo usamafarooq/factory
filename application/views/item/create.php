@@ -13,7 +13,7 @@
                 <h1>Add Item</h1>
                 <small></small>
                 <ol class="breadcrumb">
-                    <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
+                    <li><a href="<?php echo base_url() ?>"><i class="pe-7s-home"></i> Home</a></li>
                     <li class="active">Add Item</li>
                 </ol>
             </div>
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="example-text-input" class="col-sm-3 col-form-label">Type<span class="required">*</span></label>
+                                <label for="example-text-input" class="col-sm-3 col-form-label">Card Type<span class="required">*</span></label>
                                 <div class="col-sm-9">
                                     <input class="form-control" name="type" type="text" value="" id="example-text-input" placeholder="" required="">
                                 </div>

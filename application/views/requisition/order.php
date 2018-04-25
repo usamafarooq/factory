@@ -14,7 +14,7 @@
                 <h1>Add Order</h1>
                 <small></small>
                 <ol class="breadcrumb">
-                    <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
+                    <li><a href="<?php echo base_url() ?>"><i class="pe-7s-home"></i> Home</a></li>
                     <li class="active">Add Order</li>
                 </ol>
             </div>
@@ -37,7 +37,7 @@
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Store<span class="required">*</span></label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="store_id" required="">
-                                        <option>Select Store</option>
+                                        <option value="">Select Store</option>
                                         <?php foreach ($table_store as $t) {?>
                                         <option value="<?php echo $t["id"] ?>"><?php echo $t["Name"] ?></option>
                                         <?php } ?>
@@ -66,7 +66,7 @@
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-sm-3 col-form-label">Product<span class="required">*</span></label>
                                 <div class="col-sm-9">
-                                    <select class="form-control change-product" name="Product" >
+                                    <select class="form-control change-product" name="Product" disabled="">
                                         <option>Select Product</option>
                                    </select>
                                 </div>
@@ -81,6 +81,7 @@
                                                     <th>Product Name (Product Code)</th>
                                                     <th>Net Unit Cost</th>
                                                     <th>Quantity</th>
+                                                    <th>Avalible Quantity</th>
                                                     <th>Subtotal (USD)</th>
                                                     <th><i class="fa fa-trash-o" style="opacity:0.5; filter:alpha(opacity=50);"></i></th>
                                                 </tr>
@@ -93,6 +94,7 @@
                                                     <th>Total</th>
                                                     <th></th>
                                                     <th class="qty">0.00</th>
+                                                    <th></th>
                                                     <th class="total">0.00</th>
                                                     <th><i class="fa fa-trash-o" style="opacity:0.5; filter:alpha(opacity=50);"></i></th>
                                                 </tr>
@@ -184,8 +186,9 @@
     $('.sub-category').change(function() {
         var parent = $('.category').val()
         var id = $(this).val()
+        var store_id = $('[name="store_id"]').val()
         $.ajax({
-            url: "<?php echo base_url() ?>purchases/get_product/"+id+'/'+parent,
+            url: "<?php echo base_url() ?>purchases/get_product/"+id+'/'+parent+'/'+store_id,
             type: 'GET',
             dataType: 'json', // added data type
             success: function(res) {
@@ -208,6 +211,7 @@
         app.find('tr').last().append('<td>'+data['Product_Name']+'</td>')
         app.find('tr').last().append('<td class="net_cost">'+data['Product_Cost']+'</td>')
         app.find('tr').last().append('<td><input type="hidden" name="product_id[]" value="'+id+'"><input type="number" class="form-control" name="quantity[]" value="1"></td>')
+        app.find('tr').last().append('<td class="stock_qty">'+ (data['stock'] - data['orders'])+'</td>')
         app.find('tr').last().append('<td class="sub_total">'+data['Product_Cost']+'</td>')
         app.find('tr').last().append('<td><i class="fa fa-trash-o remove" data-id="'+data['id']+'"></i></td>')
         count_qty()
@@ -235,4 +239,26 @@
       });
       e.preventDefault(); // avoid to execute the actual submit of the form.
     });
+    $('[name="store_id"]').change(function() {
+        $('.change-product').attr('disabled', true)
+        if ($(this).val() != null && $(this).val() != '') {
+            $('.change-product').attr('disabled', false)
+        }
+        var url = '<?php echo base_url('store_stock/get_product_stock') ?>'
+        var data = $("#requisition").serialize()
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data, // serializes the form's elements.
+            success: function(data)
+            {
+                data = JSON.parse(data)
+                for (var i = 0; i < data.length; i++) {
+                    //console.log(data[i])
+                    //console.log($('[value="'+data[i].id+'"]').val())
+                    $('[value="'+data[i].id+'"]').parent().parent().find('.stock_qty').text(data[i].stock - data[i].orders)
+                }
+            }
+        });
+    })
 </script>

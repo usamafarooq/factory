@@ -17,7 +17,7 @@ class Item_model extends MY_Model
 
     public function get_bom($id)
     {
-    	$this->db->select('b.qty,p.Product_Name,c.Name as category,s.Name as sub_category')
+    	$this->db->select('b.qty,p.Product_Name,c.Name as category,s.Name as sub_category, b.id')
     			 ->from('bom b')
     			 ->join('product p','p.id = b.product_id')
     			 ->join('category c', 'c.id = p.Category')

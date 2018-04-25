@@ -163,9 +163,14 @@ class Purchases extends MY_Controller
         echo json_encode($data);
     }
 
-    public function get_product($id,$parent)
+    public function get_product($id,$parent,$store_id=null)
     {
-        $data = $this->Purchases_model->get_rows('product', array('Category' => $parent,'Sub_Category' => $id));
+        if ($store_id != null) {
+            $data = $this->Purchases_model->get_product_stock($id,$parent,$store_id);
+        }
+        else{
+            $data = $this->Purchases_model->get_rows('product', array('Category' => $parent,'Sub_Category' => $id));
+        }
         echo json_encode($data);
     }
 }

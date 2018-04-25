@@ -45,6 +45,7 @@
                                                     <th>Delivery Date</th>
                                                     <th>Delivery Status</th>
                                                     <th>Instruction Remarks</th>
+                                                    <th>Status</th>
                                                     <?php 
                                                         if ($permission["edit"] == "1"){
                                                     ?>
@@ -68,6 +69,16 @@
                                                     <td><?php echo $module["Delivery_Date"] ?></td>
                                                     <td><?php echo $module["Delivery_Status"] ?></td>
                                                     <td><?php echo $module["Instruction_Remarks"] ?></td>
+                                                    <td>
+                                                        <?php 
+                                                            if ($module['approval'] == 0) {
+                                                                echo 'Pending';
+                                                            }
+                                                            else{
+                                                                echo 'Complete';
+                                                            }
+                                                        ?>
+                                                    </td>
                                                     <?php 
                                                         if ($permission["edit"] == "1"){
                                                     ?>
@@ -75,15 +86,15 @@
                                                         <?php 
                                                             if ($module['approval'] == 0) {
                                                         ?>
-                                                        <a href="<?php echo base_url() ?>approval/approve/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/approve.png" title="Approve" alt="Approve" width="35" height="35"></a>
+                                                        <a href="<?php echo base_url() ?>approval/approve/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/approve.png" title="Approve" alt="Approve" width="25" height="25"></a>
                                                         <?php 
                                                             }
                                                             else{
-                                                                echo '<img src="'.base_url().'assets/icons/approved.png" title="Approved" alt="Approved" width="35" height="35">';
+                                                                //echo '<img src="'.base_url().'assets/icons/approved.png" title="Approved" alt="Approved" width="25" height="25">';
                                                             }
                                                         ?>
 
-                                                        <a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plan" alt="View Plan" width="35" height="35"></a>
+                                                        <a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plan" alt="View Plan" width="25" height="25"></a>
                                                     </td>
                                                     <?php } ?>
                                                 </tr>

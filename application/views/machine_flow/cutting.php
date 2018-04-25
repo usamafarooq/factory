@@ -64,7 +64,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Machine</label>
                                                 <div class="col-sm-9">
-                                                <input type="number" class="form-control" placeholder="" value="<?php echo $job['machine_Name'] ?>" readonly>
+                                                <input type="text" class="form-control" placeholder="" value="<?php echo $job['machine_Name'] ?>" readonly>
                                             </div>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -78,7 +78,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Planned Qty</label>
                                                 <div class="col-sm-9">
-                                                <input type="number" class="form-control" placeholder="" value="<?php echo $job['Planned_qty'] ?>" readonly>
+                                                <input type="number" class="form-control" placeholder="" value="<?php echo $job['qty'] ?>" readonly>
                                             </div>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -127,7 +127,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Conversion</label>
                                                 <div class="col-sm-9">
-                                                <input type="text" class="form-control" placeholder="" name="conversion">
+                                                <input type="text" class="form-control" placeholder="" name="conversion" value="<?php echo $job['Conversion'] ?>" readonly>
                                                 </div>
                                             </div>
                                         </div>

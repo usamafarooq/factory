@@ -106,7 +106,7 @@
                                                 <?php echo $module["Delivery_Date"] ?>
                                             </td>
                                             <td>
-                                                <a href="<?php echo base_url('job_inventory_report/view/'.$module['id']) ?>"><img src="<?php echo base_url() ?>assets/icons/view_report.png" title="View Report" alt="View Report" width="35" height="35"></a>
+                                                <a href="<?php echo base_url('job_inventory_report/view/'.$module['id']) ?>"><img src="<?php echo base_url() ?>assets/icons/view_report.png" title="View Report" alt="View Report" width="25" height="25"></a>
                                             </td>
                                         </tr>
                                         <?php } ?>

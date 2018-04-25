@@ -109,8 +109,8 @@ class Item extends MY_Controller{
 					'item_id'=>$id,
 					'user_id' => $this->session->userdata('user_id'),
 				);
-				$this->Item_model->insert_batch('bom',$item);
 			}
+			$this->Item_model->insert_batch('bom',$item);
 			redirect('item');
 		}
 		$this->data['title'] = 'Create Bom';
@@ -128,6 +128,7 @@ class Item extends MY_Controller{
 		$this->data['title'] = 'View Bom';
 		//$this->data['table_category'] = $this->Item_model->all_rows('category');
 		$this->data['bom'] = $this->Item_model->get_bom($id);
+		//echo '<pre>';print_r($this->data['bom']);die;
 		$this->load->template('item/view_bomb',$this->data);
 	}
 }

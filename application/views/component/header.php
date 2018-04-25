@@ -1,3 +1,56 @@
+<?php 
+function get_difrreance($date)
+{
+  $then = $date;
+
+  $then = new DateTime($then);
+  $now = new DateTime();
+  $sinceThen = $then->diff($now);
+  $minutes = '';
+  if ($sinceThen->y) {
+    $minutes .=  $sinceThen->y. ' Years ';
+  }
+  if ($sinceThen->m) {
+    $minutes .=  $sinceThen->m. ' months ';
+  }
+  if ($sinceThen->d) {
+    $minutes .=  $sinceThen->d. ' days ';
+  }
+  if ($sinceThen->h) {
+    $minutes .=  $sinceThen->h. ' hours ';
+  }
+  if ($sinceThen->i) {
+    $minutes .=  $sinceThen->i. ' minutes ';
+  }
+  return $minutes;
+}
+
+function get_single_difrreance($date)
+{
+  $then = $date;
+
+  $then = new DateTime($then);
+  $now = new DateTime();
+  $sinceThen = $then->diff($now);
+  $minutes = '';
+  if ($sinceThen->y) {
+    $minutes .=  $sinceThen->y. 'Y : ';
+  }
+  if ($sinceThen->m) {
+    $minutes .=  $sinceThen->m. 'M : ';
+  }
+  if ($sinceThen->d) {
+    $minutes .=  $sinceThen->d. 'D : ';
+  }
+  if ($sinceThen->h) {
+    $minutes .=  $sinceThen->h. 'H : ';
+  }
+  if ($sinceThen->i) {
+    $minutes .=  $sinceThen->i. 'M';
+  }
+  return $minutes;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
