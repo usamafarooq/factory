@@ -35,4 +35,15 @@ class Store_stock extends MY_Controller
         $this->data['permission'] = $this->permission;
         $this->load->template('store_stock/view', $this->data);
     }
+
+    public function get_product_stock()
+    {
+        $data = $this->input->post();
+        $store_id = $data['store_id'];
+        $product_id = $data['product_id'];
+        $stock = $this->store_stock_model->get_stock_by_product($store_id,$product_id);
+        //print_r($this->db->last_query());
+        //print_r($stock);
+        echo json_encode($stock);
+    }
 }

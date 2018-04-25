@@ -13,7 +13,7 @@
                 <h1>Add Production plan</h1>
                 <small></small>
                 <ol class="breadcrumb">
-                    <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
+                    <li><a href="<?php echo base_url() ?>"><i class="pe-7s-home"></i> Home</a></li>
                     <li class="active">Add Production plan</li>
                 </ol>
             </div>
@@ -131,7 +131,20 @@
                                     <div class="form-group col-lg-6">
                                         <label for="example-text-input" class="col-sm-3 col-form-label">Packet sheets</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control" name="pack_sheet" type="text" value="<?php echo round($qty / $sheet['divid']) ?>" id="example-text-input" placeholder="" readonly>
+                                            <?php 
+                                                $divid = 100;
+                                                if ($sheet['divid']) {
+                                                    $divid = $sheet['divid'];
+                                                }
+                                                $pac_sheet = $qty / $divid;
+                                                $sp = str_split($pac_sheet);
+                                                $key = array_search('.',$sp);
+                                                if ($key) {
+                                                    $pac_sheet = $sp[0] + 1;
+                                                }
+                                            ?>
+                                            <input class="form-control" name="pack_sheet" type="text" value="<?php //echo round($qty / $sheet['divid']);
+                                             echo $pac_sheet ?>" id="example-text-input" placeholder="" readonly>
                                         </div>
 
                                     </div>

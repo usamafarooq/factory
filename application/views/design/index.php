@@ -45,6 +45,7 @@
                                                     <th>Delivery Date</th>
                                                     <th>Delivery Status</th>
                                                     <th>Instruction Remarks</th>
+                                                    <th>Status</th>
                                                     <?php 
                                                         if ($permission["edit"] == "1"){
                                                     ?>
@@ -68,6 +69,16 @@
                                                     <td><?php echo $module["Delivery_Date"] ?></td>
                                                     <td><?php echo $module["Delivery_Status"] ?></td>
                                                     <td><?php echo $module["Instruction_Remarks"] ?></td>
+                                                    <td>
+                                                        <?php 
+                                                            if ($module['reports'] == 0) {
+                                                                echo 'Pending';
+                                                            }
+                                                            else{
+                                                                echo 'Complete';
+                                                            }
+                                                        ?>
+                                                    </td>
                                                     <?php 
                                                         if ($permission["edit"] == "1"){
                                                     ?>
@@ -75,14 +86,10 @@
                                                         <?php 
                                                             if ($module['reports'] == 0) {
                                                         ?>
-                                                        <a href="<?php echo base_url() ?>design/report_submit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/report_submit.png" title="Report Submit" alt="Report Submit" width="35" height="35"></a>
+                                                        <a href="<?php echo base_url() ?>design/report_submit/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/report_submit.png" title="Report Submit" alt="Report Submit" width="25" height="25"></a>
                                                         <?php 
-                                                            }
-                                                            else{
-                                                                echo '<img src="'.base_url().'assets/icons/complete.png" title="Submit" alt="Submit" width="35" height="35">';
-                                                            }
-                                                        ?>
-                                                        <a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plan" alt="View Plan" width="35" height="35"></a>
+                                                            }?>
+                                                        <a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $module["id"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plan" alt="View Plan" width="25" height="25"></a>
                                                     </td>
                                                     <?php } ?>
                                                 </tr>

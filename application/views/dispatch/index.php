@@ -55,17 +55,17 @@
                                                     <td><?php echo $o['start_date'] ?></td>
                                                     <td><?php echo $o['end_date'] ?></td>
                                                     <td>
-                                                        <a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $o["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plan" alt="View Plan" width="35" height="35"></a>
+                                                        <a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $o["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plan" alt="View Plan" width="25" height="25"></a>
                                                         <?php 
                                                             if ($o['con'] == 0) {
-                                                                echo '<a href="'.base_url('machine_flow/dispatch_start/'.$o['id'].'/'.$o['flow_id']).'"><img src="'.base_url().'assets/icons/start_process.png" title="Start" alt="Start" width="35" height="35"></a>';
+                                                                echo '<a href="'.base_url('machine_flow/dispatch_start/'.$o['id'].'/'.$o['flow_id']).'"><img src="'.base_url().'assets/icons/start_process.png" title="Start" alt="Start" width="25" height="25"></a>';
                                                             }
                                                             else{
                                                                 if ($o['submit'] == 0) {
-                                                                    echo '<a href="'.base_url('machine_flow/dispatch_complete/'.$o['id'].'/'.$o['flow_id']).'"><img src="'.base_url().'assets/icons/complete.png" title="Complete" alt="Complete" width="35" height="35"></a>';
+                                                                    echo '<a href="'.base_url('machine_flow/dispatch_complete/'.$o['id'].'/'.$o['flow_id']).'"><img src="'.base_url().'assets/icons/complete.png" title="Complete" alt="Complete" width="25" height="25"></a>';
                                                                 }
                                                                 else{
-                                                                    echo '<img src="'.base_url().'assets/icons/complete_process.png" title="Completed" alt="Completed" width="35" height="35">';
+                                                                    echo '<img src="'.base_url().'assets/icons/complete_process.png" title="Completed" alt="Completed" width="25" height="25">';
                                                                 }
                                                             }
                                                         ?>

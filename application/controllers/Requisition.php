@@ -87,10 +87,12 @@ class Requisition extends MY_Controller
     {
         $id = $this->input->post('id');
         $detail_id = $this->input->post('detail_id');
+        $product_id = $this->input->post('product_id');
         $received_quantity = $this->input->post('received_quantity');
+        $remarks = $this->input->post('remarks');
         $this->requisition_model->update('requisition', array('status'=>'Complete'), array('id' => $id));
         for ($i=0; $i < sizeof($detail_id); $i++) { 
-            $this->requisition_model->update('requisition_product', array('received_quantity'=>$received_quantity[$i]), array('id' => $detail_id[$i]));
+            $this->requisition_model->update('requisition_product', array('received_quantity'=>$received_quantity[$i],'product_id'=>$product_id[$i],'remarks'=>$remarks[$i]), array('id' => $detail_id[$i]));
         }
         redirect('requisition');
     }

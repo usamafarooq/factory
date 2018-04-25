@@ -61,23 +61,23 @@
                                                             if ($o['submit'] != 0 || $o['submit'] != '') {
                                                                 $url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                                                         ?>
-                                                        <a href="<?php echo base_url() ?>requisition/order/<?php echo $o["WO_no"] ?>/Plate_Making?redirect=<?php echo $url ?>"><img src="<?php echo base_url() ?>assets/icons/create-order.png" title="Order" alt="Order" width="35" height="35"></a>
+                                                        <a href="<?php echo base_url() ?>requisition/order/<?php echo $o["WO_no"] ?>/Plate_Making?redirect=<?php echo $url ?>"><img src="<?php echo base_url() ?>assets/icons/create-order.png" title="Order" alt="Order" width="25" height="25"></a>
 
-                                                        <a href="<?php echo base_url() ?>requisition/view_order/<?php echo $o["WO_no"] ?>/Plate_Making" target="_blank"><img src="<?php echo base_url() ?>assets/icons/view_order.png" title="View Order" alt="View Order" width="35" height="35"></a>
+                                                        <a href="<?php echo base_url() ?>requisition/view_order/<?php echo $o["WO_no"] ?>/Plate_Making" target="_blank"><img src="<?php echo base_url() ?>assets/icons/view_order.png" title="View Order" alt="View Order" width="25" height="25"></a>
                                                         <?php } ?>
-                                                        <a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $o["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plan" alt="View Plan" width="35" height="35"></a>
+                                                        <a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $o["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plan" alt="View Plan" width="25" height="25"></a>
                                                         <?php 
                                                             if ($o['con'] == 0) {
-                                                                echo '<a href="'.base_url('machine_flow/plate_making_start/'.$o['id'].'/'.$o['flow_id']).'"><img src="'.base_url().'assets/icons/start_process.png" title="Start" alt="Start" width="35" height="35">
+                                                                echo '<a href="'.base_url('machine_flow/plate_making_start/'.$o['id'].'/'.$o['flow_id']).'"><img src="'.base_url().'assets/icons/start_process.png" title="Start" alt="Start" width="25" height="25">
 </a>';
                                                             }
                                                             else{
                                                                 if ($o['submit'] == 0) {
-                                                                    echo '<a href="'.base_url('machine_flow/plate_making_complete/'.$o['id'].'/'.$o['flow_id']).'"><img src="'.base_url().'assets/icons/complete.png" title="Complete" alt="Complete" width="35" height="35">
+                                                                    echo '<a href="'.base_url('machine_flow/plate_making_complete/'.$o['id'].'/'.$o['flow_id']).'"><img src="'.base_url().'assets/icons/complete.png" title="Complete" alt="Complete" width="25" height="25">
 </a>';
                                                                 }
                                                                 else{
-                                                                    echo '<img src="'.base_url().'assets/icons/complete_process.png" title="Completed" alt="Completed" width="35" height="35">';
+                                                                    echo '<img src="'.base_url().'assets/icons/complete_process.png" title="Completed" alt="Completed" width="25" height="25">';
                                                                 }
                                                             }
                                                         ?>

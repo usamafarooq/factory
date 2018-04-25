@@ -58,7 +58,7 @@
                 <h1>Add Production plan</h1>
                 <small></small>
                 <ol class="breadcrumb">
-                    <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
+                    <li><a href="<?php echo base_url() ?>"><i class="pe-7s-home"></i> Home</a></li>
                     <li class="active">Add Production plan</li>
                 </ol>
             </div>
@@ -202,14 +202,14 @@
                                     <div class="form-group col-lg-6">
                                         <label for="example-text-input" class="col-sm-3 col-form-label">Start Date</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control start" name="start_date[]" type="date" id="example-text-input" placeholder="" min="<?php echo date('Y-m-d') ?>">
+                                            <input class="form-control start" name="start_date[]" type="datetime-local" id="example-text-input" placeholder="" min="<?php echo date('Y-m-d\TH:i') ?>">
                                         </div>
 
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="example-text-input" class="col-sm-3 col-form-label">End Date</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control end" name="end_date[]" type="date" value="" id="example-text-input" placeholder="" min="<?php echo date('Y-m-d', strtotime('1 days')) ?>">
+                                            <input class="form-control end" name="end_date[]" type="datetime-local" value="" id="example-text-input" placeholder="" min="<?php echo date('Y-m-d\TH:i') ?>" >
                                         </div>
 
                                     </div>
@@ -374,18 +374,17 @@
         });
     }
     get_machines()
-    $('body').on('change', '.start', function() {
-        var start = $(this).val()
-        var myDate = new Date(start);
-        myDate.setDate(myDate.getDate() + 1);
-        var todaydate = myDate
-        var dd = todaydate.getDate();
-        var mm = todaydate.getMonth()+1; //January is 0!
-        if(dd<10){  dd='0'+dd } 
-        if(mm<10){  mm='0'+mm } 
-        var yyyy = todaydate.getFullYear();
-        var date = yyyy+'-'+mm+'-'+dd;
-        $(this).parent().parent().parent().find('.end').attr('min',date)
-        //alert(date)
-    })
+    // $('body').on('change', '.start', function() {
+    //     var start = $(this).val()
+    //     var myDate = new Date(start);
+    //     myDate.setDate(myDate.getDate() + 1);
+    //     var todaydate = myDate
+    //     var dd = todaydate.getDate();
+    //     var mm = todaydate.getMonth()+1; //January is 0!
+    //     if(dd<10){  dd='0'+dd } 
+    //     if(mm<10){  mm='0'+mm } 
+    //     var yyyy = todaydate.getFullYear();
+    //     var date = yyyy+'-'+mm+'-'+dd;
+    //     $(this).parent().parent().parent().find('.end').attr('min',date)
+    // })
 </script>

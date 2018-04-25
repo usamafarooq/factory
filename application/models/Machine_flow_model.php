@@ -4,7 +4,7 @@ class Machine_flow_model extends MY_Model
 {
 	public function get_job($plane_id,$flow_id)
 	{
-		$this->db->select('p.id, p.WO_no, p.Job_Description, p.Planned_qty, w.PO_No, c.client_Name, m.machine_Name, i.colors, f.id as flow, f.start_date, f.end_date, i.type, i.size, i.gsm')
+		$this->db->select('p.id, p.WO_no, p.Job_Description, p.Planned_qty, w.PO_No, c.client_Name, m.machine_Name, i.colors, f.id as flow, f.start_date, f.end_date, i.type, i.size, i.gsm, p.Planned_qty_sheets as qty, p.Conversion')
 				 ->from('production_plan p')
 				 ->join('work_orders w', 'w.id = p.WO_no')
 				 ->join('clients c', 'c.id = w.Client')

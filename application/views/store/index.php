@@ -55,7 +55,7 @@
 										    		<td><?php echo $o['start_date'] ?></td>
 										    		<td><?php echo $o['end_date'] ?></td>
 										    		<td>
-										    			<a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $o["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Detail" alt="View Detail" width="35" height="35"></a>
+										    			<a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $o["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/record1.png" title="View Detail" alt="View Detail" width="25" height="25"></a>
 										    			<?php 
 										    				if ($o['con'] == 0) {
 										    					echo '<a href="'.base_url('machine_flow/store_start/'.$o['id'].'/'.$o['flow_id']).'"><button class="btn btn-info">Start</button></a>';

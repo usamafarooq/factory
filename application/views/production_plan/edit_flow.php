@@ -58,7 +58,7 @@
                 <h1>Edit Production plan</h1>
                 <small></small>
                 <ol class="breadcrumb">
-                    <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
+                    <li><a href="<?php echo base_url() ?>"><i class="pe-7s-home"></i> Home</a></li>
                     <li class="active">Edit Production plan</li>
                 </ol>
             </div>
