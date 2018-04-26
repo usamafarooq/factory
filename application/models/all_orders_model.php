@@ -87,4 +87,16 @@ class all_orders_model extends MY_Model{
 				 ->where('p.plane_id',$id);
 		return $this->db->get()->result_array();
 	}
+
+	public function get_product($id)
+	{
+		$this->db->select('p.Product_Name as name, sum(rp.quantity) as order_qty, sum(rp.received_quantity) as deliver_qty, sum(rp.pending_quantity) as balance_qty')
+				 ->from('product p')
+				 ->join('requisition_product rp', 'rp.product_id = p.id')
+				 ->join('requisition r', 'r.id = rp.requisition_id')
+				 ->group_by('p.id')
+				 ->where('r.status', 'Complete')
+				 ->where('r.wo_id', $id);
+		return $this->db->get()->result_array();
+	}
 }
