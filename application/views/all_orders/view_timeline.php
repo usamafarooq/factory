@@ -1,65 +1,4 @@
-<!-- /.Navbar  Static Side -->
 
-<div class="control-sidebar-bg"></div>
-<!-- Page Content -->
-<div id="page-wrapper">
-    <!-- main content -->
-    <div class="content">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="header-icon">
-                <i class="pe-7s-box1"></i>
-            </div>
-            <div class="header-title">
-                <h1>Job Detail</h1>
-                <small> </small>
-                <ol class="breadcrumb">
-                    <li><a href="<?php echo base_url() ?>"><i class="pe-7s-home"></i> Home</a></li>
-
-                    <li class="active">Job Detail</li>
-                </ol>
-            </div>
-        </div>
-        <!-- /. Content Header (Page header) -->
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="panel panel-bd">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4>Job Detail</h4>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-
-                            <ul class="activity-list list-unstyled">
-                                <?php 
-                                    foreach ($timeline as $c) {
-                                ?>
-                                <li class="activity-purple">
-                                    <small class="text-muted"><?php echo date('Y-m-d H:i:s', strtotime($c['start_date'])) ?></small>
-                                    <p>
-                                        Start <span class="label label-success label-pill"><?php echo $c['type'] ?></span> 
-                                        <?php if($c['end_date']){ ?> End
-                                        <span class="label label-success label-pill"><?php echo $c['type'] ?></span>
-                                        <?php echo date('Y-m-d H:i:s', strtotime($c['end_date'])) ?>
-                                        <?php } ?>
-                                    </p>
-                                </li>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.main content -->
-</div>
-<!-- /#page-wrapper -->
-
-<!-- /#wrapper -->
-<!-- START CORE PLUGINS -->
 
 
     
@@ -89,39 +28,20 @@
                     </div>
                     <div class=panel-body style="overflow: scroll; height: 390px;     overflow-x: hidden;">
                         <ul class="activity-list list-unstyled">
-                            <li class=activity-purple> <small class=text-muted>9 minutes ago</small>
-                                <p>You <span class="label label-success label-pill">recommended</span> Karen Ortega</p>
+                            <?php 
+                                foreach ($timeline as $c) {
+                            ?>
+                            <li class="activity-purple">
+                                <small class="text-muted"><?php echo get_single_difrreance($c['start_date']) ?> Ago</small>
+                                <p>
+                                    Start <span class="label label-success label-pill"><?php echo $c['type'] ?></span> 
+                                    <?php if($c['end_date']){ ?> End
+                                    <!-- <span class="label label-success label-pill"><?php echo $c['type'] ?></span> -->
+                                    <?php echo get_single_difrreance($c['end_date']) ?> Ago
+                                    <?php } ?>
+                                </p>
                             </li>
-                            <li class=activity-purple> <small class=text-muted>9 minutes ago</small>
-                                <p>You <span class="label label-success label-pill">recommended</span> Karen Ortega</p>
-                            </li>
-                            <li class=activity-purple> <small class=text-muted>9 minutes ago</small>
-                                <p>You <span class="label label-success label-pill">recommended</span> Karen Ortega</p>
-                            </li>
-                            <li class=activity-purple> <small class=text-muted>9 minutes ago</small>
-                                <p>You <span class="label label-success label-pill">recommended</span> Karen Ortega</p>
-                            </li>
-                            <li class=activity-purple> <small class=text-muted>9 minutes ago</small>
-                                <p>You <span class="label label-success label-pill">recommended</span> Karen Ortega</p>
-                            </li>
-                            <li class=activity-purple> <small class=text-muted>9 minutes ago</small>
-                                <p>You <span class="label label-success label-pill">recommended</span> Karen Ortega</p>
-                            </li>
-                            <li class=activity-purple> <small class=text-muted>9 minutes ago</small>
-                                <p>You <span class="label label-success label-pill">recommended</span> Karen Ortega</p>
-                            </li>
-                            <li class=activity-danger> <small class=text-muted>15 minutes ago</small>
-                                <p>You followed Olivia Williamson</p>
-                            </li>
-                            <li class=activity-warning> <small class=text-muted>22 minutes ago</small>
-                                <p>You <span class=text-danger>subscribed</span> to Harold Fuller</p>
-                            </li>
-                            <li class=activity-primary> <small class=text-muted>30 minutes ago</small>
-                                <p>You updated your profile picture</p>
-                            </li>
-                            <li> <small class=text-muted>35 minutes ago</small>
-                                <p>You deleted homepage.psd</p>
-                            </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -137,28 +57,23 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        
-                                        <th>Name</th>
-                                        <th>vander</th>
-                                      
-                                        <th>Number Of Days</th>
-                                       
-                                        <th>Action</th>
+                                        <th>Flow</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>TAT</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php 
+                                        foreach ($timeline as $c) {
+                                    ?>
                                     <tr>
-                                        
-                                        <td>Panadol</td>
-                                        
-                                        <td>vander name</td>
-                                        <td>
-                                            50 days
-                                        </td>
-                                       
-                                        <td><a href="#" class="btn btn-success btn-xs">View</a></td>
+                                        <td><?php echo $c['type'] ?></td>
+                                        <td><?php echo $c['start_date'] ?></td>
+                                        <td><?php echo $c['end_date'] ?></td>
+                                        <td><?php echo get_single_difrreance($c['start_date'], $c['end_date']) ?></td>
                                     </tr>
-                                  
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -210,7 +125,7 @@
                 <!-- Doughnut Chart -->
                 <!-- Polar Chart -->
                 <!-- Single Bar Chart -->
-                <div class="col-sm-6 col-md-6">
+                <!-- <div class="col-sm-6 col-md-6">
                     <div class="panel panel-bd lobidisable">
                         <div class="panel-heading">
                             <div class="panel-title">
@@ -220,7 +135,7 @@
                             <canvas id="singelBarChart" height="310"></canvas>
                         </div>
                     </div>
-                </div>
+                </div> -->
              
             </div>
            
@@ -243,9 +158,8 @@
                 </div>
                
             </div>
-            <div class="content">
-                <!-- Content Header (Page header) -->
-                <!-- /. Content Header (Page header) -->
+            <!-- <div class="content">
+                
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
                         <div class="panel panel-bd">
@@ -255,13 +169,13 @@
                             </div>
                             <div class="panel-body">
                                
-<div id="example3.1" style="height: 180px;"></div>
+                                    <div id="example3.1" style="height: 180px;"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                
-            </div>
+            </div> -->
             <!-- /.main content -->
         </div>
     </div>
@@ -316,22 +230,40 @@ google.charts.load('current', {
 google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
     var data=new google.visualization.DataTable();
+    // data.addColumn('string', 'Task ID');
+    // data.addColumn('string', 'Task Name');
+    // data.addColumn('string', 'Resource');
+    // data.addColumn('date', 'Start Date');
+    // data.addColumn('date', 'End Date');
+    // data.addColumn('number', 'Duration');
+    // data.addColumn('number', 'Percent Complete');
+    // data.addColumn('string', 'Dependencies');
+    // data.addRows([ ['2014Spring', 'Job 1', 'Job 1', new Date(2015, 2, 22), new Date(2015, 5, 20), null, 90, null], ['2014Summer', 'Job 2', 'Job 2', new Date(2014, 5, 21), new Date(2014, 8, 20), null, 100, null], ['2014Autumn', 'Job 3', 'Job 3', new Date(2014, 8, 21), new Date(2014, 11, 20), null, 100, null], ['2014Winter', 'Job 4', 'Job 4', new Date(2014, 11, 21), new Date(2015, 2, 21), null, 100, null], ['2015Spring', 'Job 5', 'Job 5', new Date(2015, 2, 22), new Date(2015, 5, 20), null, 50, null], ['2015Summer', 'Job 6', 'Job 6', new Date(2015, 5, 21), new Date(2015, 8, 20), null, 0, null]]);
+    var values = JSON.parse('<?php echo json_encode($timeline) ?>');
+    //console.log(values)
     data.addColumn('string', 'Task ID');
     data.addColumn('string', 'Task Name');
-    data.addColumn('string', 'Resource');
     data.addColumn('date', 'Start Date');
     data.addColumn('date', 'End Date');
     data.addColumn('number', 'Duration');
-    data.addColumn('number', 'Percent Complete');
+    data.addColumn('number', 'Percent Complete')
     data.addColumn('string', 'Dependencies');
-    data.addRows([ ['2014Spring', 'Job 1', 'Job 1', new Date(2015, 2, 22), new Date(2015, 5, 20), null, 90, null], ['2014Summer', 'Job 2', 'Job 2', new Date(2014, 5, 21), new Date(2014, 8, 20), null, 100, null], ['2014Autumn', 'Job 3', 'Job 3', new Date(2014, 8, 21), new Date(2014, 11, 20), null, 100, null], ['2014Winter', 'Job 4', 'Job 4', new Date(2014, 11, 21), new Date(2015, 2, 21), null, 100, null], ['2015Spring', 'Job 5', 'Job 5', new Date(2015, 2, 22), new Date(2015, 5, 20), null, 50, null], ['2015Summer', 'Job 6', 'Job 6', new Date(2015, 5, 21), new Date(2015, 8, 20), null, 0, null]]);
+    data.addRows(values.length);
+    for (var i = 0; i < values.length; i++) {
+        data.setCell(i, 0, values[i].type);
+        data.setCell(i, 1, values[i].type);
+        data.setCell(i, 2, new Date(values[i].start_date));
+        data.setCell(i, 3, new Date(values[i].end_date));
+        data.setCell(i, 4, null);
+        data.setCell(i, 5, 0);
+        data.setCell(i, 6, null);
+    }
     var options= {
         height: 230,
         gantt: {
             trackHeight: 30
         }
-    }
-    ;
+    };
     var chart=new google.visualization.Gantt(document.getElementById('chart_div'));
     chart.draw(data, options);
 }
@@ -342,11 +274,29 @@ function drawChart() {
     var ctx=document.getElementById("barChart");
     var myChart=new Chart(ctx, {
         type: 'bar', data: {
-            labels: ["Product 1", "Product 2", "Product 3", "Product 4", "Product 5", "Product 6", "Product 7"], datasets: [ {
-                label: "My First dataset", data: [65, 59, 80, 81, 56, 55, 40], borderColor: "rgba(85, 139, 47, 0.9)", borderWidth: "0", backgroundColor: "rgba(85, 139, 47, 0.5)"
+            labels: [
+                <?php 
+                    foreach ($product as $p) {
+                        echo '"'.$p['name'].'",';
+                    }
+                ?>
+            ], datasets: [ {
+                label: "Order Quantity", data: [
+                    <?php 
+                        foreach ($product as $p) {
+                            echo $p['order_qty'].',';
+                        }
+                    ?>
+                ], borderColor: "rgba(85, 139, 47, 0.9)", borderWidth: "0", backgroundColor: "rgba(85, 139, 47, 0.5)"
             }
             , {
-                label: "My Second dataset", data: [28, 48, 40, 19, 86, 27, 90], borderColor: "rgba(0,0,0,0.09)", borderWidth: "0", backgroundColor: "rgba(0,0,0,0.07)"
+                label: "Deliver Quantity", data: [
+                    <?php 
+                        foreach ($product as $p) {
+                            echo $p['deliver_qty'].',';
+                        }
+                    ?>
+                ], borderColor: "rgba(0,0,0,0.09)", borderWidth: "0", backgroundColor: "rgba(0,0,0,0.07)"
             }
             ]
         }
@@ -367,11 +317,23 @@ function drawChart() {
     var ctx=document.getElementById("lineChart");
     var myChart=new Chart(ctx, {
         type: 'line', data: {
-            labels: ["Product 1", "Product 2", "Product 3", "Product 4", "Product 5", "Product 6", "Product 7"], datasets: [ {
-                label: "My First dataset", borderColor: "rgba(0,0,0,.09)", borderWidth: "1", backgroundColor: "rgba(0,0,0,.07)", data: [22, 44, 67, 43, 76, 45, 12]
+            labels: [<?php 
+                    foreach ($product as $p) {
+                        echo '"'.$p['name'].'",';
+                    }
+                ?>], datasets: [ {
+                label: "Deliver Quantity", borderColor: "rgba(0,0,0,.09)", borderWidth: "1", backgroundColor: "rgba(0,0,0,.07)", data: [<?php 
+                        foreach ($product as $p) {
+                            echo $p['deliver_qty'].',';
+                        }
+                    ?>]
             }
             , {
-                label: "Use ", borderColor: "rgba(85, 139, 47, 0.9)", borderWidth: "1", backgroundColor: "rgba(85, 139, 47, 0.5)", pointHighlightStroke: "rgba(26,179,148,1)", data: [16, 32, 18, 26, 42, 33, 44]
+                label: "Use Quantity", borderColor: "rgba(85, 139, 47, 0.9)", borderWidth: "1", backgroundColor: "rgba(85, 139, 47, 0.5)", pointHighlightStroke: "rgba(26,179,148,1)", data: [<?php 
+                        foreach ($product as $p) {
+                            echo ($p['deliver_qty'] - $p['balance_qty']).',';
+                        }
+                    ?>]
             }
             ]
         }
@@ -390,9 +352,17 @@ function drawChart() {
     var myChart=new Chart(ctx, {
         type: 'pie', data: {
             datasets: [ {
-                data: [45, 25, 20, 10], backgroundColor: [ "rgba(85, 139, 47, 0.9)", "rgba(85, 139, 47, 0.7)", "rgba(85, 139, 47, 0.5)", "rgba(0, 0, 0, 0.07)"], hoverBackgroundColor: [ "rgba(85, 139, 47, 0.9)", "rgba(85, 139, 47, 0.7)", "rgba(85, 139, 47, 0.5)", "rgba(0,0,0,0.07)"]
+                data: [<?php 
+                        foreach ($product as $p) {
+                            echo $p['deliver_qty'].',';
+                        }
+                    ?>], backgroundColor: [ "rgba(85, 139, 47, 0.9)", "rgba(85, 139, 47, 0.7)", "rgba(85, 139, 47, 0.5)", "rgba(0, 0, 0, 0.07)"], hoverBackgroundColor: [ "rgba(85, 139, 47, 0.9)", "rgba(85, 139, 47, 0.7)", "rgba(85, 139, 47, 0.5)", "rgba(0,0,0,0.07)"]
             }
-            ], labels: [ "green", "green", "green"]
+            ], labels: [<?php 
+                    foreach ($product as $p) {
+                        echo '"'.$p['name'].'",';
+                    }
+                ?>]
         }
         , options: {
             responsive: true

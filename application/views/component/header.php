@@ -1,10 +1,13 @@
 <?php 
-function get_difrreance($date)
+function get_difrreance($date,$end=null)
 {
   $then = $date;
 
   $then = new DateTime($then);
   $now = new DateTime();
+  if ($end != null && !empty($end)) {
+      $now = new DateTime($end);
+  }
   $sinceThen = $then->diff($now);
   $minutes = '';
   if ($sinceThen->y) {
@@ -25,12 +28,15 @@ function get_difrreance($date)
   return $minutes;
 }
 
-function get_single_difrreance($date)
+function get_single_difrreance($date,$end=null)
 {
   $then = $date;
 
   $then = new DateTime($then);
   $now = new DateTime();
+  if ($end != null) {
+      $now = new DateTime($end);
+  }
   $sinceThen = $then->diff($now);
   $minutes = '';
   if ($sinceThen->y) {

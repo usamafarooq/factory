@@ -118,6 +118,7 @@ class All_orders extends MY_Controller
 	        return strtotime($a['start_date']) - strtotime($b['start_date']);
 	    }
 	    usort($this->data['timeline'], 'compareOrder');
+	    $this->data['product'] = $this->all_orders_model->get_product($id);
 	    $this->load->template('all_orders/view_timeline',$this->data);
 		//echo '<pre>';print_r($this->data['timeline']);die;
 	}

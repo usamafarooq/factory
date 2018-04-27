@@ -3,7 +3,7 @@
 <!-- Page Content -->
 <div id="page-wrapper">
     <!-- main content -->
-    <div class="content">
+    <div class="content print-div_all">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="header-icon">
@@ -20,160 +20,93 @@
         </div>
         <!-- /. Content Header (Page header) -->
         <!-- work order -->
+        
+
+        <!-- prodcution Plane -->
+        <?php 
+            if (isset($work_orders)) {
+        ?>
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-bd ">
+                <div class="panel panel-bd print-div_work_order table_one">
                     <div class="panel-heading">
                         <div class="panel-title">
-                            <h4>Work Orders</h4>
+                            <h4 class="product-totle">View Work Order Form</h4><br>    
+                           
                         </div>
                     </div>
                     <div class="panel-body">
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-lg-6">
-                            <label for="example-text-input" class="col-sm-3 col-form-label">Client</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="Client" disabled="">
-                                    <option>Select Client</option>
-                                    <?php 
+                        <div class="row">
+                            <form>
+                                <div class="col-sm-12">
+                                    <div class="panel-body ">
+                                        <table class="minimalistBlack" style="width: 100%;">
+                                       
+                                       
+                                        <tbody>
+                                        <tr>
+                                            <td>Client : <u><?php 
                                         foreach ($clients as $c) {
                                             $checked = '';
                                             if ($work_orders["Client"] == $c['id']) {
                                                 $checked = 'selected';
+                                            echo '<span  '.$checked.'>'.$c['client_Name'].'</span>';
                                             }
-                                            echo '<option value="'.$c['id'].'" '.$checked.'>'.$c['client_Name'].'</option>';
                                         }
-                                    ?>
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label for="example-text-input" class="col-sm-3 col-form-label">Item Code</label>
-                            <div class="col-sm-9">
-                                <select class="form-control" name="Item_Code" disabled="">
-                                    <option>Select Item</option>
-                                    <?php 
+                                    ?></u></td>
+                                            <td>Item Code : <u><?php 
                                         foreach ($item as $i) {
                                             $checked = '';
                                             if ($work_orders["Item_Code"] == $i['id']) {
                                                 $checked = 'selected';
+                                            echo '<span value="'.$i['id'].'" '.$checked.'>'.$i['Item_Code'].'</span>';
                                             }
-                                            echo '<option value="'.$i['id'].'" '.$checked.'>'.$i['Item_Code'].'</option>';
                                         }
-                                    ?>
-                                </select>
-                            </div>
+                                    ?></u></td>
+                                            <td>Quantity : <u><?php echo $work_orders["quantity"] ?></u></td>
+                                           
+                                            
+                                           
+                                        </tr>
+                                        <tr>
+                                           
+                                            <td colspan="2">PO No : <u><?php echo $work_orders["PO_No"] ?></u></td>
+                                            <td colspan="">PO Date : <u><?php echo $work_orders["PO_Date"] ?></u></td>
+                                            
+                                           
+                                        </tr>
+                                        <tr>
+                                            <td>Batch No : <u><?php echo $work_orders["Batch_No"] ?></u></td>
+                                            <td colspan="2">Delivery Date : <u><?php echo $work_orders["Delivery_Date"] ?></u></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Delivery Status : <u><?php echo $work_orders["Delivery_Status"] ?></u></td>
+                                            <td colspan="">Instruction Remarks : <u><?php echo $work_orders["status"] ?></u></td>
+                                            <td colspan="">Status : <u><?php echo $work_orders["status"] ?></u></td>
+                                            
+                                        </tr> 
+                                      
+                                        
+                                        
+                                        </table>
+                                       
+                                    <div>
+                                </div>
 
+                            </form>
                         </div>
                     </div>
-
-                    <div class="form-group row">
-
-                        <div class="form-group col-lg-6">
-                            <label for="example-text-input" class="col-sm-3 col-form-label">Quantity</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" name="quantity" type="number" value="<?php echo $work_orders["quantity"] ?>" id="example-text-input" placeholder="" disabled="">
-                            </div>
-
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label for="example-text-input" class="col-sm-3 col-form-label">PO No</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" name="PO_No" type="text" value="<?php echo $work_orders["PO_No"] ?>" id="example-text-input" placeholder="" disabled="">
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-
-                        <div class="form-group col-lg-6">
-                            <label for="example-text-input" class="col-sm-3 col-form-label">PO Date</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" name="PO_Date" type="date" value="<?php echo $work_orders["PO_Date"] ?>" id="example-text-input" placeholder="" disabled="">
-                            </div>
-
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label for="example-text-input" class="col-sm-3 col-form-label">Batch No</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" name="Batch_No" type="text" value="<?php echo $work_orders["Batch_No"] ?>" id="example-text-input" placeholder="" disabled="">
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-
-                        <div class="form-group col-lg-6">
-                            <label for="example-text-input" class="col-sm-3 col-form-label">Delivery Date</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" name="Delivery_Date" type="date" value="<?php echo $work_orders["Delivery_Date"] ?>" id="example-text-input" placeholder="" disabled="">
-                            </div>
-
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label for="example-text-input" class="col-sm-3 col-form-label">Delivery Status</label>
-                            <div class="col-sm-9">
-                                <div class="radio radio-info radio-inline">
-                                    <input type="radio" id="inlineRadio3" value="N" <?php if($work_orders["Delivery_Status"]=='N' ) echo 'checked' ?> name="Delivery_Status" checked="" disabled="">
-                                    <label for="inlineRadio3"> N </label>
-                                </div>
-                                <div class="radio radio-info radio-inline">
-                                    <input type="radio" id="inlineRadio4" value="U" <?php if($work_orders["Delivery_Status"]=='U' ) echo 'checked' ?> name="Delivery_Status" disabled="">
-                                    <label for="inlineRadio4"> U </label>
-                                </div>
-                                <div class="radio radio-info radio-inline">
-                                    <input type="radio" id="inlineRadio5" value="M.U" <?php if($work_orders["Delivery_Status"]=='M.U' ) echo 'checked' ?> name="Delivery_Status" disabled="">
-                                    <label for="inlineRadio5"> M.U. </label>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="form-group row">
-
-                        <div class="form-group col-lg-6">
-                            <label for="example-text-input" class="col-sm-3 col-form-label">Instruction Remarks</label>
-                            <div class="col-sm-9">
-                                <input class="form-control" name="Instruction_Remarks" type="textarea" value="<?php echo $work_orders["Instruction_Remarks"] ?>" id="example-text-input" placeholder="" disabled="">
-                            </div>
-
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label for="example-text-input" class="col-sm-3 col-form-label">Status</label>
-                            <div class="col-sm-9">
-                                <div class="radio radio-info radio-inline">
-                                    <input type="radio" id="inlineRadio6" value="New" name="status" <?php if($work_orders["status"]=='New' ) echo 'checked' ?> disabled="">
-                                    <label for="inlineRadio6"> New </label>
-                                </div>
-                                <div class="radio radio-info radio-inline">
-                                    <input type="radio" id="inlineRadio7" value="Existing" name="status" <?php if($work_orders["status"]=='Existing' ) echo 'checked' ?> disabled="">
-                                    <label for="inlineRadio7"> Existing </label>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    
-
                 </div>
             </div>
         </div>
-        <!-- prodcution Plane -->
-        <?php 
+                        <button id="btn" class="print-btn_work_order btn btn-info pull-right" role="button">Generate Print</button><br><br><br>
+                            <?php } ?>
+       <?php 
             if (isset($production_plan)) {
         ?>
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-bd print-div ">
+                <div class="panel panel-bd print-div_view_production_plan table_one">
                     <div class="panel-heading">
                         <div class="panel-title">
                             <h4 class="product-totle">View Production Plan Form</h4><br>    
@@ -185,7 +118,7 @@
                             <form>
                                 <div class="col-sm-12">
                                     <div class="panel-body ">
-                                        <table class="minimalistBlack">
+                                        <table class="minimalistBlack" style="width: 100%;">
                                        
                                        
                                         <tbody>
@@ -260,6 +193,7 @@
                 </div>
             </div>
         </div>
+                        <button id="btn" class="print-btn_view_production_plan btn btn-info pull-right" role="button">Generate Print</button><br><br><br>
         <?php } ?>
         <!-- cutting -->
         <?php 
@@ -267,7 +201,7 @@
         ?>
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-bd print-div ">
+                <div class="panel panel-bd print-div_view_cutting table_one">
                     <div class="panel-heading">
                         <div class="panel-title">
                           <h4 class="product-totle">BATCH MANUFACTURING REPORT <small>(Cutting)</small></h4><br>
@@ -279,7 +213,7 @@
                             <form>
                                 <div class="col-sm-12">
                                     <div class="panel-body">
-                                        <table class="minimalistBlack">
+                                        <table class="minimalistBlack" style="width: 100%;">
                                        
                                        
                                         <tbody>
@@ -377,6 +311,7 @@
                     </div>
                 </div>
             </div>
+                        <button id="btn" class="print-btn_view_cutting btn btn-info pull-right" role="button">Generate Print</buttbr><br></br>
         </div>
         <?php } ?>
         <!-- die cutting -->
@@ -385,7 +320,7 @@
         ?>
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-bd print-div ">
+                <div class="panel panel-bd print-div_view_die_cutting table_one">
                     <div class="panel-heading">
                         <div class="panel-title">
                           <h4 class="product-totle">BATCH MANUFACTURING REPORT <small>(Die Cutting)</small></h4><br>
@@ -397,7 +332,7 @@
                             <form>
                                 <div class="col-sm-12">
                                     <div class="panel-body">
-                                        <table class="minimalistBlack">
+                                        <table class="minimalistBlack" style="width: 100%;">
                                        
                                        
                                         <tbody>
@@ -507,7 +442,7 @@
                                         
                                         </table>
                                         <br>
-                                        <table class="table table-bordered table-hover" cellpadding="10">
+                                        <table class="table table-bordered table-hover" cellpadding="10" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <th rowspan="2"><center>Code</center></th>
@@ -540,7 +475,7 @@
                                         </table>
                                         <br>
                                         <div class="form-group row">
-                                            <table class="minimalistBlack">
+                                            <table class="minimalistBlack" style="width: 100%;">
                                                 <tbody>
                                                     <tr>
                                             <td colspan="">Prepared By <small>(Operator) : ___________</td>
@@ -591,6 +526,7 @@
                     </div>
                 </div>
             </div>
+                        <button id="btn" class="print-btn_view_die_cutting btn btn-info pull-right" role="button">Generate Print</button><br><br><br>
         </div>
         <?php } ?>
         <!-- leaflet cutting -->
@@ -599,7 +535,7 @@
         ?>
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-bd print-div ">
+                <div class="panel panel-bd print-div_leaflet_cutting table_one">
                     <div class="panel-heading">
                         <div class="panel-title">
                             <h4 class="product-totle">View label & leaflet cutting Form</h4><br>
@@ -611,7 +547,7 @@
                             <form>
                                 <div class="col-sm-12">
                                     <div class="panel-body">
-                                        <table class="minimalistBlack">
+                                        <table class="minimalistBlack" style="width: 100%;">
                                        
                                        
                                         <tbody>
@@ -707,6 +643,7 @@
                     </div>
                 </div>
             </div>
+                        <button id="btn" class="print-btn_leaflet_cutting btn btn-info pull-right" role="button">Generate Print</buttbr><br></br>
         </div>
         <?php } ?>
         <!-- pasting -->
@@ -715,7 +652,7 @@
         ?>
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-bd print-div ">
+                <div class="panel panel-bd print-div_pasting table_one">
                     <div class="panel-heading">
                         <div class="panel-title">
                           <h4 class="product-totle">BATCH MANUFACTURING REPORT <small>(Pasting)</small></h4><br>
@@ -727,7 +664,7 @@
                             <form>
                                 <div class="col-sm-12">
                                     <div class="panel-body">
-                                        <table class="minimalistBlack">
+                                        <table class="minimalistBlack" style="width: 100%;">
                                        
                                        
                                         <tbody>
@@ -837,7 +774,7 @@
                                         </table>
                                         
                                         <br>
-                                        <table class="table table-bordered table-hover" cellpadding="10">
+                                        <table class="table table-bordered table-hover" cellpadding="10" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <th rowspan="2"><center>Code</center></th>
@@ -872,7 +809,7 @@
                                         </table>
                                         <br>
                                         <div class="form-group row">
-                                            <table class="minimalistBlack">
+                                            <table class="minimalistBlack" style="width: 100%;">
                                                 <tbody>
                                                     <tr>
                                             <td colspan="">Prepared By <small>(Operator) : ___________</td>
@@ -923,6 +860,7 @@
                     </div>
                 </div>
             </div>
+                         <button id="btn" class="print-btn_pasting btn btn-info pull-right" role="button">Generate Print</button><br><br><br>
         </div>
         <?php } ?>
         <!-- printing -->
@@ -931,7 +869,7 @@
         ?>
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-bd print-div ">
+                <div class="panel panel-bd print-div_printing table_one">
                     <div class="panel-heading">
                         <div class="panel-title">
                           <h4 class="product-totle">BATCH MANUFACTURING REPORT <small>(Printing)</small></h4><br>
@@ -943,7 +881,7 @@
                             <form>
                                 <div class="col-sm-12">
                                     <div class="panel-body">
-                                        <table class="minimalistBlack">
+                                        <table class="minimalistBlack" style="width: 100%;">
                                        
                                        
                                         <tbody>
@@ -1166,7 +1104,7 @@
                                         </table>
                                         
                                         <br>
-                                        <table class="table table-bordered table-hover" cellpadding="10">
+                                        <table class="table table-bordered table-hover" cellpadding="10" style="width: 100%;">
                                             <thead>
                                                 <tr>
                                                     <th rowspan="2"><center>Code</center></th>
@@ -1199,7 +1137,7 @@
                                         </table>
                                         <br>
                                         <div class="form-group row">
-                                            <table class="minimalistBlack">
+                                            <table class="minimalistBlack" style="width: 100%;">
                                                 <tbody>
                                                     <tr>
                                             <td colspan="">Prepared By <small>(Operator) : ___________</td>
@@ -1250,6 +1188,7 @@
                     </div>
                 </div>
             </div>
+                        <button id="btn" class="print-btn_printing btn btn-info pull-right" role="button">Generate Print</button><br><br><br>
         </div>
         <?php } ?>
         <!-- line clearance -->
@@ -1259,7 +1198,7 @@
         ?>
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-bd print-div ">
+                <div class="panel panel-bd print-div_line_clearance_form_<?php echo $data['flow_name'] ?> table_one">
                     <div class="panel-heading">
                         <div class="panel-title">
                             <h4 class="product-totle">Line Clearance Form (<?php echo $data['flow_name'] ?>)</h4><br>
@@ -1271,7 +1210,7 @@
                             <form>
                                 <div class="col-sm-12">
                                     <div class="panel-body ">
-                                        <table class="table table-bordered table-hover minimalistBlack">
+                                        <table class="table table-bordered table-hover minimalistBlack" style="width: 100%;">
                                             <tbody>
                                                 <tr>
                                                     <td>Previous Job No : <u><?php echo $data['previous'] ?></u></td>
@@ -1283,7 +1222,7 @@
                                                 </tr>
                                         </table>
 
-                                        <table class="minimalistBlack table table-bordered table-hover" style="">
+                                        <table class="minimalistBlack table table-bordered table-hover" style="width: 100%;">
                                             <tbody>
                                                 <tr>
                                                     <td></td>
@@ -1413,110 +1352,85 @@
                         </div>
                     </div>
                 </div>
-                <button id="btn" class="print-btn btn btn-info pull-right" role="button">Generate Print</button>
+                <button id="btn" class="print-btn_line_clearance_form_<?php echo $data['flow_name'] ?> btn btn-info pull-right" role="button">Generate Print</button><br><br><br>
             </div>
         </div>
         <?php } } ?>
-        <?php 
-            if (isset($development)) {
-        ?>
+        
+        
         <div class="row">
             <div class="col-sm-12">
-                <div class="panel panel-bd print-div ">
+                <div class="panel panel-bd print-div_process_flow table_one">
                     <div class="panel-heading">
                         <div class="panel-title">
-                            <h4 class="product-totle">Development</h4><br>
+                            <h4 class="product-totle">Process Flow</h4><br>
                         </div>
                     </div>
                     <div class="panel-body">
-                        <div class="row">
-                            <form>
-                                <div class="col-sm-12">
-                                    <div class="panel-body ">
-                                        <table class="table table-bordered table-hover minimalistBlack">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Remarks : <u><?php echo $development['remarks'] ?></u></td>
-                                                    <td>File : <u><a download href="<?php echo base_url($development['file']) ?>">View Attechment</a></u></td>
-                                                </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <button id="btn" class="print-btn btn btn-info pull-right" role="button">Generate Print</button>
-            </div>
-        </div>
-        <?php } ?>
-        <?php 
-            if (isset($design)) {
-        ?>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="panel panel-bd print-div ">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4 class="product-totle">Design</h4><br>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <form>
-                                <div class="col-sm-12">
-                                    <div class="panel-body ">
-                                        <table class="table table-bordered table-hover minimalistBlack">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Remarks : <u><?php echo $design['remarks'] ?></u></td>
-                                                    <td>File : <u><a download href="<?php echo base_url($design['file']) ?>">View Attechment</a></u></td>
-                                                </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <button id="btn" class="print-btn btn btn-info pull-right" role="button">Generate Print</button>
-            </div>
-        </div>
-        <?php } ?>
-        <?php 
-            if (isset($profing)) {
-        ?>
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="panel panel-bd print-div ">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <h4 class="product-totle">Profing</h4><br>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <form>
-                                <div class="col-sm-12">
-                                    <div class="panel-body ">
-                                        <table class="table table-bordered table-hover minimalistBlack">
-                                            <tbody>
-                                                <tr>
-                                                    <td>Remarks : <u><?php echo $profing['remarks'] ?></u></td>
-                                                    <td>File : <u><a download href="<?php echo base_url($profing['file']) ?>">View Attechment</a></u></td>
-                                                </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <button id="btn" class="print-btn btn btn-info pull-right" role="button">Generate Print</button>
-            </div>
-        </div>
-        <?php } ?>
+                                                
+                                                <div class="table-responsive">
+                                                    <table id="" class="table table-bordered table-striped table-hover" style="width: 100%;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Name</th>
+                                                                <th>Remarks</th>
+                                                                <th>File</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php 
+                                                                if (isset($development)) {
+                                                            ?>
+                                                            <tr>
+                                                                <td>Development</td>
+                                                                <td><?php echo $development['remarks'] ?></td>
+                                                                <td><a download href="<?php echo base_url($development['file']) ?>">View Attechment</a></td>
+                                                                
+                                                               
+                                                                   
+                                                            </tr>
+                                                            <?php } ?>
+                                                            <?php 
+                                                                if (isset($design)) {
+                                                            ?>
+                                                            <tr>
+                                                                <td>Design</td>
+                                                                <td><?php echo $design['remarks'] ?></td>
+                                                                <td><a download href="<?php echo base_url($design['file']) ?>">View Attechment</a></td>
+                                                                
+                                                               
+                                                                   
+                                                            </tr>
+                                                            <?php } ?>
+                                                             <?php 
+                                                                if (isset($profing)) {
+                                                            ?>
+                                                            <tr>
+                                                                <td>Profing</td>
+                                                                <td><?php echo $profing['remarks'] ?></td>
+                                                                <td><a download href="<?php echo base_url($profing['file']) ?>">View Attechment</a></td>
+                                                                
+                                                               
+                                                                   
+                                                            </tr>
+                                                            <?php } ?>
+                                                           
+                                                        </tbody>
+                                                    </table>
+                                                    
+                                                </div>
+                                            </div>    
+                                                </div>
+                                            <button id="btn" class="print-btn_process_flow btn btn-info pull-right" role="button">Generate Print</button><br></br>    
+                                            </div>        
+                                                </div>
+                                            </div>
+      
+  
+        
     </div>
+    <button id="btn" class="print-btn_all btn btn-info pull-left" role="button">Generate Print Full</button><br><br></br>
 </div>    </div>
 </div>    </div>
 </div>
@@ -1560,3 +1474,336 @@ table.minimalistBlack tfoot td {
   font-size: 14px;
 }
 </style>
+<script type="text/javascript">
+    $('.print-btn_all').click(function() {
+        w = window.open();
+        var ht = $('.print-div_all').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+      w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+        w.document.write('<style>.btn-info {display: none;}</style>')
+        w.document.write('<style>.content-header {display: none;}</style>')
+        
+         w.document.write('<style>.table_one {page-break-after:always}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+         w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+         w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+         w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+         w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script>
+<script type="text/javascript">
+    $('.print-btn_work_order').click(function() {
+        w = window.open();
+        var ht = $('.print-div_work_order').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+      w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+         w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+         w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+         w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+         w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script>
+<script type="text/javascript">
+    $('.print-btn_line_clearance_form').click(function() {
+        w = window.open();
+        var ht = $('.print-div_line_clearance_form').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+      w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+         w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+         w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+         w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+         w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script>
+<script type="text/javascript">
+    $('.print-btn_view_production_plan').click(function() {
+        w = window.open();
+        var ht = $('.print-div_view_production_plan').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+      w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+         w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+         w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+         w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+         w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script>
+<script type="text/javascript">
+    $('.print-btn_view_cutting').click(function() {
+        w = window.open();
+        var ht = $('.print-div_view_cutting').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+      w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+         w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+         w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+         w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+         w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script>
+<script type="text/javascript">
+    $('.print-btn_printing').click(function() {
+        w = window.open();
+        var ht = $('.print-div_printing').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+      w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+         w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+         w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+         w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+         w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script><script type="text/javascript">
+    $('.print-btn_printing').click(function() {
+        w = window.open();
+        var ht = $('.print-div_printing').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+      w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+         w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+         w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+         w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+         w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script>
+<script type="text/javascript">
+    $('.print-btn_line_clearance_form_Cutting').click(function() {
+        w = window.open();
+        var ht = $('.print-div_line_clearance_form_Cutting').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+      w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+         w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+         w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+         w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+         w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script>
+<script type="text/javascript">
+    $('.print-btn_line_clearance_form_Printing').click(function() {
+        w = window.open();
+        var ht = $('.print-div_line_clearance_form_Printing').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+      w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+         w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+         w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+         w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+         w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script>
+<script type="text/javascript">
+    $('.print-btn_line_clearance_form_Dispatch').click(function() {
+        w = window.open();
+        var ht = $('.print-div_line_clearance_form_Dispatch').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+      w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+         w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+         w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+         w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+         w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script>
+<script type="text/javascript">
+    $('.print-btn_process_flow').click(function() {
+        w = window.open();
+        var ht = $('.print-div_process_flow').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+      w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>') 
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+     w.document.write('<style>.panel-title {    text-align: center;}</style>')
+ w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>. table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+         w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+         w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+         w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+         w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script>

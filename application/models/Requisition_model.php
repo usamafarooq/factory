@@ -51,7 +51,7 @@ class Requisition_model extends MY_Model{
 				 ->where('pr.status','Complete')
 				 ->group_by(array('p.product_id','pr.store_id'));
 		$order = $this->db->get_compiled_select();
-		$this->db->select('p.Product_Name,pp.quantity,pp.id,pp.received_quantity,sum(pp.received_quantity) as stock,o.orders, group_concat(distinct concat(ps.stock, ":"), concat(ps.orders, ":"), concat(ps.id, ":"), concat(ps.Product_Name, ":"),ps.Product_Cost) as products,p.id as product_id,pp.remarks') 
+		$this->db->select('p.Product_Name,p.Product_Unit,pp.quantity,pp.id,pp.received_quantity,sum(pp.received_quantity) as stock,o.orders, group_concat(distinct concat(ps.stock, ":"), concat(ps.orders, ":"), concat(ps.id, ":"), concat(ps.Product_Name, ":"),ps.Product_Cost) as products,p.id as product_id,pp.remarks') 
 				 ->from('requisition_product pp')
 				 ->join('requisition pr','pr.id = pp.requisition_id')
 				 ->join('product p','p.id = pp.product_id')

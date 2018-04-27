@@ -60,20 +60,22 @@
                                                         if ($permission["edit"] == "1" || $permission["deleted"] == "1"){
                                                     ?>
                                                     <td>
+                                                        <img src="<?php echo base_url() ?>assets/icons/view_detail.png" data-toggle="modal" data-target="#myModal1" onclick="get_id_view(<?php echo $module["id"] ?>)" title="View Detail" alt="View Detail" width="25" height="25">
                                                         <?php 
                                                             if($module["status"] != 'Complete'){
                                                         ?>
-                                                        <div class="dropdown">
+                                                        <!-- <div class="dropdown">
                                                           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Action
                                                           <span class="caret"></span></button>
                                                           <ul class="dropdown-menu">
                                                             <li><a href="<?php echo base_url('requisition/change_status/'.$module["id"].'/Pending') ?>">Pending</a></li>
                                                             <li><a href="#" data-toggle="modal" data-target="#myModal" onclick="get_id(<?php echo $module["id"] ?>)">Complete</a></li>
-                                                            <!-- <li><a href="<?php echo base_url('product_release/change_status/'.$module["id"].'/Completed') ?>">Completed</a></li> -->
+                                                            <li><a href="<?php echo base_url('product_release/change_status/'.$module["id"].'/Completed') ?>">Completed</a></li>
                                                           </ul>
-                                                        </div>
+                                                        </div> -->
+                                                        <a href="#" data-toggle="modal" data-target="#myModal" onclick="get_id(<?php echo $module["id"] ?>)"><img src="<?php echo base_url() ?>assets/icons/complete_process.png" title="Completed" alt="View Plane" width="25" height="25"></a>
                                                         <?php } ?>
-                                                        <img src="<?php echo base_url() ?>assets/icons/view_detail.png" data-toggle="modal" data-target="#myModal1" onclick="get_id_view(<?php echo $module["id"] ?>)" title="View Detail" alt="View Detail" width="25" height="25">
+                                                        
                                                     </td>
                                                     <?php } ?>
                                                 </tr>
@@ -116,6 +118,7 @@
                                 <th>Product Name</th>
                                 <th>Quantity</th>
                                 <th>Received Quantity</th>
+                                <th>Product Unit</th>
                                 <th>Remarks</th>
                             </tr>
                         </thead>
@@ -154,6 +157,7 @@
                                     <th>Quantity</th>
                                     <th>Received Quantity</th>
                                     <th>Avalible Quantity</th>
+                                    <th>Product Unit</th>
                                     <th>Remarks</th>
                                 </tr>
                             </thead>
@@ -251,6 +255,7 @@
                     tb.find('tr').last().append('<td>'+data['quantity']+'</td>')
                     tb.find('tr').last().append('<td><input type="hidden" name="detail_id[]" value="'+data['id']+'"><input type="hidden" class="product_id" name="product_id[]" value="'+data['product_id']+'"><input type="number" class="form-control" name="received_quantity[]" value="'+data['quantity']+'"></td>')
                     tb.find('tr').last().append('<td class="stock_qty">'+(data['stock'] - data['orders'])+'</td>')
+                    tb.find('tr').last().append('<td>'+data['Product_Unit']+'</td>')
                     tb.find('tr').last().append('<td><input type="text" class="form-control" name="remarks[]" value=""></td>')
                 }
             }
@@ -275,6 +280,7 @@
                     tb.find('tr').last().append('<td>'+data['Product_Name']+'</td>')
                     tb.find('tr').last().append('<td>'+data['quantity']+'</td>')
                     tb.find('tr').last().append('<td>'+data['received_quantity']+'</td>')
+                    tb.find('tr').last().append('<td>'+data['Product_Unit']+'</td>')
                     tb.find('tr').last().append('<td>'+data['remarks']+'</td>')
                 }
             }
