@@ -34,7 +34,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Date</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" id="" value="<?php echo date("Y/m/d", strtotime($detail['created_at']))?>" placeholder="" readonly="">
+                                                    <input type="text" class="form-control" id="" value="<?php echo date("Y/m/d", strtotime($detail['created_at']))?>" placeholder="" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -63,7 +63,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Machine</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control" placeholder=""  value="<?php echo $job['machine_Name'] ?>" readonly>
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $job['machine_Name'] ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -83,7 +83,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Operator</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['operator'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['operator'] ?>" name="operator">
                                                 </div>
                                             </div>
                                         </div>
@@ -91,7 +91,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Assistant</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['assistant'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['assistant'] ?>" name="assistant">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
@@ -99,13 +99,13 @@
                                                 <div class="col-sm-9">
                                                     <div class="radio radio-info radio-inline">
 
-                                                        <input type="radio" id="inlineRadio1" value="Cutting" disabled="" <?php if($detail['process'] == 'Cutting') echo 'checked' ?>>
+                                                        <input type="radio" id="inlineRadio1" value="Cutting" name="process" <?php if($detail['process'] == 'Cutting') echo 'checked' ?>>
                                                         <label for="inlineRadio1"> Cutting </label>
                                                     </div>
 
                                                     <div class="radio radio-info radio-inline">
 
-                                                        <input type="radio" id="inlineRadio2" value="Embossing" disabled="" <?php if($detail['process'] == 'Embossing') echo 'checked' ?>>
+                                                        <input type="radio" id="inlineRadio2" value="Embossing" name="process" <?php if($detail['process'] == 'Embossing') echo 'checked' ?>>
                                                         <label for="inlineRadio2"> Embossing </label>
                                                     </div>
                                                 </div>
@@ -116,13 +116,13 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Job (Opening)</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control" placeholder="" readonly="" value="<?php echo $detail['opening'] ?>">
+                                                    <input type="number" class="form-control" placeholder=""  value="<?php echo $detail['opening'] ?>" name="opening">
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Job Closing</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control" placeholder="" readonly="" value="<?php echo $detail['closing'] ?>">
+                                                    <input type="number" class="form-control" placeholder=""  value="<?php echo $detail['closing'] ?>" name="closing">
                                                 </div>
                                             </div>
                                         </div>
@@ -130,13 +130,13 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Output</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control" placeholder="" readonly="" value="<?php echo $detail['output'] ?>">
+                                                    <input type="number" class="form-control" placeholder=""  value="<?php echo $detail['output'] ?>" name="output">
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Waste</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control" placeholder="" readonly="" value="<?php echo $detail['waste'] ?>">
+                                                    <input type="number" class="form-control" placeholder=""  value="<?php echo $detail['waste'] ?>" name="waste">
                                                 </div>
                                             </div>
                                         </div>

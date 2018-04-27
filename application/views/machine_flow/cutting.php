@@ -167,13 +167,13 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Start time</label>
                                                 <div class="col-sm-9">
-                                                <input type="date" class="form-control" placeholder="" value="<?php echo $job['start_date'] ?>" readonly>
+                                                <input type="datetime-local" class="form-control" placeholder="" value="<?php echo date('Y-m-d\TH:i', strtotime($job['start_date'])) ?>" readonly>
                                                 </div>
                                             </div> 
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">End time</label>
                                                 <div class="col-sm-9">
-                                                <input type="date" class="form-control" placeholder="" value="<?php echo $job['end_date'] ?>" readonly>
+                                                <input type="datetime-local" class="form-control" placeholder="" value="<?php echo date('Y-m-d\TH:i', strtotime($job['end_date'])) ?>" readonly>
                                                 </div>
                                             </div> 
                                         </div>

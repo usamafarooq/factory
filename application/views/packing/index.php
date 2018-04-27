@@ -40,6 +40,7 @@
                                                     <th>Quantity</th>
                                                     <th>Start Date</th>
                                                     <th>End Date</th>
+                                                    <th>Inventory Status</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -56,6 +57,21 @@
                                                     <td><?php echo $o['start_date'] ?></td>
                                                     <td><?php echo $o['end_date'] ?></td>
                                                     <td><?php echo $o['status'] ?></td>
+                                                    <td>
+                                                        <?php 
+                                                            if ($o['con'] == 0) {
+                                                                echo 'Pending';
+                                                            }
+                                                            else{
+                                                                if ($o['submit'] == 0) {
+                                                                    echo 'In Progress';
+                                                                }
+                                                                else{
+                                                                    echo 'Complete';
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </td>
                                                     <td>
                                                         <?php
                                                             if ($o['submit'] != 0 || $o['submit'] != '') {
@@ -75,7 +91,7 @@
                                                                     echo '<a href="'.base_url('machine_flow/packing_complete/'.$o['id'].'/'.$o['flow_id']).'"><img src="'.base_url().'assets/icons/complete.png" title="Complete" alt="Complete" width="25" height="25"></a>';
                                                                 }
                                                                 else{
-                                                                    echo '<img src="'.base_url().'assets/icons/complete_process.png" title="Completed" alt="Completed" width="25" height="25">';
+                                                                    //echo '<img src="'.base_url().'assets/icons/complete_process.png" title="Completed" alt="Completed" width="25" height="25">';
                                                                 }
                                                             }
                                                         ?>

@@ -40,7 +40,8 @@
                                                     <th>Quantity</th>
                                                     <th>Start Date</th>
                                                     <th>End Date</th>
-<th>Status</th>
+                                                    <th>Inventory Status</th>
+                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -55,7 +56,22 @@
                                                     <td><?php echo $o['Quantity'] ?></td>
                                                     <td><?php echo $o['start_date'] ?></td>
                                                     <td><?php echo $o['end_date'] ?></td>
-<td><?php echo $o['status'] ?></td>
+                                                    <td><?php echo $o['status'] ?></td>
+                                                    <td>
+                                                        <?php 
+                                                            if ($o['con'] == 0) {
+                                                                echo 'Pending';
+                                                            }
+                                                            else{
+                                                                if ($o['submit'] == 0) {
+                                                                    echo 'In Progress';
+                                                                }
+                                                                else{
+                                                                    echo 'Complete';
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </td>
                                                     <td>
                                                         <?php
                                                             if ($o['submit'] != 0 || $o['submit'] != '') {
@@ -82,7 +98,7 @@
                                                         <?php 
                                                             }
                                                             else{
-                                                                echo '<img src="'.base_url().'assets/icons/complete_process.png" title="Completed" alt="Completed" width="25" height="25">';
+                                                                //echo '<img src="'.base_url().'assets/icons/complete_process.png" title="Completed" alt="Completed" width="25" height="25">';
                                                             }
                                                             }
                                                         ?>

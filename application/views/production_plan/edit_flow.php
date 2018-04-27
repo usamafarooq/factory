@@ -212,14 +212,14 @@
                                     <div class="form-group col-lg-6">
                                         <label for="example-text-input" class="col-sm-3 col-form-label">Start Date</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control start" name="start_date[]" type="date" id="example-text-input" placeholder="" value="<?php echo $p['start_date'] ?>">
+                                            <input class="form-control start" name="start_date[]" type="datetime-local" id="example-text-input" placeholder="" value="<?php echo date('Y-m-d\TH:i', strtotime($p['start_date'])) ?>">
                                         </div>
 
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="example-text-input" class="col-sm-3 col-form-label">End Date</label>
                                         <div class="col-sm-9">
-                                            <input class="form-control end" name="end_date[]" type="date" id="example-text-input" placeholder="" value="<?php echo $p['end_date'] ?>">
+                                            <input class="form-control end" name="end_date[]" type="datetime-local" id="example-text-input" placeholder="" value="<?php echo date('Y-m-d\TH:i', strtotime($p['end_date'])) ?>">
                                         </div>
 
                                     </div>
