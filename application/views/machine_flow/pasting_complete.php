@@ -62,7 +62,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="example-text-input" class="col-sm-4">Machine</label>
                                                 <div class="col-sm-8">
-                                                    <input type="number" class="form-control" placeholder="" value="<?php echo $job['machine_Name'] ?>" readonly>
+                                                    <input type="text" class="form-control" placeholder="" value="<?php echo $job['machine_Name'] ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
@@ -82,7 +82,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="example-text-input" class="col-sm-4">Operator</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['operator'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['operator'] ?>" name="operator">
                                                 </div>
                                             </div>
                                         </div>
@@ -90,13 +90,13 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="example-text-input" class="col-sm-4">Assistant</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['assistant'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['assistant'] ?>" name="assistant">
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="example-text-input" class="col-sm-4">Job Counter <span style="font-size: 7px;">(Opening)</span> </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['opening'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['opening'] ?>" name="opening">
                                                 </div>
                                             </div>
 
@@ -105,13 +105,13 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="example-text-input" class="col-sm-4">Job Counter <span style="font-size: 8px;">(Closing)</span> </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['closing'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['closing'] ?>" name="closing">
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="example-text-input" class="col-sm-4">Output</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['output'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['output'] ?>" name="output">
                                                 </div>
                                             </div>
 
@@ -120,13 +120,13 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="example-text-input" class="col-sm-4">Waste</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['waste'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['waste'] ?>" name="waste">
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="example-text-input" class="col-sm-4">Master carton</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['carton'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['carton'] ?>" name="carton">
                                                 </div>
                                             </div>
 
@@ -135,13 +135,13 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="example-text-input" class="col-sm-4">Packing Qty </label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['qty'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['qty'] ?>" name="qty">
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="example-text-input" class="col-sm-4">Weight</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['weight'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['weight'] ?>" name="weight">
                                                 </div>
                                             </div>
 

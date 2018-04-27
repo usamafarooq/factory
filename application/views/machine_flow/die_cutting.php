@@ -64,7 +64,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Machine</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control" placeholder=""  value="<?php echo $job['machine_Name'] ?>" readonly>
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $job['machine_Name'] ?>" readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">

@@ -83,7 +83,7 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Operator</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['operator'] ?>">
+                                                    <input type="text" class="form-control" placeholder="" value="<?php echo $detail['operator'] ?>" name="operator" >
                                                 </div>
                                             </div>
                                         </div>
@@ -242,13 +242,13 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Assistant</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['assistant'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['assistant'] ?>" name="assistant">
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Process</label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-control" readonly="">
+                                                    <select class="form-control"  name="process">
                                                         <option>Select Process</option>
                                                         <option value="Printing" <?php if($detail['process'] == 'Printing') echo 'selected' ?>>Printing</option>
                                                         <option value="Coating" <?php if($detail['process'] == 'Printing') echo 'selected' ?>>Coating</option>
@@ -260,13 +260,13 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Job (Opening)</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control" placeholder="" readonly="" value="<?php echo $detail['opening'] ?>">
+                                                    <input type="number" class="form-control" placeholder=""  value="<?php echo $detail['opening'] ?>" name="opening">
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Job Closing</label>
                                                 <div class="col-sm-9">
-                                                    <input type="number" class="form-control" placeholder="" readonly="" value="<?php echo $detail['closing'] ?>">
+                                                    <input type="number" class="form-control" placeholder=""  value="<?php echo $detail['closing'] ?>" name="closing">
                                                 </div>
                                             </div>
                                         </div>
@@ -274,13 +274,13 @@
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Output</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['output'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['output'] ?>" name="output">
                                                 </div>
                                             </div>
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Waste</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control" placeholder="" readonly="" value="<?php echo $detail['waste'] ?>">
+                                                    <input type="text" class="form-control" placeholder=""  value="<?php echo $detail['waste'] ?>" name="waste">
                                                 </div>
                                             </div>
                                         </div>

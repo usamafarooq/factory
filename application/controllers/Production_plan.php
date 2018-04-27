@@ -166,8 +166,8 @@ class Production_plan extends MY_Controller{
 					'machine'=>$machine[$i],
 					'priority'=>$priority[$i],
 					'parent_id'=>$parent[$i],
-					'start_date'=>$start_date[$i],
-					'end_date'=>$end_date[$i],
+					'start_date'=>date('Y-m-d h:i:s', strtotime($start_date[$i])),
+					'end_date'=>date('Y-m-d h:i:s', strtotime($end_date[$i])),
 					'plane_id'=>$id
 				);
 				//$this->Production_plan_model->insert('production_flow',$data);

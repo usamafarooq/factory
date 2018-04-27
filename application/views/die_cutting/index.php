@@ -40,7 +40,8 @@
 													<th>Quantity</th>
 													<th>Start Date</th>
 													<th>End Date</th>
-													<th>Status</th>
+													<th>Inventory Status</th>
+                                                    <th>Status</th>
 													<th>Action</th>
 												</tr>
 											</thead>
@@ -57,6 +58,21 @@
 										    		<td><?php echo $o['end_date'] ?></td>
 										    		<td><?php echo $o['status'] ?></td>
 										    		<td>
+                                                        <?php 
+                                                            if ($o['con'] == 0) {
+                                                                echo 'Pending';
+                                                            }
+                                                            else{
+                                                                if ($o['submit'] == 0) {
+                                                                    echo 'In Progress';
+                                                                }
+                                                                else{
+                                                                    echo 'Complete';
+                                                                }
+                                                            }
+                                                        ?>
+                                                    </td>
+										    		<td>
 										    			<?php
 										    				if ($o['submit'] != 0 || $o['submit'] != '') {
 										    					$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -64,7 +80,7 @@
 										    			<a href="<?php echo base_url() ?>requisition/order/<?php echo $o["WO_no"] ?>/Die_Cutting?redirect=<?php echo $url ?>"><img src="<?php echo base_url() ?>assets/icons/create-order.png" title="Order" alt="Order" width="25" height="25"></a>
 										    			<a href="<?php echo base_url() ?>requisition/view_order/<?php echo $o["WO_no"] ?>/Die_Cutting" target="_blank"><img src="<?php echo base_url() ?>assets/icons/view_order.png" title="View Order" alt="View Order" width="25" height="25"></a>
 										    			<?php } ?>
-										    			<a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $o["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/icons/complete_process.png" title="Completed" alt="View Plane" width="25" height="25"></a>
+										    			<a target="_blank" href="<?php echo base_url() ?>all_orders/view_plane/<?php echo $o["WO_no"] ?>"><img src="<?php echo base_url() ?>assets/icons/view_plan.png" title="View Plane" alt="View Plane" width="25" height="25"></a>
 										    			<?php 
 										    				if ($o['con'] == 0) {
 										    			?>
@@ -82,7 +98,7 @@
 										    				}
 										    				else{
 										    			?>
-										    			Completed
+										    			<!-- Completed -->
 										    			<?php
 										    				}
 										    				}

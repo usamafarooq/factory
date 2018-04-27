@@ -43,6 +43,25 @@ class Machine_flow extends MY_Controller {
     {
         if ($this->input->post()) {
             $data = $this->input->post();
+            $start = array(
+                'operator' => $data['operator'],
+                'assistant' => $data['assistant'],
+                'process' => $data['process'],
+                'opening' => $data['opening'],
+                'closing' => $data['closing'],
+                'output' => $data['output'],
+                'waste' => $data['waste'] 
+            );
+            unset($data['operator']);
+            unset($data['assistant']);
+            unset($data['process']);
+            unset($data['opening']);
+            unset($data['closing']);
+            unset($data['output']);
+            unset($data['waste']);
+            $this->machine_flow_model->update('printing',$start,array('plane_id'=>$plane_id,'flow_id'=>$flow_id));
+
+            
             $code = $data['code'];
             $from = $data['from'];
             $to = $data['to'];
@@ -118,6 +137,24 @@ class Machine_flow extends MY_Controller {
     {
         if ($this->input->post()) {
             $data = $this->input->post();
+            $start = array(
+                'operator' => $data['operator'],
+                'assistant' => $data['assistant'],
+                'process' => $data['process'],
+                'opening' => $data['opening'],
+                'closing' => $data['closing'],
+                'output' => $data['output'],
+                'waste' => $data['waste'] 
+            );
+            unset($data['operator']);
+            unset($data['assistant']);
+            unset($data['process']);
+            unset($data['opening']);
+            unset($data['closing']);
+            unset($data['output']);
+            unset($data['waste']);
+            $this->machine_flow_model->update('die_cutting',$start,array('plane_id'=>$plane_id,'flow_id'=>$flow_id));
+
             $code = $data['code'];
             $from = $data['from'];
             $to = $data['to'];
@@ -333,6 +370,29 @@ class Machine_flow extends MY_Controller {
     {
         if ($this->input->post()) {
             $data = $this->input->post();
+            $start = array(
+                'operator' => $data['operator'], 
+                'assistant' => $data['assistant'], 
+                'opening' => $data['opening'], 
+                'closing' => $data['closing'], 
+                'output' => $data['output'], 
+                'waste' => $data['waste'], 
+                'carton' => $data['carton'], 
+                'qty' => $data['qty'], 
+                'weight' => $data['weight']
+            );
+            unset($data['operator']);
+            unset($data['assistant']);
+            unset($data['opening']);
+            unset($data['closing']);
+            unset($data['output']);
+            unset($data['waste']);
+            unset($data['carton']);
+            unset($data['qty']);
+            unset($data['weight']);
+            $this->machine_flow_model->update('pasting',$start,array('plane_id'=>$plane_id,'flow_id'=>$flow_id));
+
+
             $code = $data['code'];
             $from = $data['from'];
             $to = $data['to'];
