@@ -82,6 +82,7 @@
                                                     <th>Net Unit Cost</th>
                                                     <th>Quantity</th>
                                                     <th>Avalible Quantity</th>
+                                                    <th>Product Unit</th>
                                                     <th>Subtotal (USD)</th>
                                                     <th><i class="fa fa-trash-o" style="opacity:0.5; filter:alpha(opacity=50);"></i></th>
                                                 </tr>
@@ -94,6 +95,7 @@
                                                     <th>Total</th>
                                                     <th></th>
                                                     <th class="qty">0.00</th>
+                                                    <th></th>
                                                     <th></th>
                                                     <th class="total">0.00</th>
                                                     <th><i class="fa fa-trash-o" style="opacity:0.5; filter:alpha(opacity=50);"></i></th>
@@ -212,6 +214,7 @@
         app.find('tr').last().append('<td class="net_cost">'+data['Product_Cost']+'</td>')
         app.find('tr').last().append('<td><input type="hidden" name="product_id[]" value="'+id+'"><input type="number" class="form-control" name="quantity[]" value="1"></td>')
         app.find('tr').last().append('<td class="stock_qty">'+ (data['stock'] - data['orders'])+'</td>')
+        app.find('tr').last().append('<td>'+data['Product_Unit']+'</td>')
         app.find('tr').last().append('<td class="sub_total">'+data['Product_Cost']+'</td>')
         app.find('tr').last().append('<td><i class="fa fa-trash-o remove" data-id="'+data['id']+'"></i></td>')
         count_qty()

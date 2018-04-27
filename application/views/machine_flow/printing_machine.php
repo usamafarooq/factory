@@ -194,6 +194,50 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <?php if($job['spl1']){ ?>
+                                        <div class="form-group row">
+                                            <div class="form-group col-lg-12">
+                                                <label for="" class="col-sm-3 col-form-label">SPL1</label>
+                                                <div class="col-sm-9">
+                                                    <textarea readonly="" class="form-control" value="<?php echo $job["spl1"] ?>"><?php echo $job["spl1"] ?></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+                                        <?php if($job['spl1']){ ?>
+                                        <div class="form-group row">
+                                            <div class="form-group col-lg-12">
+                                                <label for="" class="col-sm-3 col-form-label">SPL2</label>
+                                                <div class="col-sm-9">
+                                                    <textarea readonly="" class="form-control" value="<?php echo $job["spl2"] ?>"><?php echo $job["spl2"] ?></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+                                        <?php if($job['spl1']){ ?>
+                                        <div class="form-group row">
+                                            <div class="form-group col-lg-12">
+                                                <label for="" class="col-sm-3 col-form-label">SPL3</label>
+                                                <div class="col-sm-9">
+                                                    <textarea readonly="" class="form-control" value="<?php echo $job["spl3"] ?>"><?php echo $job["spl3"] ?></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+                                        <?php if($job['spl1']){ ?>
+                                        <div class="form-group row">
+                                            <div class="form-group col-lg-12">
+                                                <label for="" class="col-sm-3 col-form-label">SPL4</label>
+                                                <div class="col-sm-9">
+                                                    <textarea readonly="" class="form-control" value="<?php echo $job["spl4"] ?>"><?php echo $job["spl4"] ?></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+
+
+
                                         <div class="form-group row">
                                             <div class="form-group col-lg-6">
                                                 <label for="" class="col-sm-3 col-form-label">Assistant</label>
