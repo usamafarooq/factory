@@ -42,6 +42,20 @@
     table.minimalistBlack tfoot td {
         font-size: 14px;
     }
+    .loader {
+   
+    position:  absolute;
+    width:  100%;
+    height:  100%;
+}
+
+.statistic-box {
+    position:  relative;
+}
+
+div#chart_div3 {
+    opacity:  0;
+}
 </style>
 <!-- /.Navbar  Static Side -->
 <div class="control-sidebar-bg"></div>
@@ -253,14 +267,23 @@
             </div>
             <div class="modal-body">
                 <div class=row>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 statistic-box  border" style="  background-color: #fcfdff ">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 statistic-box  border" style="  background-color: #FFFFFF ">
                         <h5 style="color: black;"><strong>1 : Cutting Machine Detail</strong></h5>
+                        <div class="loader">
+                            <div class="row">
+                                <div class="col-lg-4 col-lg-offset-4">  <button class="btn btn-primary ">show Chart</button></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-lg-offset-4"> <img style="height: 135px;margin-top: 6px;" src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy-downsized.gif">
+                                </div>
+                            </div>
+                        </div>
                         <div id="chart_div3"></div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" id="clos" data-dismiss="modal">Close</button>
             </div>
         </div>
 
@@ -320,16 +343,27 @@
            new Date(2015, 5, 21), new Date(2015, 8, 20), null, 0, null]
         ]);*/
         var options = {
-            height: 190,
+            height: 230,
             width: 550,
             gantt: {
                 trackHeight: 30
             }
         };
         var chart = new google.visualization.Gantt(document.getElementById('chart_div3'));
+        google.visualization.events.addListener(chart, 'ready', afterDraw);
         chart.clearChart();
-        chart.draw(data, options);
+        chart.draw(data, options); 
     }
+    function afterDraw(){
+       if ($("g").length) {
+        $('#chart_div3 svg g').last().prev().prev().prev().addClass('hover');
+        $('.hover').hover(function(){$('#chart_div3').css('opacity',1)});
+       }
+    }
+$("body").click(function () {
+ $('#chart_div3').css('opacity',0)
+});
+
 </script>
 <script type="text/javascript">
     $("body").on("click", ".add-sub", function() {
