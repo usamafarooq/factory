@@ -353,12 +353,30 @@ div#chart_div3 {
         google.visualization.events.addListener(chart, 'ready', afterDraw);
         chart.clearChart();
         chart.draw(data, options); 
+        setTimeout(function() {
+            if (typeof $("g").length !== undefined) {
+        if ($("g").length >= 1) {
+            //alert('1')
+            $('#chart_div3').css('opacity',0);
+            $('.loader').css('opacity',1);
+            $('#chart_div3 svg g').last().prev().prev().prev().addClass('hover');
+            $('.hover').hover(function(){$('#chart_div3').css('opacity',1)});
+        }
+        else{
+            //alert('2')
+            $('#chart_div3').css('opacity',1);
+            $('.loader').css('opacity',0);
+        }
+       }
+       else{
+        //alert('3')
+        $('#chart_div3').css('opacity',1);
+        $('.loader').css('opacity',0);
+       }
+        }, 300)
     }
     function afterDraw(){
-       if ($("g").length) {
-        $('#chart_div3 svg g').last().prev().prev().prev().addClass('hover');
-        $('.hover').hover(function(){$('#chart_div3').css('opacity',1)});
-       }
+
     }
 $("body").click(function () {
  $('#chart_div3').css('opacity',0)
