@@ -39,7 +39,7 @@
 										<table id="dataTableExample2" class="table table-bordered table-striped table-hover">
 											<thead>
 												<tr>
-													<th>Id</th><th>Machine Name</th><th>Detail</th><th>Name</th><th>Flows</th><?php 
+													<th>Id</th><th>Code</th><th>Machine</th><th>Features</th><th>Dept</th><?php 
 														if ($permission["edit"] == "1" || $permission["deleted"] == "1"){
 													?>
 													<th>Action</th>

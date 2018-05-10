@@ -65,7 +65,11 @@
                                                                     echo '<a href="'.base_url('machine_flow/dispatch_complete/'.$o['id'].'/'.$o['flow_id']).'"><img src="'.base_url().'assets/icons/complete.png" title="Complete" alt="Complete" width="25" height="25"></a>';
                                                                 }
                                                                 else{
-                                                                    echo '<img src="'.base_url().'assets/icons/complete_process.png" title="Completed" alt="Completed" width="25" height="25">';
+                                                                    if ($o['d_id'] <= 0) {
+                                                                        echo '<a href="'.base_url('dispatch/delivery_challan/'.$o['WO_no']).'">Delivery Challan</a>';
+                                                                    }
+                                                                    
+                                                                    //echo '<img src="'.base_url().'assets/icons/complete_process.png" title="Completed" alt="Completed" width="25" height="25">';
                                                                 }
                                                             }
                                                         ?>

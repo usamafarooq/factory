@@ -88,6 +88,7 @@ class All_orders extends MY_Controller
 		$this->data['development'] = $this->all_orders_model->get_row_single('development_report',array('order_id'=>$id));
 		$this->data['design'] = $this->all_orders_model->get_row_single('design_report',array('order_id'=>$id));
 		$this->data['profing'] = $this->all_orders_model->get_row_single('printing_report',array('order_id'=>$id));
+		$this->data['batch_release'] = $this->all_orders_model->get_batch_release($id);
 		$this->data['wo_no'] = $id;
 		$this->load->template('all_orders/view_plane',$this->data);
 	}
@@ -121,6 +122,30 @@ class All_orders extends MY_Controller
 	    $this->data['product'] = $this->all_orders_model->get_product($id);
 	    $this->load->template('all_orders/view_timeline',$this->data);
 		//echo '<pre>';print_r($this->data['timeline']);die;
+	}
+
+	public function batch_release($id,$flow_id)
+	{
+		if ($this->permission['edit'] == '0') 
+		{
+			redirect('home');
+		}
+		if ($this->input->post()) {
+			$data = $this->input->post();
+			$data['user_id'] = $this->session->userdata('user_id');
+			$data['wo_id'] = $id;
+			$data['flow_id'] = $flow_id;
+			$id = $this->all_orders_model->insert('batch_release',$data);
+			if ($id) {
+				echo '<script>window.open("","_self").close()</script>';
+				//redirect('all_orders');
+			}
+			//print_r($data);die;
+		}
+		$this->data['title'] = 'Batch Release Form';
+		$this->data['order'] = $this->all_orders_model->get_batch_detail($id,$flow_id);
+		//echo '<pre>';print_r($this->data['order']);die;
+		$this->load->template('all_orders/batch_release',$this->data);
 	}
 }
 		   

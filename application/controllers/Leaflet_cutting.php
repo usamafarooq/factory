@@ -27,6 +27,8 @@ class Leaflet_cutting extends MY_Controller {
         elseif ($this->permission['view'] == '1') {
             $this->data['orders'] = $this->leaflet_cutting_model->get_flow('Leaflet Cutting','leaflet_cutting',$this->id);
         }
+        // print_r($this->db->last_query());
+        // echo '<pre>';print_r($this->data['orders']);die;
         $this->data['permission'] = $this->permission;
         $this->load->template('leaflet_cutting/index',$this->data);
     }

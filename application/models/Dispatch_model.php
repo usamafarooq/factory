@@ -12,4 +12,16 @@ class Dispatch_model extends MY_Model{
 		}
 		return $this->db->get()->result_array();
 	}
+
+	public function get_delivery_challan($id)
+	{
+		$this->db->select('w.id,c.client_Name,c.Address,i.Description,br.qty_per_mc,br.total_carton,now() as date,i.Item_code,w.created_at')
+				 ->from('work_orders w')
+				 ->join('clients c', 'c.id = w.Client')
+				 ->join('item i', 'i.id = w.Item_Code')
+				 ->join('batch_release br', 'br.wo_id = w.id','left')
+				 ->where('w.id',$id)
+				 ->group_by('w.id');
+		return $this->db->get()->row_array();
+	}
 }

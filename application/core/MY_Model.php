@@ -73,7 +73,18 @@ class MY_Model extends CI_Model
                  ->where('type',$name)
                  ->group_by(array('type','wo_id'));
         $status = $this->db->get_compiled_select();
-        $this->db->select('p.id,p.WO_no,p.Job_Description,p.Quantity,f.start_date,f.end_date,f.parent_id,(CASE WHEN f.parent_id != 0 THEN pf.id ELSE 0 END) as parent, f.id as flow_id, count(ofs.id) as con, COUNT(off.id) as submit,(CASE WHEN s.status IS NULL THEN "Not initialized" ELSE s.status END) as status');
+        $this->db->select('ff.id as last')
+                 ->from('production_flow ff')
+                 ->where('ff.plane_id = p.id')
+                 ->order_by('ff.id','desc')
+                 //->where('ff.id = f.id')
+                 ->limit(1,1);
+        $last = $this->db->get_compiled_select();
+        $this->db->select('count(d.id) as d_id, d.wo_id')
+                 ->from('delivery_challan d')
+                 ->group_by('d.wo_id');
+        $challan = $this->db->get_compiled_select();
+        $this->db->select('p.id,p.WO_no,p.Job_Description,p.Quantity,f.start_date,f.end_date,f.parent_id,(CASE WHEN f.parent_id != 0 THEN pf.id ELSE 0 END) as parent, f.id as flow_id, count(ofs.id) as con, COUNT(off.id) as submit,(CASE WHEN s.status IS NULL THEN "Not initialized" ELSE s.status END) as status, ('.$last.') as last, f.id as flows_id, count(br.id) as batch, d.d_id');
         $this->db->from('production_plan p')
                  ->join('production_flow f', 'f.plane_id = p.id')
                  ->join('flows fl', 'fl.id = f.type')
@@ -81,7 +92,9 @@ class MY_Model extends CI_Model
                  ->join('order_flow_submission of', 'pf.id = of.flow_id', 'left')
                  ->join('order_flow_submission off', 'f.id = off.flow_id', 'left')
                  ->join('order_flow_start ofs', 'f.id = ofs.flow_id', 'left')
-                 ->join('('.$status.') s', 's.wo_id = p.WO_no', 'left');
+                 ->join('batch_release br','br.wo_id = p.WO_no and br.flow_id = f.id','left')
+                 ->join('('.$status.') s', 's.wo_id = p.WO_no', 'left')
+                 ->join('('.$challan.') d', 'd.wo_id = p.WO_no', 'left');
         // if ($table != null && $table != 'null') {
         //     $this->db->join($table.' s', 's.plane_id = p.id', 'left');
         // }

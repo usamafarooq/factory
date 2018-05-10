@@ -99,4 +99,31 @@ class all_orders_model extends MY_Model{
 				 ->where('r.wo_id', $id);
 		return $this->db->get()->result_array();
 	}
+
+	public function get_batch_detail($id,$flow_id)
+	{
+		$this->db->select('w.id,i.Description as product_name,w.quantity,m.machine_Name')
+				 ->from('work_orders w')
+				 ->join('item i', 'i.id = w.Item_Code')
+				 ->join('production_plan pp','pp.WO_no = w.id')
+				 ->join('production_flow pf','pf.plane_id = pp.id and pf.id = '.$flow_id)
+				 ->join('machines m','m.id = pf.machine', 'left')
+				 ->group_by('w.id')
+				 ->where('w.id',$id);
+		return $this->db->get()->row_array();
+	}
+
+	public function get_batch_release($id)
+	{
+		$this->db->select('br.*,w.id,i.Description as product_name,w.quantity,m.machine_Name')
+				 ->from('work_orders w')
+				 ->join('item i', 'i.id = w.Item_Code')
+				 ->join('batch_release br', 'br.wo_id = w.id')
+				 ->join('production_plan pp','pp.WO_no = w.id')
+				 ->join('production_flow pf','pf.plane_id = pp.id and pf.id = br.flow_id')
+				 ->join('machines m','m.id = pf.machine', 'left')
+				 ->group_by('w.id')
+				 ->where('w.id',$id);
+		return $this->db->get()->row_array();
+	}
 }

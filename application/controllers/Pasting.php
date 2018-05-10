@@ -28,6 +28,8 @@ class Pasting extends MY_Controller {
             $this->data['orders'] = $this->pasting_model->get_flow('Pasting','pasting',$this->id);
         }
         $this->data['permission'] = $this->permission;
+        // print_r($this->db->last_query());
+        // echo '<pre>';print_r($this->data['orders']);die;
         $this->load->template('pasting/index',$this->data);
     }
 

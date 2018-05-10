@@ -28,6 +28,8 @@ class Printing_plane extends MY_Controller {
             $this->data['orders'] = $this->printing_plane_model->get_flow('printing','printing',$this->id);
         }
         //echo '<pre>';print_r($this->data);die;
+        // print_r($this->db->last_query());
+        // echo '<pre>';print_r($this->data['orders']);die;
         $this->data['permission'] = $this->permission;
         $this->load->template('printing_plane/index',$this->data);
     }

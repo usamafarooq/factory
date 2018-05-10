@@ -1385,7 +1385,7 @@
                                                             <tr>
                                                                 <td>Development</td>
                                                                 <td><?php echo $development['remarks'] ?></td>
-                                                                <td><a download href="<?php echo base_url($development['file']) ?>">View Attechment</a></td>
+                                                                <td><?php if ($development['file']) {?><a download href="<?php echo base_url($development['file']) ?>">View Attechment</a><?php } ?></td>
                                                                 
                                                                
                                                                    
@@ -1397,7 +1397,7 @@
                                                             <tr>
                                                                 <td>Design</td>
                                                                 <td><?php echo $design['remarks'] ?></td>
-                                                                <td><a download href="<?php echo base_url($design['file']) ?>">View Attechment</a></td>
+                                                                <td><?php if ($design['file']) {?><a download href="<?php echo base_url($design['file']) ?>">View Attechment</a><?php } ?></td>
                                                                 
                                                                
                                                                    
@@ -1409,7 +1409,7 @@
                                                             <tr>
                                                                 <td>Profing</td>
                                                                 <td><?php echo $profing['remarks'] ?></td>
-                                                                <td><a download href="<?php echo base_url($profing['file']) ?>">View Attechment</a></td>
+                                                                <td><?php if ($profing['file']) {?><a download href="<?php echo base_url($profing['file']) ?>">View Attechment</a><?php } ?></td>
                                                                 
                                                                
                                                                    
@@ -1425,6 +1425,115 @@
                                             <button id="btn" class="print-btn_process_flow btn btn-info pull-right" role="button">Generate Print</button><br></br>    
                                             </div>        
                                                 </div>
+
+<?php if ($batch_release) {?>
+<div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-bd print-div ">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <h4 class="product-totle">View Batch Release Form</h4>
+                            <br>
+                            <small class="product-tital"> DOC NO: PRD/FM/005-01 | REV # 00</small>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <form>
+                                <div class="col-sm-12">
+                                    <div class="panel-body ">
+
+                                        <table class="minimalistBlack" style="width: 100%;">
+
+                                            <tbody>
+
+                                                <tr>
+                                                    <td>W.O # : <u><?php echo $batch_release['id'] ?></u></td>
+                                                    <td colspan="2">Date : <u><?php echo date('d/m/Y', strtotime($batch_release['created_at'])) ?></u></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">Product Name : <u><?php echo $batch_release['product_name'] ?></u></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">Order Qty : <u><?php echo $batch_release['quantity'] ?></u></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">Name Of Machine Operator : <u><?php echo $batch_release['operator'] ?></u></td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3"> Machine Name : <u><?php echo $batch_release['machine_Name'] ?></u></td>
+
+                                                </tr>
+                                                <tr>
+
+                                                    <td colspan="3">Status Of Batch : <u><?php echo $batch_release['status'] ?></u></td>
+
+                                                </tr>
+                                                <tr>
+
+                                                    <td colspan="3">Finished Quantity : <u><?php echo $batch_release['finish_qty'] ?></u></td>
+
+                                                </tr>
+                                                <tr>
+
+                                                    <td colspan="3">
+                                                        <center>
+                                                            <h5>Packing Area</h5></center>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+
+                                                    <td>Packer Name : <u><?php echo $batch_release['packer_name'] ?></u></td>
+                                                    <td colspan="2">Date : <u><?php echo date('d/m/Y', strtotime($batch_release['date'])) ?></u></td>
+
+                                                </tr>
+                                                <tr>
+
+                                                    <td colspan="3">Qty per MC : <u><?php echo $batch_release['qty_per_mc'] ?></u></td>
+
+                                                </tr>
+                                                <tr>
+
+                                                    <td colspan="3">Total Cartons : <u><?php echo $batch_release['total_carton'] ?></u></td>
+
+                                                </tr>
+
+                                        </table>
+                                        <br>
+                                        <div class="form-group row">
+                                            <div class="col-lg-6 col-md-8 col-sm-6 col-xs-6">
+                                                <address>
+                                                   <label for="example-text-input" class="col-sm-5">Packing In-charge</small> :</label>
+                                                    <e class="aks_value">__________________</e>
+                                                    <br>
+                                                </address>
+                                            </div>
+
+                                        </div>
+                                        <div>
+                                        </div>
+
+                            </form>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="btn" class="print-btn btn btn-info pull-right" role="button">Generate Print</button>
+                <div style="height: 440px;"></div>
+            </div>
+        </div>
+<?php } ?>
+
+
+
+
+
                                             </div>
       
   
@@ -1796,6 +1905,44 @@ table.minimalistBlack tfoot td {
          w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
          w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
          w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
+        w.document.write('</head>');
+        w.document.write('<body>');
+        w.document.write(ht);
+        w.document.write('<body>');
+        w.document.write('</html>');
+        setTimeout(function() {
+            w.print();
+            w.close();
+        }, 300);
+    })
+</script>
+<script type="text/javascript">
+    $('.print-btn').click(function() {
+        w = window.open();
+        var ht = $('.print-div').html()
+        var head = $('head').html()
+        w.document.write('<html>');
+        w.document.write('<head>');
+        w.document.write(head);
+        // w.document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+        // w.document.write('<link rel="stylesheet" type="text/css" href="' + url + '/assets/css/bootstrap.min.css">');
+        // w.document.write('<link rel="stylesheet" type="text/css" href="' + url + '/assets/css/bootstrap-responsive.min.css">');
+        // w.document.write('<link rel="stylesheet" type="text/css" href="' + url + '/assets/css/font-awesome.min.css">');
+        // w.document.write('<link rel="stylesheet" type="text/css" href="' + url + '/assets/css/style.css">');
+        // w.document.write('<link rel="stylesheet" type="text/css" href="' + url + '/assets/css/responsive.css">');
+        /*  w.document.write('<style>h4.product-totle{padding-left:150px}</style>')
+          w.document.write('<style>.product-tital{padding-left:160px;position: fixed;margin-top: -30px;}</style>')*/
+        w.document.write('<style>table.minimalistBlack {width: 100%;height: 200px; text-align: left; border-collapse: collapse;}</style>')
+        w.document.write('<style>input[type="radio"]{webkit-appearance: radio;}</style>')
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline {display: inline;}</style>')
+        w.document.write('<style>.panel-title {    text-align: center;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label:before {content: "*";order: 1;}</style>')
+        w.document.write('<style>.radio-inline input[type="radio"]:checked + label {background:pink !important; font-weight: 900; content: "Task";}</style>')
+        w.document.write('<style>table.minimalistBlack td, table.minimalistBlack th {border: 1px solid #000000;padding: 5px 4px;}</style>')
+        w.document.write('<style>table.minimalistBlack tbody td {font-size: 13px;}</style>')
+        w.document.write('<style>table.minimalistBlack thead {background: #CFCFCF;background: -moz-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: -webkit-linear-gradient(top, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);background: linear-gradient(to bottom, #dbdbdb 0%, #d3d3d3 66%, #CFCFCF 100%);border-bottom: 3px solid #000000;}</style>')
+        w.document.write('<style>table.minimalistBlack thead th {font-size: 15px;font-weight: bold;color: #000000;text-align: left;}</style>')
         w.document.write('</head>');
         w.document.write('<body>');
         w.document.write(ht);

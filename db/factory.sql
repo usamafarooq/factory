@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2018 at 10:11 AM
+-- Generation Time: May 10, 2018 at 11:20 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -29,6 +29,34 @@ SET time_zone = "+00:00";
 CREATE TABLE `all_orders` (
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `batch_release`
+--
+
+CREATE TABLE `batch_release` (
+  `id` int(11) NOT NULL,
+  `wo_id` int(11) NOT NULL,
+  `flow_id` int(11) NOT NULL,
+  `operator` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `finish_qty` varchar(255) NOT NULL,
+  `packer_name` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `qty_per_mc` varchar(255) NOT NULL,
+  `total_carton` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `batch_release`
+--
+
+INSERT INTO `batch_release` (`id`, `wo_id`, `flow_id`, `operator`, `status`, `finish_qty`, `packer_name`, `date`, `qty_per_mc`, `total_carton`, `user_id`, `created_at`) VALUES
+(4, 11, 22, 'Umer', 'Complete', '50500', 'baqar', '2018-05-09', '1000+500', '50+01', 2, '2018-05-09 07:21:46');
 
 -- --------------------------------------------------------
 
@@ -154,7 +182,31 @@ INSERT INTO `cutting` (`id`, `plane_id`, `flow_id`, `operator`, `assistant`, `qu
 (1, 6, 5, 'Baqar ', 'Umer', '50000', '50', 'Yes', 'Yes', '50000', 'ASAP', 2, '2018-04-09 07:10:18'),
 (2, 7, 8, 'Baqar', 'Umer', '500', '500', 'Yes', 'Yes', '500', 'asdasd', 2, '2018-04-09 07:12:49'),
 (3, 10, 16, 'Umer', 'Uemrw', '55', '4', 'Yes', 'Yes', '50000', 'cutting complete', 2, '2018-04-10 13:16:47'),
-(4, 12, 21, 'Umer', 'Baqar', '6875', '1/4', 'Yes', 'Yes', '6880', 'AAASDM', 2, '2018-04-20 07:39:12');
+(4, 12, 21, 'Umer', 'Baqar', '6875', '1/4', 'Yes', 'Yes', '6880', 'AAASDM', 2, '2018-04-20 07:39:12'),
+(5, 9, 14, 'hgffhg', 'fghgffg', 'gfhffgghfg', '1/4', 'Yes', 'Yes', 'fghffgfg', 'fghgfgfg', 2, '2018-04-27 09:48:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_challan`
+--
+
+CREATE TABLE `delivery_challan` (
+  `id` int(11) NOT NULL,
+  `wo_id` int(11) NOT NULL,
+  `delivery_challan` varchar(100) NOT NULL,
+  `line_no` varchar(100) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `delivery_challan`
+--
+
+INSERT INTO `delivery_challan` (`id`, `wo_id`, `delivery_challan`, `line_no`, `user_id`, `created_at`) VALUES
+(1, 8, '2345 / 18', 'wfwfd', 2, '2018-05-10 06:39:13'),
+(2, 11, '546545', '5445454', 2, '2018-05-10 07:07:13');
 
 -- --------------------------------------------------------
 
@@ -235,6 +287,13 @@ CREATE TABLE `die_cutting` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `die_cutting`
+--
+
+INSERT INTO `die_cutting` (`id`, `plane_id`, `flow_id`, `operator`, `assistant`, `process`, `opening`, `closing`, `output`, `waste`, `user_id`, `created_at`) VALUES
+(1, 9, 26, 'fdgfgfg', 'ffgfg', 'Cutting', '5454', '44345', '5443', '4343', 2, '2018-04-27 10:33:43');
+
 -- --------------------------------------------------------
 
 --
@@ -254,6 +313,13 @@ CREATE TABLE `die_cutting_complete` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `die_cutting_complete`
+--
+
+INSERT INTO `die_cutting_complete` (`id`, `die_cutting_id`, `completed`, `feeder`, `delivery`, `die`, `plate`, `ready`, `user_id`, `created_at`) VALUES
+(1, 1, 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 2, '2018-04-27 10:52:51');
+
 -- --------------------------------------------------------
 
 --
@@ -270,6 +336,13 @@ CREATE TABLE `die_cutting_hourse` (
   `counter` varchar(100) NOT NULL,
   `remarks` varchar(245) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `die_cutting_hourse`
+--
+
+INSERT INTO `die_cutting_hourse` (`id`, `die_cutting_id`, `code`, `froms`, `tos`, `hours`, `counter`, `remarks`) VALUES
+(1, 1, 'Cleaning', '13:00', '14:00', '10 am/pm', 'fgfdggffg', 'eewew');
 
 -- --------------------------------------------------------
 
@@ -405,6 +478,13 @@ CREATE TABLE `leaflet_cutting` (
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `leaflet_cutting`
+--
+
+INSERT INTO `leaflet_cutting` (`id`, `plane_id`, `flow_id`, `shift`, `operator`, `assistant`, `paper`, `quantity`, `conversion`, `cleaning`, `size`, `production`, `waste`, `remarks`, `user_id`, `created_at`) VALUES
+(1, 9, 27, 'G', 'fgfgfd', 'dffdfd', 'ddfdfdfg', 'fdfdgf', 'fdfggfddffd', 'Yes', 'Yes', 'fgfgfgdf', 'fdfgfd', 'fdgfgdfd', 2, '2018-04-27 10:53:37');
 
 -- --------------------------------------------------------
 
@@ -567,7 +647,10 @@ INSERT INTO `modules` (`id`, `name`, `main_name`, `sort`, `icon`, `url`, `parent
 (78, 'Machines Report', 'machines_report', 2, 'home', 'machines_report', 76, 2),
 (79, 'Left Over Inventory', 'over_inventory', 9, 'home', 'over_inventory', 67, 2),
 (80, 'Job Inventory Report', 'job_inventory_report', 3, 'home', 'job_inventory_report', 76, 2),
-(81, 'Client Inventory Report', 'client_inventory_report', 4, 'home', 'client_inventory_report', 76, 2);
+(81, 'Client Inventory Report', 'client_inventory_report', 4, 'home', 'client_inventory_report', 76, 2),
+(82, 'Machine Down Time', 'machine_down_time', 11, 'insert_chart', 'machine_down_time', 0, 2),
+(83, 'Client Order Report', 'client_order_report', 5, 'home', 'client_order_report', 76, 2),
+(84, 'Daily Dispatch', 'daily_dispatch', 6, 'home', 'daily_dispatch', 76, 2);
 
 -- --------------------------------------------------------
 
@@ -741,7 +824,12 @@ INSERT INTO `order_flow_start` (`id`, `flow_id`, `created_at`) VALUES
 (13, 19, '2018-04-10 13:39:46'),
 (14, 21, '2018-04-20 07:39:12'),
 (15, 22, '2018-04-20 07:42:57'),
-(16, 23, '2018-04-20 07:43:56');
+(16, 23, '2018-04-20 07:43:56'),
+(17, 14, '2018-04-27 09:48:06'),
+(18, 26, '2018-04-27 10:33:43'),
+(19, 27, '2018-04-27 10:53:37'),
+(20, 28, '2018-04-27 10:54:49'),
+(21, 15, '2018-04-27 11:02:22');
 
 -- --------------------------------------------------------
 
@@ -775,7 +863,11 @@ INSERT INTO `order_flow_submission` (`id`, `flow_id`, `created_at`) VALUES
 (13, 19, '2018-04-10 13:40:16'),
 (14, 21, '2018-04-20 07:40:37'),
 (15, 22, '2018-04-20 07:43:30'),
-(16, 23, '2018-04-20 07:43:58');
+(16, 23, '2018-04-20 07:43:58'),
+(17, 14, '2018-04-27 09:48:09'),
+(18, 26, '2018-04-27 10:52:51'),
+(19, 27, '2018-04-27 10:53:39'),
+(20, 28, '2018-04-27 11:01:34');
 
 -- --------------------------------------------------------
 
@@ -800,6 +892,13 @@ CREATE TABLE `pasting` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pasting`
+--
+
+INSERT INTO `pasting` (`id`, `plane_id`, `flow_id`, `operator`, `assistant`, `opening`, `closing`, `output`, `waste`, `carton`, `qty`, `weight`, `user_id`, `created_at`) VALUES
+(1, 9, 28, 'dsffds', 'dsfdsfds', 'fdsfdsfdfd', 'sfdfdsfds', 'sfdfsdfds', 'sdffsfd', 'dsffdsdsd', 'sdfdfsdfssd', 'fdsfdfdss', 2, '2018-04-27 10:54:49');
+
 -- --------------------------------------------------------
 
 --
@@ -819,6 +918,13 @@ CREATE TABLE `pasting_complete` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pasting_complete`
+--
+
+INSERT INTO `pasting_complete` (`id`, `pasting_id`, `ready`, `completed`, `cleaning`, `guide`, `glue`, `blanket`, `user_id`, `created_at`) VALUES
+(1, 1, 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 2, '2018-04-27 11:01:34');
+
 -- --------------------------------------------------------
 
 --
@@ -835,6 +941,13 @@ CREATE TABLE `pasting_hourse` (
   `counter` varchar(100) NOT NULL,
   `remarks` varchar(245) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pasting_hourse`
+--
+
+INSERT INTO `pasting_hourse` (`id`, `pasting_id`, `code`, `froms`, `tos`, `hours`, `counter`, `remarks`) VALUES
+(1, 1, 'Cleaning', '13:00', '14:00', '9 am/pm', 'ffddsdssd', 'dsdsfffds');
 
 -- --------------------------------------------------------
 
@@ -901,60 +1014,6 @@ INSERT INTO `permission` (`id`, `module_id`, `user_id`, `user_type_id`, `view`, 
 (1193, 64, 2, 2, 0, 0, 0, 0, 0, 0),
 (1194, 65, 2, 2, 0, 0, 0, 0, 0, 0),
 (1195, 66, 2, 2, 0, 0, 0, 0, 0, 0),
-(1890, 2, 2, 1, 1, 1, 1, 1, 1, 1),
-(1891, 3, 2, 1, 1, 1, 1, 1, 1, 1),
-(1892, 5, 2, 1, 1, 1, 1, 1, 1, 1),
-(1893, 7, 2, 1, 1, 1, 1, 1, 1, 1),
-(1894, 21, 2, 1, 1, 1, 1, 1, 1, 1),
-(1895, 25, 2, 1, 1, 1, 1, 1, 1, 1),
-(1896, 27, 2, 1, 1, 1, 1, 1, 1, 1),
-(1897, 33, 2, 1, 1, 1, 1, 1, 1, 1),
-(1898, 34, 2, 1, 1, 1, 1, 1, 1, 1),
-(1899, 35, 2, 1, 1, 1, 1, 1, 1, 1),
-(1900, 36, 2, 1, 1, 1, 1, 1, 1, 1),
-(1901, 37, 2, 1, 1, 1, 1, 1, 1, 1),
-(1902, 38, 2, 1, 1, 1, 1, 1, 1, 1),
-(1903, 39, 2, 1, 1, 1, 1, 1, 1, 1),
-(1904, 40, 2, 1, 1, 1, 1, 1, 1, 1),
-(1905, 41, 2, 1, 1, 1, 1, 1, 1, 1),
-(1906, 42, 2, 1, 1, 1, 1, 1, 1, 1),
-(1907, 43, 2, 1, 1, 1, 1, 1, 1, 1),
-(1908, 44, 2, 1, 1, 1, 1, 1, 1, 1),
-(1909, 46, 2, 1, 1, 1, 1, 1, 1, 1),
-(1910, 47, 2, 1, 1, 1, 1, 1, 1, 1),
-(1911, 48, 2, 1, 1, 1, 1, 1, 1, 1),
-(1912, 49, 2, 1, 1, 1, 1, 1, 1, 1),
-(1913, 50, 2, 1, 1, 1, 1, 1, 1, 1),
-(1914, 51, 2, 1, 1, 1, 1, 1, 1, 1),
-(1915, 52, 2, 1, 1, 1, 1, 1, 1, 1),
-(1916, 53, 2, 1, 1, 1, 1, 1, 1, 1),
-(1917, 54, 2, 1, 1, 1, 1, 1, 1, 1),
-(1918, 55, 2, 1, 1, 1, 1, 1, 1, 1),
-(1919, 56, 2, 1, 1, 1, 1, 1, 1, 1),
-(1920, 57, 2, 1, 1, 1, 1, 1, 1, 1),
-(1921, 58, 2, 1, 1, 1, 1, 1, 1, 1),
-(1922, 59, 2, 1, 1, 1, 1, 1, 1, 1),
-(1923, 60, 2, 1, 1, 1, 1, 1, 1, 1),
-(1924, 61, 2, 1, 1, 1, 1, 1, 1, 1),
-(1925, 62, 2, 1, 1, 1, 1, 1, 1, 1),
-(1926, 63, 2, 1, 1, 1, 1, 1, 1, 1),
-(1927, 64, 2, 1, 1, 1, 1, 1, 1, 1),
-(1928, 65, 2, 1, 1, 1, 1, 1, 1, 1),
-(1929, 67, 2, 1, 1, 1, 1, 1, 1, 1),
-(1930, 68, 2, 1, 1, 1, 1, 1, 1, 1),
-(1931, 69, 2, 1, 1, 1, 1, 1, 1, 1),
-(1932, 70, 2, 1, 1, 1, 1, 1, 1, 1),
-(1933, 71, 2, 1, 1, 1, 1, 1, 1, 1),
-(1934, 72, 2, 1, 1, 1, 1, 1, 1, 1),
-(1935, 73, 2, 1, 1, 1, 1, 1, 1, 1),
-(1936, 74, 2, 1, 1, 1, 1, 1, 1, 1),
-(1937, 75, 2, 1, 1, 1, 1, 1, 1, 1),
-(1938, 76, 2, 1, 1, 1, 1, 1, 1, 1),
-(1939, 77, 2, 1, 1, 1, 1, 1, 1, 1),
-(1940, 78, 2, 1, 1, 1, 1, 1, 1, 1),
-(1941, 79, 2, 1, 1, 1, 1, 1, 1, 1),
-(1942, 80, 2, 1, 1, 1, 1, 1, 1, 1),
-(1943, 81, 2, 1, 1, 1, 1, 1, 1, 1),
 (1995, 2, 2, 3, 1, 1, 1, 1, 1, 1),
 (1996, 3, 2, 3, 0, 0, 0, 0, 0, 0),
 (1997, 5, 2, 3, 0, 0, 0, 0, 0, 0),
@@ -1262,7 +1321,63 @@ INSERT INTO `permission` (`id`, `module_id`, `user_id`, `user_type_id`, `view`, 
 (2350, 76, 2, 5, 0, 0, 0, 0, 0, 0),
 (2351, 77, 2, 5, 0, 0, 0, 0, 0, 0),
 (2352, 78, 2, 5, 0, 0, 0, 0, 0, 0),
-(2353, 79, 2, 5, 1, 1, 1, 1, 1, 1);
+(2353, 79, 2, 5, 1, 1, 1, 1, 1, 1),
+(2463, 2, 2, 1, 1, 1, 1, 1, 1, 1),
+(2464, 3, 2, 1, 1, 1, 1, 1, 1, 1),
+(2465, 5, 2, 1, 1, 1, 1, 1, 1, 1),
+(2466, 7, 2, 1, 1, 1, 1, 1, 1, 1),
+(2467, 21, 2, 1, 1, 1, 1, 1, 1, 1),
+(2468, 25, 2, 1, 1, 1, 1, 1, 1, 1),
+(2469, 27, 2, 1, 1, 1, 1, 1, 1, 1),
+(2470, 33, 2, 1, 1, 1, 1, 1, 1, 1),
+(2471, 34, 2, 1, 1, 1, 1, 1, 1, 1),
+(2472, 35, 2, 1, 1, 1, 1, 1, 1, 1),
+(2473, 36, 2, 1, 1, 1, 1, 1, 1, 1),
+(2474, 37, 2, 1, 1, 1, 1, 1, 1, 1),
+(2475, 38, 2, 1, 1, 1, 1, 1, 1, 1),
+(2476, 39, 2, 1, 1, 1, 1, 1, 1, 1),
+(2477, 40, 2, 1, 1, 1, 1, 1, 1, 1),
+(2478, 41, 2, 1, 1, 1, 1, 1, 1, 1),
+(2479, 42, 2, 1, 1, 1, 1, 1, 1, 1),
+(2480, 43, 2, 1, 1, 1, 1, 1, 1, 1),
+(2481, 44, 2, 1, 1, 1, 1, 1, 1, 1),
+(2482, 46, 2, 1, 1, 1, 1, 1, 1, 1),
+(2483, 47, 2, 1, 1, 1, 1, 1, 1, 1),
+(2484, 48, 2, 1, 1, 1, 1, 1, 1, 1),
+(2485, 49, 2, 1, 1, 1, 1, 1, 1, 1),
+(2486, 51, 2, 1, 1, 1, 1, 1, 1, 1),
+(2487, 52, 2, 1, 1, 1, 1, 1, 1, 1),
+(2488, 53, 2, 1, 1, 1, 1, 1, 1, 1),
+(2489, 54, 2, 1, 1, 1, 1, 1, 1, 1),
+(2490, 55, 2, 1, 1, 1, 1, 1, 1, 1),
+(2491, 56, 2, 1, 1, 1, 1, 1, 1, 1),
+(2492, 57, 2, 1, 1, 1, 1, 1, 1, 1),
+(2493, 58, 2, 1, 1, 1, 1, 1, 1, 1),
+(2494, 59, 2, 1, 1, 1, 1, 1, 1, 1),
+(2495, 60, 2, 1, 1, 1, 1, 1, 1, 1),
+(2496, 61, 2, 1, 1, 1, 1, 1, 1, 1),
+(2497, 62, 2, 1, 1, 1, 1, 1, 1, 1),
+(2498, 63, 2, 1, 1, 1, 1, 1, 1, 1),
+(2499, 64, 2, 1, 1, 1, 1, 1, 1, 1),
+(2500, 65, 2, 1, 1, 1, 1, 1, 1, 1),
+(2501, 67, 2, 1, 1, 1, 1, 1, 1, 1),
+(2502, 68, 2, 1, 1, 1, 1, 1, 1, 1),
+(2503, 69, 2, 1, 1, 1, 1, 1, 1, 1),
+(2504, 70, 2, 1, 1, 1, 1, 1, 1, 1),
+(2505, 71, 2, 1, 1, 1, 1, 1, 1, 1),
+(2506, 72, 2, 1, 1, 1, 1, 1, 1, 1),
+(2507, 73, 2, 1, 1, 1, 1, 1, 1, 1),
+(2508, 74, 2, 1, 1, 1, 1, 1, 1, 1),
+(2509, 75, 2, 1, 1, 1, 1, 1, 1, 1),
+(2510, 76, 2, 1, 1, 1, 1, 1, 1, 1),
+(2511, 77, 2, 1, 1, 1, 1, 1, 1, 1),
+(2512, 78, 2, 1, 1, 1, 1, 1, 1, 1),
+(2513, 79, 2, 1, 1, 1, 1, 1, 1, 1),
+(2514, 80, 2, 1, 1, 1, 1, 1, 1, 1),
+(2515, 81, 2, 1, 1, 1, 1, 1, 1, 1),
+(2516, 82, 2, 1, 1, 1, 1, 1, 1, 1),
+(2517, 83, 2, 1, 1, 1, 1, 1, 1, 1),
+(2518, 84, 2, 1, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1292,7 +1407,8 @@ CREATE TABLE `printing` (
 INSERT INTO `printing` (`id`, `plane_id`, `flow_id`, `operator`, `assistant`, `process`, `opening`, `closing`, `output`, `waste`, `user_id`, `created_at`) VALUES
 (1, 7, 11, 'Baqar', 'Umer', 'Printing', '500', '500', '500', '500', 2, '2018-04-09 07:17:44'),
 (2, 10, 18, 'Umer', 'Baqar', 'Printing', '100', '500', '55000', '100', 2, '2018-04-10 13:32:30'),
-(3, 12, 22, 'Umer', 'Baqar', 'Printing', '100', '55000', '5000', '500', 2, '2018-04-20 07:42:57');
+(3, 12, 22, 'Umer', 'Baqar', 'Printing', '100', '55000', '5000', '500', 2, '2018-04-20 07:42:57'),
+(4, 9, 15, 'fghhgfg', 'fhgh', 'Printing', '545654', '565454', '546556', '5655454', 2, '2018-04-27 11:02:22');
 
 -- --------------------------------------------------------
 
@@ -1719,7 +1835,13 @@ INSERT INTO `production_flow` (`id`, `plane_id`, `type`, `machine`, `priority`, 
 (21, 12, '4', 1, 'Hi', 0, '2018-04-20 00:00:00', '2018-04-21 00:00:00'),
 (22, 12, '7', 8, 'Hi', 4, '2018-04-20 00:00:00', '2018-04-21 00:00:00'),
 (23, 12, '16', 0, 'Hi', 7, '2018-04-20 00:00:00', '2018-04-21 00:00:00'),
-(24, 9, 'Select Type', 0, 'Select Pri', 0, '2018-04-25 02:00:00', '2018-04-25 04:30:00');
+(24, 9, 'Select Type', 0, 'Select Pri', 0, '2018-04-25 02:00:00', '2018-04-25 04:30:00'),
+(25, 9, '4', 1, 'Hi', 0, '2018-04-27 01:00:00', '2018-04-27 03:00:00'),
+(26, 9, '13', 18, 'Hi', 4, '2018-04-28 01:00:00', '2018-04-28 03:00:00'),
+(27, 9, '8', 10, 'Hi', 13, '2018-04-28 04:00:00', '2018-04-28 06:00:00'),
+(28, 9, '15', 22, 'Hi', 8, '2018-04-29 01:00:00', '2018-04-29 03:00:00'),
+(29, 9, '7', 8, 'Hi', 15, '2018-04-30 01:00:00', '2018-04-30 03:00:00'),
+(30, 9, '16', 24, 'Hi', 15, '2018-05-09 13:00:00', '2018-05-08 14:00:00');
 
 -- --------------------------------------------------------
 
@@ -2189,6 +2311,12 @@ INSERT INTO `work_orders` (`id`, `Client`, `Item_Code`, `quantity`, `PO_No`, `PO
 --
 
 --
+-- Indexes for table `batch_release`
+--
+ALTER TABLE `batch_release`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `bom`
 --
 ALTER TABLE `bom`
@@ -2210,6 +2338,12 @@ ALTER TABLE `clients`
 -- Indexes for table `cutting`
 --
 ALTER TABLE `cutting`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `delivery_challan`
+--
+ALTER TABLE `delivery_challan`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2459,6 +2593,11 @@ ALTER TABLE `work_orders`
 --
 
 --
+-- AUTO_INCREMENT for table `batch_release`
+--
+ALTER TABLE `batch_release`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `bom`
 --
 ALTER TABLE `bom`
@@ -2477,7 +2616,12 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT for table `cutting`
 --
 ALTER TABLE `cutting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `delivery_challan`
+--
+ALTER TABLE `delivery_challan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `design_report`
 --
@@ -2492,17 +2636,17 @@ ALTER TABLE `development_report`
 -- AUTO_INCREMENT for table `die_cutting`
 --
 ALTER TABLE `die_cutting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `die_cutting_complete`
 --
 ALTER TABLE `die_cutting_complete`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `die_cutting_hourse`
 --
 ALTER TABLE `die_cutting_hourse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `feature`
 --
@@ -2522,7 +2666,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `leaflet_cutting`
 --
 ALTER TABLE `leaflet_cutting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `line_clearance`
 --
@@ -2537,7 +2681,7 @@ ALTER TABLE `machines`
 -- AUTO_INCREMENT for table `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 --
 -- AUTO_INCREMENT for table `orders`
 --
@@ -2547,37 +2691,37 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `order_flow_start`
 --
 ALTER TABLE `order_flow_start`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `order_flow_submission`
 --
 ALTER TABLE `order_flow_submission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `pasting`
 --
 ALTER TABLE `pasting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pasting_complete`
 --
 ALTER TABLE `pasting_complete`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pasting_hourse`
 --
 ALTER TABLE `pasting_hourse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2354;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2519;
 --
 -- AUTO_INCREMENT for table `printing`
 --
 ALTER TABLE `printing`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `printing_complete`
 --
@@ -2602,7 +2746,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `production_flow`
 --
 ALTER TABLE `production_flow`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `production_plan`
 --

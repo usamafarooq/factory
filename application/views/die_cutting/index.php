@@ -97,6 +97,10 @@
 										    			<?php 
 										    				}
 										    				else{
+										    					if ($o['flow_id'] == $o['last'] && $o['batch'] < 1) {
+                                                        ?>
+                                                        <a target="_blank" href="<?php echo base_url('all_orders/batch_release/'.$o['WO_no'].'/'.$o['flow_id']) ?>"><img src="<?php echo base_url() ?>assets/icons/batch-release.png" title="Batch Release" alt="Batch Release" width="25" height="25"></a>
+                                                        <?php } ?>
 										    			?>
 										    			<!-- Completed -->
 										    			<?php

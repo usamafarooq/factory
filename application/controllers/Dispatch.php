@@ -30,4 +30,25 @@ class Dispatch extends MY_Controller {
         $this->load->template('dispatch/index',$this->data);
     }
 
+    public function delivery_challan($id)
+    {
+        if ( $this->permission['view'] == '0' && $this->permission['view_all'] == '0' ) 
+        {
+            redirect('home');
+        }
+        if ($this->input->post()) {
+            $data = $this->input->post();
+            $data['user_id'] = $this->session->userdata('user_id');
+            $data['wo_id'] = $id;
+            $d_id = $this->dispatch_model->insert('delivery_challan',$data);
+            if ($d_id) {
+                redirect('dispatch');
+            }
+        }
+        $this->data['title'] = 'Delivery Challan';
+        $this->data['challan'] = $this->dispatch_model->get_delivery_challan($id);
+        //echo '<pre>';print_r($this->data['challan']);die;
+        $this->load->template('dispatch/delivery_challan',$this->data);
+    }
+
 }
