@@ -24,4 +24,17 @@ class Dispatch_model extends MY_Model{
 				 ->group_by('w.id');
 		return $this->db->get()->row_array();
 	}
+
+	public function get_slip($id)
+	{
+		$this->db->select('w.id,c.client_Name,c.Address,i.Description,br.qty_per_mc,br.total_carton,now() as date,i.Item_code,w.created_at,PO_No,dc.created_at as mfg_date,dc.delivery_challan')
+				 ->from('work_orders w')
+				 ->join('clients c', 'c.id = w.Client')
+				 ->join('item i', 'i.id = w.Item_Code')
+				 ->join('batch_release br', 'br.wo_id = w.id')
+				 ->join('delivery_challan dc', 'dc.wo_id = w.id')
+				 ->where('w.id',$id)
+				 ->group_by('w.id');
+		return $this->db->get()->row_array();
+	}
 }

@@ -51,4 +51,16 @@ class Dispatch extends MY_Controller {
         $this->load->template('dispatch/delivery_challan',$this->data);
     }
 
+    public function print_slip($id)
+    {
+        if ( $this->permission['view'] == '0' && $this->permission['view_all'] == '0' ) 
+        {
+            redirect('home');
+        }
+        $this->data['title'] = 'Slip';
+        $this->data['slip'] = $this->dispatch_model->get_slip($id);
+        //echo '<pre>';print_r($this->data['slip']);die;
+        $this->load->template('dispatch/slip',$this->data);
+    }
+
 }

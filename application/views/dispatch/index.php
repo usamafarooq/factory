@@ -68,7 +68,9 @@
                                                                     if ($o['d_id'] <= 0) {
                                                                         echo '<a href="'.base_url('dispatch/delivery_challan/'.$o['WO_no']).'">Delivery Challan</a>';
                                                                     }
-                                                                    
+                                                                    else{
+                                                                        echo '<a href="'.base_url('dispatch/print_slip/'.$o['WO_no']).'">Print Slip</a>';
+                                                                    }
                                                                     //echo '<img src="'.base_url().'assets/icons/complete_process.png" title="Completed" alt="Completed" width="25" height="25">';
                                                                 }
                                                             }
